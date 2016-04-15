@@ -1,0 +1,7 @@
+# Set far futures headers for this directory and subfolders.
+# except for the manifest.json
+<IfModule mod_expires.c>
+    ExpiresActive on
+    ExpiresDefault "access plus 365 days"
+    ExpiresByType text/json "access plus 1 seconds"
+</IfModule>

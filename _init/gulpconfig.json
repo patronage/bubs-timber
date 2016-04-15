@@ -1,0 +1,10 @@
+{
+    "_comment": "activeTheme and proxy should be updated for the site you want to build, the rest are custom prefs",
+    "activeTheme": "timber",
+    "bs": {
+        "proxy": "www.bubs.dev",
+        "logLevel": "info",
+        "tunnel": "",
+        "open": false
+    }
+}

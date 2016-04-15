@@ -1,0 +1,21 @@
+{% if post.get_thumbnail %}
+    {% set post_hero = post.get_thumbnail.get_src|resize(1500) %}
+{% endif %}
+
+{# scaffolding, you can delete these next linee #}
+{% set post_hero = "https://placeimg.com/1600/600/nature/grayscale" %}
+{% set title = "Test Hero Title" %}
+
+{% if post_hero %}
+    <div class="hero-container">
+        <div class="hero" style="background-image: url('{{ post_hero }}')">
+            <div class="visible-xs hero-img-xs" style="background-image: url('{{ post_hero }}')">
+            </div>
+            <div class="hero-title">
+                <div class="container">
+                    <h2>{{ post.title ?: title }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}

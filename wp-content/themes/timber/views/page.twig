@@ -1,0 +1,25 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row page-container">
+            <div class="col-sm-9 content page">
+                <article class="post" id="post-{{post.ID}}">
+                    <h1>{{ post.post_title }}</h1>
+                    {{ post.get_content }}
+
+                    {% if post.name == "something-special" %}
+                        show the special code.
+                    {% else %}
+                        <!-- nothing special -->
+                    {% endif %}
+                </article>
+            </div>
+            <div class="col-sm-3 sidebar">
+                <div class="container">
+                    {{ sidebar }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

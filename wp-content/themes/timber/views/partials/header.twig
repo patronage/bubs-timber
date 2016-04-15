@@ -1,0 +1,28 @@
+<header class="section bg-gray">
+    <div class="container">
+        <div class="row">
+
+            <div class="logo col-sm-3">
+                <a href="/">{{ wp_title }}</a>
+            </div>
+
+            <nav class="col-sm-9">
+                <ul class="nav navbar-nav navbar-right">
+                    {% for item in header_menus.get_items %}
+                        <li class="{{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
+                            <a href="{{ item.get_link }}" {{ item.get_children ? 'class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"' : '' }} role="button" aria-expanded="false">{{ item.title }}</a>
+                            {% if item.get_children %}
+                                <ul class="dropdown-menu" role="menu">
+                                    {% for child in item.get_children %}
+                                        <li class="{{ item.classes | join(' ') }}"><a href="{{ child.get_link }}">{{ child.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </nav>
+
+        </div>
+    </div>
+</header>

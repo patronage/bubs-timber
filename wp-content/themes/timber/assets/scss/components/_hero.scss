@@ -1,0 +1,38 @@
+.hero-container {
+    height: auto;
+    position: relative;
+    overflow: hidden;
+
+    @include sm-and-up {
+        max-height: 80vh;
+    }
+
+    .hero {
+        height: auto;
+
+        @include sm-and-up {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: 50% 50%;
+            margin-bottom: 0;
+            height: 0;
+            width: 100%;
+            padding-bottom: 30%;
+        }
+
+        .hero-title {
+            background: rgba(#000, .75);
+            color: $white;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            margin-top: 0;
+
+            @include sm-and-up {
+                position: absolute;
+                bottom: 0;
+            }
+
+        }
+    }
+}

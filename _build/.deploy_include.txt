@@ -1,0 +1,2 @@
+wp-content/themes/timber/dist/*
+wp-content/themes/timber/static/*

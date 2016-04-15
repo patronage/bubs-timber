@@ -1,0 +1,115 @@
+{
+    "name": "patronage/bubs-wp",
+    "require": {
+        "php": ">=5.4.0",
+        "WordPress/WordPress": "*",
+        "norcross/airplane-mode": "*",
+        "advanced-custom-fields/advanced-custom-fields-pro": "*",
+        "wpackagist-plugin/acf-pro-sync": "1.0.1",
+        "wpackagist-plugin/bottom-admin-bar": "1.3",
+        "wpackagist-plugin/debug-bar": "0.8.4",
+        "wpackagist-plugin/debug-bar-timber": "0.3",
+        "wpackagist-plugin/disable-emojis": "1.5.1",
+        "wpackagist-plugin/enable-media-replace": "3.0.4",
+        "page-template-filter": "*",
+        "wpackagist-plugin/post-type-archive-links": "1.3.1",
+        "wpackagist-plugin/post-type-switcher": "1.7",
+        "wpackagist-plugin/query-monitor": "2.10.0",
+        "wpackagist-plugin/term-management-tools": "1.1.4",
+        "wpackagist-plugin/timber-library": "0.22.5",
+        "wpackagist-plugin/transients-manager": "1.7.2",
+        "wpackagist-plugin/user-switching": "1.0.9",
+        "wpackagist-plugin/wordpress-seo": "3.1.2",
+        "roots/soil": "3.6.2"
+    },
+    "repositories": [
+        {
+            "type": "package",
+            "package": {
+                "name": "WordPress/WordPress",
+                "type": "webroot",
+                "version": "4.4.2",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/WordPress/WordPress/archive/4.4.2.zip"
+                },
+                "require": {
+                    "fancyguy/webroot-installer": "~1.1"
+                }
+            }
+        },
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "advanced-custom-fields/advanced-custom-fields-pro",
+                "version": "5.3.5",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://www.dropbox.com/s/84pslbxxupg2nmp/advanced-custom-fields-pro-5.3.5.zip?dl=1"
+                },
+                "autoload": {
+                    "psr-0": { "acf\\advanced-custom-fields-pro": "" }
+                },
+                "require" : {
+                    "composer/installers": "v1.0.6"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "norcross/airplane-mode",
+                "version": "0.0.8",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://github.com/norcross/airplane-mode/archive/master.zip"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "page-template-filter",
+                "version": "1.0.0",
+                "type": "wordpress-plugin",
+                "dist": {
+                    "type": "zip",
+                    "url": "https://downloads.wordpress.org/plugin/page-template-filter.1.0.zip"
+                }
+            }
+        }
+    ],
+    "extra": {
+        "webroot-dir": "composer",
+        "webroot-package": "WordPress/WordPress",
+        "installer-paths": {
+            "composer/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "composer/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+            "composer/wp-content/themes/{$name}/": ["type:wordpress-theme"]
+        }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "rm -rf composer/wp-content/themes/twenty*",
+            "rm -rf composer/wp-config-sample.php",
+            "rm -rf composer/wp-content/plugins/hello.php",
+            "cp -R composer/* .",
+
+            "cp -n _init/wp-config-sample.php wp-config.php 2>/dev/null || :",
+            "cp -n _init/wp-config-local-sample.php wp-config-local.php 2>/dev/null || :",
+            "cp -n _init/gulpconfig.json gulpconfig.json 2>/dev/null || :",
+            "cp -n _init/local-plugins.php wp-content/mu-plugins/local-plugins.php 2>/dev/null || :",
+            "mv _init/README.md README.md 2>/dev/null || :",
+
+            "mkdir -p wp-content/uploads && chmod 777 wp-content/uploads",
+            "mkdir -p wp-content/themes/timber/acf-json && chmod -R 777 wp-content/themes/timber/acf-json",
+            "chmod +x ./_build/deploy.sh"
+        ]
+    }
+}

@@ -1,0 +1,29 @@
+// layout
+$section-spacing: 60px;
+$section-spacing-mobile: 30px;
+
+// type
+$font-sans: "Source Sans Pro","Myriad Pro","Helvetica",Helvetica,arial,sans-serif;
+$font-thin: 300;
+
+// colors
+$white:     #FFFFFF;
+$black:     #000000;
+$gray:      #e8e8e8;
+$orange:    #FF4E00;
+
+$color-email: #138bfd;
+$color-facebook: #316298;
+$color-twitter: #36c5f0;
+
+
+//
+// bootstrap vars -- customize bootstrap here, leave vendor files untouched
+//
+
+$font-family-sans-serif:    $font-sans;
+$brand-primary:             $orange;
+$text-color:                $black;
+$link-color:                $orange;
+$grid-gutter-width:         30px;
+$screen-lg:                 1360px;

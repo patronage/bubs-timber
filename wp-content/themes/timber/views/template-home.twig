@@ -1,0 +1,18 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    {% include "partials/hero.twig" %}
+
+    <section class="section bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
+                    <h3>{{ title|dummy(5) }}</h3>
+                    {{ title|dummy(100)|wpautop }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

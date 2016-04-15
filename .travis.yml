@@ -1,0 +1,28 @@
+language: node_js
+node_js: '0.12'
+sudo: false
+
+install:
+  - npm install
+  - npm install -g bower
+
+before_script:
+  - bower install
+  - gulp release
+
+script:
+  - "bash _build/deploy.sh"
+
+branches:
+  only:
+    - master
+    - staging
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+notifications:
+  email: false
+  slack: account:key

@@ -1,0 +1,40 @@
+//
+// Responsive image by default
+//
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+// Undo for google maps
+#map_canvas img, .google-maps img, .no-max img {
+    max-width: none;
+}
+
+// fixes layout issues with tracking pixels
+iframe[width="0"][height="0"] {
+    display: none;
+}
+
+.section {
+    padding-top: $section-spacing-mobile;
+    padding-bottom: $section-spacing-mobile;
+    @include sm-and-up {
+        padding-top: $section-spacing;
+        padding-bottom: $section-spacing;
+    }
+}
+
+.bg-black {
+    background: $black;
+    color: $white;
+}
+
+.bg-gray {
+    background: $gray;
+}
+
+.bg-white {
+    background: $white;
+}
+

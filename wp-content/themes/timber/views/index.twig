@@ -1,0 +1,13 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+    <div class="container">
+        <div class="row page-container">
+            <div class="col-sm-9">
+                {% for post in posts %}
+                    {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
