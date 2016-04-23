@@ -127,7 +127,7 @@ gulp.task('copy', function (cb) {
 
 // loops through the generated html and replaces all references to static versions
 gulp.task('rev', function (cb) {
-    return gulp.src( config.dist + '/{css,js,fonts,img}/*' )
+    return gulp.src( config.dist + '/{css,js,fonts,img}/**/*' )
         .pipe($.rev())
         .pipe($.revCssUrl())
         .pipe(gulp.dest( config.static ))
