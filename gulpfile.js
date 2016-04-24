@@ -94,7 +94,7 @@ gulp.task('styles', function() {
 
         .pipe($.if(!isProduction, $.sourcemaps.init()))
         .pipe($.sass(sassOptions).on('error', handleErrors))
-        .pipe($.cssnano(nanoOptions))
+        .pipe($.if(isProduction, $.cssnano(nanoOptions)))
         .pipe($.if(!isProduction, $.sourcemaps.write(sourcemapsOptions)))
         .pipe(gulp.dest( config.output + '/css' ))
         .pipe(browserSync.stream());
