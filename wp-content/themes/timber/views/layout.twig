@@ -46,7 +46,8 @@
               <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <body class="{{ body_classes }}" id="{{ body_id }}">
+    <body {{ function('body_class', body_classes ) }} id="{{ body_id }}">
+
         <div id="fb-root"></div>
 
         {% if gv.fb_app_id %}
