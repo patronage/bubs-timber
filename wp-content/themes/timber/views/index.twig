@@ -4,9 +4,18 @@
     <div class="container">
         <div class="row page-container">
             <div class="col-sm-9">
+                {% if term %}
+                    <h1>{{ term.name }}</h1>
+                    {{ term.description|wpautop }}
+                {% else %}
+                    <h1>Blog</h1>
+                {% endif %}
+
                 {% for post in posts %}
                     {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
                 {% endfor %}
+
+                {% include "partials/archive-pagination.twig" %}
             </div>
         </div>
     </div>

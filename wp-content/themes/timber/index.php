@@ -20,6 +20,7 @@ if ( ! class_exists( 'Timber' ) ) {
 
 $data = Timber::get_context();
 $data['posts'] = Timber::get_posts();
+$data['pagination'] = Timber::get_pagination();
 $templates = array( 'index.twig' );
 
 Timber::render( 'index.twig', $data );
