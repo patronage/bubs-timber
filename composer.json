@@ -4,7 +4,7 @@
         "php": ">=5.4.0",
         "WordPress/WordPress": "*",
         "norcross/airplane-mode": "*",
-        // "advanced-custom-fields/advanced-custom-fields-pro": "*",
+        "advanced-custom-fields/advanced-custom-fields-pro": "*",
         "wpackagist-plugin/bottom-admin-bar": "1.3",
         "wpackagist-plugin/debug-bar": "0.8.4",
         "wpackagist-plugin/debug-bar-timber": "0.3",
