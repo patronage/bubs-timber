@@ -12,7 +12,7 @@ Recommended localhost domain is: `www.bubs.dev`
 
 The default setup has two commands:
 
-* `gulp` -- stars a dev task with dev versions of assets, and live reloading via BrowserSync and watch
+* `gulp` -- starts a dev task with dev versions of assets, and live reloading via BrowserSync and watch
 * `gulp release` -- builds production versions of all assets, including asset-hashed files
 
 All assets are stored in `wp-content/themes/timber`.
