@@ -19,6 +19,7 @@
 
     // Custom Twig filters
     include_once 'setup/filter-dummy.php';
+    include_once 'setup/filter-slugify.php';
     include_once 'setup/filter-twitterify.php';
 
     add_filter('get_twig', 'add_to_twig');
@@ -26,6 +27,7 @@
     function add_to_twig($twig) {
         /* this is where you can add your own fuctions to twig */
         $twig->addFilter('dummy', new Twig_Filter_Function('apply_dummy_filter'));
+        $twig->addFilter('slugify', new Twig_Filter_Function('slugify'));
         $twig->addFilter('twitterify', new Twig_Filter_Function('twitterify'));
         return $twig;
     }
