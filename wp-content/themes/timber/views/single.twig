@@ -11,8 +11,8 @@
                         <span>Share: </span>
                         <a class="qs-link"
                             data-qs-service="twitter"
-                            data-qs-title="{{post.title}}"
-                            data-qs-url="{{post.permalink}}"
+                            data-qs-title="{{ post.title }}"
+                            data-qs-url="{{ post.link }}"
                             data-qs-via-username="jukingthestats"
                             >
                             <i class="fa fa-twitter"></i>
@@ -20,8 +20,8 @@
 
                         <a class="qs-link"
                             data-qs-service="facebook-share"
-                            data-qs-title="{{post.title}}"
-                            data-qs-url="{{post.permalink}}"
+                            data-qs-title="{{ post.title }}"
+                            data-qs-url="{{ post.link }}"
                         >
                             <i class="fa fa-facebook"></i>
                         </a>
@@ -33,7 +33,7 @@
                         <span class="date">{{ post.post_date|date }}</span>
                     </p>
                     <div class="post-content">
-                        {{ post.get_content }}
+                        {{ post.content }}
                     </div>
                     {% if post.get_terms('categories') %}
                         <div class="post-footer">

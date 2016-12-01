@@ -1,5 +1,5 @@
 {% if post.get_thumbnail %}
-    {% set post_hero = post.get_thumbnail.get_src|resize(1500) %}
+    {% set post_hero = post.thumbnail.src|resize(1500) %}
 {% endif %}
 
 {# scaffolding, you can delete these next linee #}
