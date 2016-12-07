@@ -1,5 +1,8 @@
 #!/bin/bash
 
+## On error, quit
+set -e
+
 ## GIT Remote Variables
 STAGING_REMOTE="git@git.wpengine.com:staging/bubs.git"
 PRODUCTION_REMOTE="git@git.wpengine.com:production/bubs.git"
