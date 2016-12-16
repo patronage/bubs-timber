@@ -10,7 +10,6 @@
 */
 
 $data = Timber::get_context();
-$post = new TimberPost( 1744 ); // Set this to the 404 pages ID
 $data['post'] = Timber::get_post('pagename=not-found');
 
 Timber::render( array( '404.twig', 'page.twig' ), $data );
