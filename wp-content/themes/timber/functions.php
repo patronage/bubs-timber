@@ -1,5 +1,7 @@
 <?php
 
+    require_once(get_theme_root() . "/../plugins/composer-libs/autoload.php"); //Make composer installed php libraries available
+
     //
     // Load WP Config files
     //

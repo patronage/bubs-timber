@@ -24,7 +24,8 @@
         "wpackagist-plugin/transients-manager": "1.7.3",
         "wpackagist-plugin/user-switching": "1.0.9",
         "wpackagist-plugin/wordpress-seo": "4.0.2",
-        "roots/soil": "3.7.1"
+        "roots/soil": "3.7.1",
+        "Upstatement/routes": "*"
     },
     "repositories": [
         {
