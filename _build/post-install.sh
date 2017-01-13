@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # remove unneeded things from default WP, then copy out
 rm -rf ../composer/wp-content/themes/twenty*
