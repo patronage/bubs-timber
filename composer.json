@@ -1,14 +1,15 @@
 {
-    "name": "patronage/bubs-wp",
+    "name": "patronage/bubs",
     "config": {
         "vendor-dir": "wp-content/plugins/composer-libs"
     },
     "require": {
         "php": ">=5.4.0",
-        "WordPress/WordPress": "*",
-        "norcross/airplane-mode": "*",
-        "advanced-custom-fields/advanced-custom-fields-pro": "*",
-        "page-template-filter": "*",
+        "WordPress/WordPress": "4.7.1",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.5.5",
+        "norcross/airplane-mode": "0.2.2",
+        "roots/soil": "3.7.1",
+        "upstatement/routes": "0.4.0",
         "wpackagist-plugin/bottom-admin-bar": "1.3",
         "wpackagist-plugin/debug-bar": "0.8.4",
         "wpackagist-plugin/debug-bar-timber": "0.3",
@@ -23,9 +24,7 @@
         "wpackagist-plugin/timber-library": "1.1.12",
         "wpackagist-plugin/transients-manager": "1.7.3",
         "wpackagist-plugin/user-switching": "1.0.9",
-        "wpackagist-plugin/wordpress-seo": "4.0.2",
-        "roots/soil": "3.7.1",
-        "upstatement/routes": "*"
+        "wpackagist-plugin/wordpress-seo": "4.1"
     },
     "repositories": [
         {
@@ -33,10 +32,10 @@
             "package": {
                 "name": "WordPress/WordPress",
                 "type": "webroot",
-                "version": "4.7",
+                "version": "4.7.1",
                 "dist": {
                     "type": "zip",
-                    "url": "https://github.com/WordPress/WordPress/archive/4.7.zip"
+                    "url": "https://github.com/WordPress/WordPress/archive/4.7.1.zip"
                 },
                 "require": {
                     "fancyguy/webroot-installer": "~1.1"
@@ -51,11 +50,11 @@
             "type": "package",
             "package": {
                 "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.5.3",
+                "version": "5.5.5",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "http://path.to/acf"
+                    "url": "https://www.dropbox.com/s/wjlvt1v2zc7o49c/empty.zip?dl=1"
                 },
                 "autoload": {
                     "psr-0": { "acf\\advanced-custom-fields-pro": "" }
@@ -69,23 +68,11 @@
             "type": "package",
             "package": {
                 "name": "norcross/airplane-mode",
-                "version": "0.0.8",
+                "version": "0.2.2",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "https://github.com/norcross/airplane-mode/archive/master.zip"
-                }
-            }
-        },
-        {
-            "type": "package",
-            "package": {
-                "name": "page-template-filter",
-                "version": "1.0.0",
-                "type": "wordpress-plugin",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://downloads.wordpress.org/plugin/page-template-filter.1.0.zip"
+                    "url": "https://github.com/norcross/airplane-mode/archive/0.2.2.zip"
                 }
             }
         }
