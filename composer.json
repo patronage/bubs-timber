@@ -5,8 +5,8 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "WordPress/WordPress": "4.7.1",
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.5.5",
+        "WordPress/WordPress": "4.7.2",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.5.7",
         "norcross/airplane-mode": "0.2.2",
         "roots/soil": "3.7.1",
         "upstatement/routes": "0.4.0",
@@ -16,15 +16,16 @@
         "wpackagist-plugin/disable-emojis": "1.5.3",
         "wpackagist-plugin/duplicate-post": "3.1.2",
         "wpackagist-plugin/enable-media-replace": "3.0.5",
+        "wpackagist-plugin/filter-page-by-template": "1.0",
         "wpackagist-plugin/google-apps-login": "2.10.5",
         "wpackagist-plugin/post-type-archive-links": "1.3.1",
         "wpackagist-plugin/post-type-switcher": "3.0.0",
         "wpackagist-plugin/query-monitor": "2.13.2",
         "wpackagist-plugin/term-management-tools": "1.1.4",
-        "wpackagist-plugin/timber-library": "1.1.12",
+        "wpackagist-plugin/timber-library": "1.2.1",
         "wpackagist-plugin/transients-manager": "1.7.3",
         "wpackagist-plugin/user-switching": "1.0.9",
-        "wpackagist-plugin/wordpress-seo": "4.1"
+        "wpackagist-plugin/wordpress-seo": "4.2.1"
     },
     "repositories": [
         {
@@ -32,10 +33,10 @@
             "package": {
                 "name": "WordPress/WordPress",
                 "type": "webroot",
-                "version": "4.7.1",
+                "version": "4.7.2",
                 "dist": {
                     "type": "zip",
-                    "url": "https://github.com/WordPress/WordPress/archive/4.7.1.zip"
+                    "url": "https://github.com/WordPress/WordPress/archive/4.7.2.zip"
                 },
                 "require": {
                     "fancyguy/webroot-installer": "~1.1"
@@ -50,7 +51,7 @@
             "type": "package",
             "package": {
                 "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.5.5",
+                "version": "5.5.7",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
