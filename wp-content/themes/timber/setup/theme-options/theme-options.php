@@ -1,7 +1,5 @@
 <?php
 
-include_once("custom-control-textarea.php");
-
 function theme_options( $wp_customize ) {
 
     include_once 'footer.php';

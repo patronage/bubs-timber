@@ -18,6 +18,7 @@ $wp_customize->add_control('ga_id', array(
     'label'     => 'Google Analytics ID',
     'section'   => 'integrations',
     'settings'  => 'ga_id',
+    'type'      => 'text'
 ));
 
 
@@ -29,6 +30,7 @@ $wp_customize->add_control('gtm_id', array(
     'label'     => 'Google Tag Manager ID',
     'section'   => 'integrations',
     'settings'  => 'gtm_id',
+    'type'      => 'text'
 ));
 
 
@@ -40,4 +42,5 @@ $wp_customize->add_control('fb_app_id', array(
     'label'     => 'Facebook App ID',
     'section'   => 'integrations',
     'settings'  => 'fb_app_id',
+    'type'      => 'text'
 ));
