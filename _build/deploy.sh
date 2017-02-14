@@ -60,7 +60,7 @@ else
     getArray "_build/.deploy_exclude.txt"
     for e in "${array[@]}"
     do
-        git rm -r "$e"
+        git rm -r --ignore-unmatch "$e"
     done
 
     echo "Committing build changes"

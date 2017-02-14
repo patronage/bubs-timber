@@ -55,7 +55,7 @@
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "https://www.dropbox.com/s/wjlvt1v2zc7o49c/empty.zip?dl=1"
+                    "url": "https://www.dropbox.com/s/o80yl80chp1gpgr/advanced-custom-fields-pro-5.5.7.zip?dl=0"
                 },
                 "autoload": {
                     "psr-0": { "acf\\advanced-custom-fields-pro": "" }
