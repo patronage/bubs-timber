@@ -12,6 +12,7 @@ composer.lock
 gulpfile.js
 package.json
 README.md
+yarn.lock
 
 wp-content/plugins/acf-pro-sync/*
 wp-content/plugins/airplane-mode/*
