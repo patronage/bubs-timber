@@ -2,13 +2,12 @@ language: node_js
 node_js: '4'
 sudo: false
 
-install:
-  - npm install
-  - npm install -g bower
+git:
+  depth: 3
 
-before_script:
+install:
+  - yarn global add bower
   - bower install
-  - gulp release
 
 script:
   - "bash _build/deploy.sh"
@@ -18,10 +17,13 @@ branches:
     - master
     - staging
 
+# directoris are node modules and bower as defined in .bowerrc
 cache:
   apt: true
+  yarn: true
   directories:
     - node_modules
+    - wp-content/themes/timber/assets/vendor
 
 notifications:
   email: false

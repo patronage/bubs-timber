@@ -1,8 +1,5 @@
 #!/bin/bash
 
-## On error, quit
-set -e
-
 ## GIT Remote Variables
 STAGING_REMOTE="git@git.wpengine.com:staging/bubs.git"
 PRODUCTION_REMOTE="git@git.wpengine.com:production/bubs.git"
@@ -11,7 +8,6 @@ PRODUCTION_REMOTE="git@git.wpengine.com:production/bubs.git"
 DEV_BRANCH="staging"
 
 ## SH function to read txt files with list of files to include/exclude
-
 getArray() {
     i=0
     while read line # Read a line
@@ -60,7 +56,7 @@ else
     getArray "_build/.deploy_exclude.txt"
     for e in "${array[@]}"
     do
-        git rm -r "$e"
+        git rm -r --ignore-unmatch "$e"
     done
 
     echo "Committing build changes"
