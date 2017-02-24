@@ -6,7 +6,7 @@
     "require": {
         "php": ">=5.4.0",
         "WordPress/WordPress": "4.7.2",
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.5.7",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.5.8",
         "norcross/airplane-mode": "0.2.2",
         "roots/soil": "3.7.1",
         "upstatement/routes": "0.4.0",
@@ -51,11 +51,11 @@
             "type": "package",
             "package": {
                 "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.5.7",
+                "version": "5.5.8",
                 "type": "wordpress-plugin",
                 "dist": {
                     "type": "zip",
-                    "url": "https://www.dropbox.com/s/o80yl80chp1gpgr/advanced-custom-fields-pro-5.5.7.zip?dl=0"
+                    "url": "https://www.dropbox.com/s/wjlvt1v2zc7o49c/empty.zip?dl=1"
                 },
                 "autoload": {
                     "psr-0": { "acf\\advanced-custom-fields-pro": "" }
