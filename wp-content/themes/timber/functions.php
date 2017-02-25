@@ -8,13 +8,14 @@
     //
 
     // Theme Options
-    function theme_options( $wp_customize ) {
-        include_once 'footer.php';
-        include_once 'integrations.php';
-        include_once 'social.php';
+    function bubs_theme_options( $wp_customize ) {
+        include_once 'setup/theme-options/footer.php';
+        include_once 'setup/theme-options/integrations.php';
+        include_once 'setup/theme-options/social.php';
+        $wp_customize->remove_section( 'custom_css' );
     }
 
-    add_action('customize_register', 'theme_options');
+    add_action( 'customize_register', 'bubs_theme_options');
 
 
     // Post Types
