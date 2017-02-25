@@ -28,6 +28,13 @@ var smoothScrollInit = function(){
     $('a').smoothScroll();
 };
 
+var matchHeightInit = function(){
+    $('.js-match-height').matchHeight();
+};
+
+var quickshareInit = function(){
+    quickShare();
+};
 
 // init without document.ready
 bsdSource();
@@ -36,7 +43,8 @@ bsdSource();
 (function($) {
 
     fitVidInit();
+    matchHeightInit();
     smoothScrollInit();
-    quickShare(); //quickshare share buttons (in mark with 'qs-link' class)
+    quickShareInit();
 
 })(jQuery);

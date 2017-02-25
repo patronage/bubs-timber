@@ -19,6 +19,7 @@
     "jquery-placeholder": "~2.2.0",
     "jquery-smooth-scroll": "~1.5.5",
     "lodash": "~3.10.1",
+    "matchHeight": "~0.7.2",
     "magnific-popup": "~1.0.0",
     "modernizr": "latest",
     "query-string": "~1.0.0",
