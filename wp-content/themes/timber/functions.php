@@ -1,28 +1,35 @@
 <?php
 
-    require_once(get_theme_root() . "/../plugins/composer-libs/autoload.php"); //Make composer installed php libraries available
+    // Make composer installed php libraries available
+    require_once(get_theme_root() . "/../plugins/composer-libs/autoload.php");
 
     //
     // Load WP Config files
     //
 
     // Theme Options
-    include_once 'setup/theme-options/theme-options.php';
+    function theme_options( $wp_customize ) {
+        include_once 'footer.php';
+        include_once 'integrations.php';
+        include_once 'social.php';
+    }
 
-    // Helpers
-    include_once 'setup/helper-env.php';
-    include_once 'setup/helper-rev.php';
+    add_action('customize_register', 'theme_options');
+
+    // WP Helpers
+    include_once 'setup/helpers/env.php';
+    include_once 'setup/helpers/rev.php';
 
     // Post Types
-    // include_once 'setup/cpt-heroes.php';
+    // include_once 'setup/post-types/heroes.php';
 
     // Taxonomies
-    // include_once 'setup/tax-featured.php';
+    // include_once 'setup/taxonomies/featured.php';
 
     // Custom Twig filters
-    include_once 'setup/filter-dummy.php';
-    include_once 'setup/filter-slugify.php';
-    include_once 'setup/filter-twitterify.php';
+    include_once 'setup/twig-filters/dummy.php';
+    include_once 'setup/twig-filters/slugify.php';
+    include_once 'setup/twig-filters/twitterify.php';
 
     add_filter('get_twig', 'add_to_twig');
 
