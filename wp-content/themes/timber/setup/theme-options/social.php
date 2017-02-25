@@ -14,44 +14,49 @@ $wp_customize->add_section( 'social', array(
 $wp_customize->add_setting( 'facebook_link', array(
     'default' => ''
 ));
-$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'facebook_link', array(
+$wp_customize->add_control( 'facebook_link', array(
     'label'     => 'Facebook Link',
     'section'   => 'social',
     'settings'  => 'facebook_link',
-)));
+    'type'      => 'text'
+));
 
 $wp_customize->add_setting( 'twitter_link', array(
     'default' => ''
 ));
-$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'twitter_link', array(
+$wp_customize->add_control( 'twitter_link', array(
     'label'     => 'Twitter Link',
     'section'   => 'social',
     'settings'  => 'twitter_link',
-)));
+    'type'      => 'text'
+));
 
 $wp_customize->add_setting( 'twitter_user', array(
     'default' => ''
 ));
-$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'twitter_user', array(
+$wp_customize->add_control( 'twitter_user', array(
     'label'     => 'Twitter User',
     'section'   => 'social',
     'settings'  => 'twitter_user',
-)));
+    'type'      => 'text'
+));
 
 $wp_customize->add_setting( 'instagram_link', array(
     'default' => ''
 ));
-$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'instagram_link', array(
+$wp_customize->add_control( 'instagram_link', array(
     'label'     => 'Instagram Link',
     'section'   => 'social',
     'settings'  => 'instagram_link',
-)));
+    'type'      => 'text'
+));
 
 $wp_customize->add_setting( 'linkedin_link', array(
     'default' => ''
 ));
-$wp_customize->add_control( new WP_Customize_Control( $wp_customize, 'linkedin_link', array(
+$wp_customize->add_control( 'linkedin_link', array(
     'label'     => 'Linked In Link',
     'section'   => 'social',
     'settings'  => 'linkedin_link',
-)));
+    'type'      => 'text'
+));
