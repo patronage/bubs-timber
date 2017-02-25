@@ -1,24 +1,7 @@
-// requires cookies lib and query string
-// https://github.com/ScottHamper/Cookies
-// https://github.com/sindresorhus/query-string
-// bower install --save query-string cookies-js
-
-Cookies.defaults = {
-    path: '/',
-    // domain: '.bubs.dev',
-    expires: 365 * 24 * 60 * 60
-};
-
-var bsdSource = function() {
-    var parsed = queryString.parse(location.search);
-    if ( parsed.source ) {
-        Cookies.set('source', parsed.source);
-    }
-    if ( parsed.subsource ) {
-        Cookies.set('subsource', parsed.subsource);
-    }
-};
-
+// Small global functions can go here.
+// Custom scripts can go in their own file.
+// Globally used scripts are loaded via layout.twig
+// Page specific scripts are loaded via {% block footer_scripts %}
 
 var fitVidInit = function(){
     $('.container').fitVids();
@@ -32,12 +15,11 @@ var matchHeightInit = function(){
     $('.js-match-height').matchHeight();
 };
 
-var quickshareInit = function(){
+var quickShareInit = function(){
     quickShare();
 };
 
 // init without document.ready
-bsdSource();
 
 // init within document.ready
 (function($) {
@@ -46,5 +28,6 @@ bsdSource();
     matchHeightInit();
     smoothScrollInit();
     quickShareInit();
+    analyticsSourcing();
 
 })(jQuery);
