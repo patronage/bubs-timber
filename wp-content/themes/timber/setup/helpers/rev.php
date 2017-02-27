@@ -9,7 +9,8 @@ function rev( $file, $domain = NULL ) {
     $theme = get_stylesheet_directory_uri();
     $static = 'static';
     $dist = 'dist';
-    $dev = 'assets';
+    $dev = 'dev';
+    $assets = 'assets';
     $manifest = 'rev-manifest.json';
     $jsondata = @file_get_contents( get_stylesheet_directory() . '/' . $static . '/' . $manifest );
 
@@ -29,9 +30,11 @@ function rev( $file, $domain = NULL ) {
     $ext = pathinfo($file, PATHINFO_EXTENSION);
 
     if ( $jsondata == FALSE ) {
-        // If manifest file can't be found, forget about it, and load from normal link
+        // If manifest file can't be found, forget about it, and load from normal link (which varies slightly for js vs. css)
         if ( $ext == "js" && $env == "production" ) {
             $url = $theme . '/' . $folder . '/js/' . basename($file);
+        } elseif ( $ext == "js" ) {
+            $url = $theme . '/' . $assets . '/' . $file;
         } else {
             $url = $theme . '/' . $folder . '/' . $file;
         }
