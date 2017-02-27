@@ -102,7 +102,8 @@ gulp.task('styles', function() {
 
 gulp.task('scripts', function() {
     var assets = $.useref({
-        searchPath: './'
+        searchPath: config.assets,
+        noconcat: true,
     }).on('error', handleErrors);
 
     var uglifyOptions = {
@@ -112,10 +113,22 @@ gulp.task('scripts', function() {
         }
     };
 
+    var rename = function(path){
+        path.dirname = "js";
+    }
+
     return gulp.src( config.theme + '/views/layout.twig' )
         .pipe(assets)
+        .pipe($.filter(['**', '!**/layout.twig'], {'restore': true}))
+        .pipe($.copy( config.output ))
+        .pipe($.rename(rename))
         .pipe($.if('*.js', $.uglify(uglifyOptions).on('error', handleErrors)))
         .pipe(gulp.dest( config.output ));
+});
+
+// When scripts runs, it creates extra files we can delete
+gulp.task('clean:scripts', function (cb) {
+    return del(config.output + '/wp-content', cb);
 });
 
 // copy unmodified files
@@ -171,9 +184,9 @@ gulp.task('watch', function() {
 gulp.task('release', function (cb) {
     isProduction = true;
     config.output = config.dist;
-    runSequence('clean', ['styles', 'scripts', 'copy'], ['rev', 'staticHeaders'], cb);
+    runSequence('clean', ['styles', 'scripts', 'copy'], ['clean:scripts', 'rev', 'staticHeaders'], cb);
 });
 
 gulp.task('default', function (cb) {
-    runSequence('clean', ['styles', 'scripts', 'copy'], ['watch', 'browser-sync'], cb);
+    runSequence('clean', ['styles', 'copy'], ['watch', 'browser-sync'], cb);
 });
