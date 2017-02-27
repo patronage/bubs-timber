@@ -52,7 +52,7 @@ else
 
     echo "Adding built files that are normally .gitignored..."
     array=()
-    getArray "_build/.deploy_include.txt"
+    get_array "_build/.deploy_include.txt"
     for e in "${array[@]}"
     do
         printf "$e\n"
@@ -61,7 +61,7 @@ else
 
     echo "Removing files we don't want on the server"
     array=()
-    getArray "_build/.deploy_exclude.txt"
+    get_array "_build/.deploy_exclude.txt"
     for e in "${array[@]}"
     do
         git rm -r --ignore-unmatch "$e"
