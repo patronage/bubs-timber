@@ -31,8 +31,6 @@
     include_once 'setup/twig-filters/slugify.php';
     include_once 'setup/twig-filters/twitterify.php';
 
-    add_filter('get_twig', 'add_to_twig');
-
     function add_to_twig($twig) {
         /* this is where you can add your own fuctions to twig */
         $twig->addFilter('dummy', new Twig_Filter_Function('apply_dummy_filter'));
@@ -41,8 +39,10 @@
         return $twig;
     }
 
+    add_filter('get_twig', 'add_to_twig');
 
-    // WP Helpers
+
+    // WP Helper Functions
 
     include_once 'setup/helpers/admin.php';
     include_once 'setup/helpers/env.php';

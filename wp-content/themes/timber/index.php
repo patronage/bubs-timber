@@ -23,4 +23,4 @@ $data['posts'] = Timber::get_posts();
 $data['pagination'] = Timber::get_pagination();
 $templates = array( 'index.twig' );
 
-Timber::render( 'index.twig', $data );
+Timber::render( $templates, $data );

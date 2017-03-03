@@ -33,6 +33,10 @@ function custom_mime_types($mimes) {
 }
 add_filter('upload_mimes', 'custom_mime_types');
 
-
+// Hide comments from backend
+function admin_menus() {
+    remove_menu_page( 'edit-comments.php' );
+}
+add_action('admin_menu', 'admin_menus');
 
 ?>

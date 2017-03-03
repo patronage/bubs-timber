@@ -44,7 +44,9 @@ function rev( $file, $domain = NULL ) {
 
         // first check exact folder
         $rev_check = isset( $json[$file] );
-        $file_check = file_exists( get_stylesheet_directory() . "/static/" . $json[ $file ] );
+        if ( $rev_check ){
+            $file_check = file_exists( get_stylesheet_directory() . "/static/" . $json[ $file ] );
+        }
 
         if ( $rev_check && $file_check ) {
             $url = $theme . '/' . $static . '/' . $json[ $file ];

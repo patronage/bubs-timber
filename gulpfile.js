@@ -91,7 +91,6 @@ gulp.task('styles', function() {
     };
 
     return gulp.src(config.assets + '/scss/*.scss')
-
         .pipe($.if(!isProduction, $.sourcemaps.init()))
         .pipe($.sass(sassOptions).on('error', handleErrors))
         .pipe($.if(isProduction, $.cssnano(nanoOptions)))
@@ -126,14 +125,14 @@ gulp.task('scripts', function() {
         .pipe(gulp.dest( config.output ));
 });
 
-// When scripts runs, it creates extra files we can delete
+// When scripts runs, it creates extra files in copying from vendor we can delete
 gulp.task('clean:scripts', function (cb) {
     return del(config.output + '/wp-content', cb);
 });
 
 // copy unmodified files
 gulp.task('copy', function (cb) {
-    return gulp.src( config.assets + '/{img,fonts}/**/*', {base: config.assets})
+    return gulp.src( config.assets + '/{img,fonts,js}/**/*', {base: config.assets})
         .pipe($.changed( config.output ))
         .pipe(gulp.dest( config.output ));
 });
@@ -148,6 +147,7 @@ gulp.task('rev', function (cb) {
         .pipe(gulp.dest( config.static ))
 });
 
+// write far futures expires headers for revved files
 gulp.task('staticHeaders', function() {
     return gulp.src( config.init + '/static.htaccess', { base: '' } )
         .pipe($.rename(".htaccess"))
