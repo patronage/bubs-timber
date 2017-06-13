@@ -1,28 +1,58 @@
-<header class="section bg-gray">
+<header class="section main-header bg-gray">
     <div class="container">
         <div class="row">
 
-            <div class="logo col-sm-3">
+            <div class="logo col-xs-6 col-sm-3">
                 <a href="/">{{ wp_title }}</a>
             </div>
 
-            <nav class="col-sm-9">
-                <ul class="nav navbar-nav navbar-right">
-                    {% for item in header_menus.get_items %}
-                        <li class="{{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
-                            <a href="{{ item.get_link }}" {{ item.get_children ? 'class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"' : '' }} role="button" aria-expanded="false">{{ item.title }}</a>
-                            {% if item.get_children %}
-                                <ul class="dropdown-menu" role="menu">
-                                    {% for child in item.get_children %}
-                                        <li class="{{ item.classes | join(' ') }}"><a href="{{ child.get_link }}">{{ child.title }}</a></li>
-                                    {% endfor %}
-                                </ul>
-                            {% endif %}
-                        </li>
-                    {% endfor %}
-                </ul>
-            </nav>
+            <div class="col-xs-1 col-sm-6 main-header-nav-desktop-holder">
+                <nav class="main-header-nav">
+                    <ul class="top-level-menu">
+                        {% for item in header_menus.get_items %}
+                            <li class="text-uppercase {{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
+                                <a href="{{ item.get_link }}"
+                                    class="nav-link {{ item.get_children ? ' dropdown-toggle ' : '' }}"
+                                    {% if item.get_children %} data-hover="dropdown" {% endif %}
+                                    role="button" aria-expanded="false">
+                                    {{ item.title }}
+                                </a>
+                                {% if item.get_children %}
+                                    {#  In mobile, rather than hover, we have an dropdown
+                                        toggle link '+' for submenu items #}
+                                    <a href="#" class="plus-expand link-subtle visible-xs" data-toggle="dropdown" role="button" aria-expanded="false">
+                                        <i class="fa fa-plus"></i>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        {% for child in item.get_children %}
+                                            <li class="{{ item.classes | join(' ') }}"><a href="{{ child.get_link }}" class="nav-link">{{ child.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="col-xs-5 col-sm-3">
+
+                <a class="menu-toggle pull-right visible-xs " role="button" data-toggle="collapse" href="#main-header-menu" aria-expanded="false" aria-controls="main-header-menu">
+                    <i class="fa fa-bars"></i>
+                </a>
+
+            </div>
 
         </div>
+
+        {# where mobile nav will appear#}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="main-header-nav-mobile-holder collapse" id="main-header-menu">
+
+                </div>
+            </div>
+        </div>
+
     </div>
 </header>
