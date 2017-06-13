@@ -1,0 +1,95 @@
+.main-header {
+    .top-level-menu {
+        padding: 10px 0 5px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    // '+' mobile dropdown toggle link so see submenus, instead of relying on hover
+    a.plus-expand {
+        margin: 0;
+        padding: 4px;
+        float: right;
+        width: auto;
+        position: relative;
+        top: -8px;
+
+        &:hover {
+            text-decoration: none;
+        }
+
+
+        i {
+            display: none;
+        }
+        &[href]{
+            visibility: visible;
+            i {
+                display: inline;
+            }
+        }
+        i {
+            font-size: 12px;
+        }
+    }
+
+    .main-header-nav {
+        .dropdown-toggle {
+            text-align: left;
+
+            @include xs {
+                width: auto;
+                display: inline-block;
+            }
+        }
+
+        .menu-item {
+            @include sm-and-up { // above mobile, the menu is horizontal
+                display: inline-block;
+                width: auto;
+            }
+        }
+
+        .nav-link {
+            padding: 10px;
+            @include xs {
+                padding: 5px 0;
+            }
+        }
+
+        // in mobile, submenus take up full width
+        .dropdown-menu {
+            border: 0;
+            box-shadow: none;
+            background-color: inherit;
+            text-align: left;
+
+            @include xs {
+                position: static;
+                width: 100%;
+                border: 0;
+                padding: 0;
+            }
+            @include sm-and-up {
+                padding: 0 10px;
+            }
+            .menu-item {
+                @include md-and-up {
+                    min-width: 180px;
+                }
+            }
+            .nav-link {
+                @include xs {
+                    padding: 5px 10px;
+                }
+            }
+        }
+        .dropdown-backdrop {
+            @include xs {
+                position: static;
+            }
+        }
+    }
+}

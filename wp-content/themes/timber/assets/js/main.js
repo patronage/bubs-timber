@@ -19,8 +19,6 @@ var quickShareInit = function(){
     quickShare();
 };
 
-// init without document.ready
-
 // init within document.ready
 (function($) {
 

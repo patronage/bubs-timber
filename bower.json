@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
+    "bootstrap-hover-dropdown": "^2.2.1",
     "FitVids": "~1.1.0",
     "cookies-js": "~1.2.1",
     "jquery-placeholder": "~2.2.0",
