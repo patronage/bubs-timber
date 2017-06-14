@@ -5,6 +5,7 @@
             {% for item in menu.get_items %}
                 <li class="text-uppercase {{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
                     <a href="{{ item.get_link }}"
+                        {% if item.target %}target={{ item.target }}{% endif %}
                         class="nav-link {{ item.get_children ? ' dropdown-toggle ' : '' }}"
                         {% if item.get_children %} data-hover="dropdown" {% endif %}
                         role="button" aria-expanded="false">
@@ -18,7 +19,13 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             {% for child in item.get_children %}
-                                <li class="{{ item.classes | join(' ') }}"><a href="{{ child.get_link }}" class="nav-link">{{ child.title }}</a></li>
+                                <li class="{{ item.classes | join(' ') }}">
+                                    <a href="{{ child.get_link }}" class="nav-link"
+                                        {% if child.target %}target={{ child.target }}{% endif %}
+                                        >
+                                        {{ child.title }}
+                                    </a>
+                                </li>
                             {% endfor %}
                         </ul>
                     {% endif %}
