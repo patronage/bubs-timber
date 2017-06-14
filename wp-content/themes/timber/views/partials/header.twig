@@ -21,7 +21,7 @@
                             {% for child in item.get_children %}
                                 <li class="{{ item.classes | join(' ') }}">
                                     <a href="{{ child.get_link }}" class="nav-link"
-                                    {% if child.target %}target={{ child.target }}{% endif %}
+                                        {% if child.target %}target={{ child.target }}{% endif %}
                                         >
                                         {{ child.title }}
                                     </a>
