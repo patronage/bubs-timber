@@ -51,13 +51,13 @@
 
 // specific
 @mixin breakpoint-max($w) {
-    @media #{$screen} and (max-width: $w) {
+    @media #{screen} and (max-width: $w) {
         @content;
     }
 }
 
 @mixin breakpoint-min($w) {
-    @media #{$screen} and  (min-width: $w) {
+    @media #{screen} and  (min-width: $w) {
         @content;
     }
 }
