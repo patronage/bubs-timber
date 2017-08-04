@@ -32,15 +32,3 @@ $wp_customize->add_control('gtm_id', array(
     'settings'  => 'gtm_id',
     'type'      => 'text'
 ));
-
-
-$wp_customize->add_setting( 'fb_app_id', array(
-    'default' => ''
-));
-
-$wp_customize->add_control('fb_app_id', array(
-    'label'     => 'Facebook App ID',
-    'section'   => 'integrations',
-    'settings'  => 'fb_app_id',
-    'type'      => 'text'
-));
