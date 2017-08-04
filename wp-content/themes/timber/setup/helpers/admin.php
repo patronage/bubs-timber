@@ -14,6 +14,11 @@ function remove_comment_support() {
     remove_post_type_support( 'page', 'comments' );
 }
 
+function remove_comments_admin() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('comments');
+}
+
 // Show pages list in DESC order by edit date, not alphabetical
 function set_post_order_in_admin( $wp_query ) {
     global $pagenow;
