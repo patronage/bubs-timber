@@ -9,12 +9,15 @@
 @import "modules/_wordpress";
 
 
-// Reusable components
+// Globals
 @import "components/_buttons";
 @import "components/_forms";
 @import "components/_global";
 @import "components/_type";
 @import "components/_hero";
+
+// Reusable components
+@import "components/_share-buttons";
 
 // Partial pieces of layouts and pages
 @import "layouts/_header";

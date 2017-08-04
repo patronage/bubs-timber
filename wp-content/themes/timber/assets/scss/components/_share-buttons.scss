@@ -1,0 +1,15 @@
+.component-share-buttons {
+
+    .share-title {
+        font-weight; bold;
+    }
+
+    .share-buttons {
+        a {
+            @include xs {
+                display: block;
+            }
+        }
+    }
+
+}
