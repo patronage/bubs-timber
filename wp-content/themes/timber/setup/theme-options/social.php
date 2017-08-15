@@ -51,6 +51,16 @@ $wp_customize->add_control( 'instagram_link', array(
     'type'      => 'text'
 ));
 
+$wp_customize->add_setting( 'youtube_link', array(
+    'default' => ''
+));
+$wp_customize->add_control( 'youtube_link', array(
+    'label'     => 'YouTube Link',
+    'section'   => 'social',
+    'settings'  => 'youtube_link',
+    'type'      => 'text'
+));
+
 $wp_customize->add_setting( 'linkedin_link', array(
     'default' => ''
 ));

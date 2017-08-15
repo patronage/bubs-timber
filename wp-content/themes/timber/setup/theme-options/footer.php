@@ -11,26 +11,6 @@ $wp_customize->add_section( 'footer', array(
 
 // Fields
 
-$wp_customize->add_setting( 'footer_address', array(
-    'default' => ''
-));
-$wp_customize->add_control( 'footer_address', array(
-    'label'     => 'Footer Address',
-    'section'   => 'footer',
-    'settings'  => 'footer_address',
-    'type'      => 'textarea'
-));
-
-$wp_customize->add_setting( 'footer_contact', array(
-    'default' => ''
-));
-$wp_customize->add_control( 'footer_contact', array(
-    'label'     => 'Footer Contact Info',
-    'section'   => 'footer',
-    'settings'  => 'footer_contact',
-    'type'      => 'textarea'
-));
-
 $wp_customize->add_setting( 'footer_copyright', array(
     'default' => ''
 ));

@@ -1,0 +1,106 @@
+{# Set up variables, which are either passed in direct, or pulled from ACF #}
+
+{% if not params_tw %}
+    {% set params_tw = "" %}
+{% endif %}
+
+{% if not params_fb %}
+    {% set params_fb = "" %}
+{% endif %}
+
+{% if not share_url %}
+    {% if post.share_url %}
+        {% set share_url = post.share_url %}
+    {% else %}
+        {% set share_url = post.link %}
+    {% endif %}
+{% endif %}
+
+{% if gv.twitter_user %}
+    {% set tweet_via =  " via @" ~ gv.twitter_user|trim('@') %}
+{% endif %}
+
+{% if not tweet %}
+    {% if post.custom_tweet %}
+        {% set tweet = post.share_tweet %}
+    {% else %}
+        {% set tweet = share_url ~ params_tw ~ tweet_via %}
+    {% endif %}
+{% endif %}
+
+{% if not email_subject %}
+    {% if post.share_email_subject %}
+        {% set email_subject = post.share_email_subject %}
+    {% else %}
+        {% set email_subject = post.title %}
+    {% endif %}
+{% endif %}
+
+{% if not email_body %}
+    {% if post.share_email_body %}
+        {% set email_body = post.share_email_body %}
+    {% else %}
+        {% set email_body = post.link %}
+    {% endif %}
+{% endif %}
+
+{# Ensure twitter has a link #}
+{% if "http" not in tweet %}
+    {% set tw_link = "https://twitter.com/intent/tweet?text=" ~ tweet|url_encode ~ "&url=" ~ share_link|url_encode%}
+{% else %}
+    {% set tw_link = "https://twitter.com/intent/tweet?text=" ~ tweet|url_encode %}
+{% endif %}
+
+{% set fb_link = "https://www.facebook.com/sharer.php?u=" ~ share_url|url_encode ~ params_fb %}
+
+{% set email_link = "mailto:?&subject=" ~ email_subject|url_encode ~ "&body=" ~ email_body|url_encode %}
+
+{# If you need to custom style, you can pass in `share_classes` #}
+{# For GA, you can pass in an optional `share_label` #}
+{# If you want a text intro, you can also pass in a `share_title` #}
+
+<div class="component-share-buttons {{ share_classes }}">
+
+    {% if share_title %}
+        <div class="share-title">
+            {{ share_title }}
+        </div>
+    {% endif %}
+
+    <div class="share-buttons">
+        <a
+            href="{{ fb_link }}"
+            class="btn btn-primary btn-social btn-facebook"
+            target="_blank"
+            ga-on="click"
+            ga-event-category="Social Share"
+            ga-event-action="Facebook Share"
+            ga-event-label="{{ share_label }}"
+        >
+            <i class="fa fa-facebook"></i> Share on Facebook
+        </a>
+        <a
+            href="{{ tw_link }}"
+            class="btn btn-primary btn-social btn-twitter"
+            target="_blank"
+            ga-on="click"
+            ga-event-category="Social Share"
+            ga-event-action="Twitter Share"
+            ga-event-label="{{ share_label }}"
+        >
+            <i class="fa fa-twitter"></i> Share on Twitter
+        </a>
+        <a
+            href="{{ email_link }}"
+            class="btn btn-primary btn-social btn-email"
+            target="_blank"
+            ga-on="click"
+            ga-event-category="Social Share"
+            ga-event-action="Email Share"
+            ga-event-label="{{ share_label }}"
+        >
+            <i class="fa fa-envelope-o"></i> Share via Email
+        </a>
+    </div>
+
+</div>
