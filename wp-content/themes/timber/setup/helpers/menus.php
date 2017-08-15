@@ -11,7 +11,7 @@ register_nav_menus(array(
 
 function timber_menus( $data ) {
     $data["header_menu"] = new TimberMenu('header');
-    // $data["footer_menus"] = new TimberMenu('footer');
+    $data["footer_menu"] = new TimberMenu('footer');
     return $data;
 }
 

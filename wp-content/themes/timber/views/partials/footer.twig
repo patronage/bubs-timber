@@ -24,20 +24,95 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6">
-                <p>&copy; {{ "now"|date("Y") }}</p>
+                <p>&copy; {{ "now"|date("Y") }} {{ gv.footer_copyright }}</p>
+
+                <nav class="nav secondary-footer-nav">
+                    <ul>
+                        {% for item in footer_menu.get_items %}
+                            <li>
+                                <a href="{{ item.get_link }}" class="{{ item.classes | join(' ') }}"
+                                    role="button" aria-expanded="false"
+                                    >
+                                    {{ item.title }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </nav>
             </div>
+
             <div class="col-sm-6 text-right">
-                <ul class="list-inline">
-                    <li>
-                        <a href="https://www.facebook.com/{{ gv.fb_page }}" title="Follow us on Facebook" target="_blank">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/intent/follow?screen_name={{ gv.tw_page }}" title="Follow us on Twitter" target="_blank">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-                    </li>
+                <ul class="list-inline social-links">
+                    {% if gv.facebook_link %}
+                        <li>
+                            <a
+                                href="{{ gv.facebook_link }}"
+                                target="_blank"
+                                ga-on="click"
+                                ga-event-category="Social Follow"
+                                ga-event-action="Facebook Follow"
+                                ga-event-label="Footer"
+                            >
+                                <i class="fa fa-facebook-official"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if gv.twitter_link %}
+                        <li>
+                            <a
+                                href="{{ gv.twitter_link }}"
+                                target="_blank"
+                                ga-on="click"
+                                ga-event-category="Social Follow"
+                                ga-event-action="Twitter Follow"
+                                ga-event-label="Footer"
+                            >
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if gv.youtube_link %}
+                        <li>
+                            <a
+                                href="{{ gv.youtube_link }}"
+                                target="_blank"
+                                ga-on="click"
+                                ga-event-category="Social Follow"
+                                ga-event-action="Youtube Follow"
+                                ga-event-label="Footer"
+                            >
+                                <i class="fa fa-youtube"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if gv.instagram_link %}
+                        <li>
+                            <a
+                                href="{{ gv.instagram_link }}"
+                                target="_blank"
+                                ga-on="click"
+                                ga-event-category="Social Follow"
+                                ga-event-action="Instagram Follow"
+                                ga-event-label="Footer"
+                            >
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% if gv.linkedin_link %}
+                        <li>
+                            <a
+                                href="{{ gv.linkedin_link }}"
+                                target="_blank"
+                                ga-on="click"
+                                ga-event-category="Social Follow"
+                                ga-event-action="LinkedIn Follow"
+                                ga-event-label="Footer"
+                            >
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                        </li>
+                    {% endif %}
                 </ul>
                 <form class="form-inline form-search" action="/" method="get">
                     <div class="form-group">
