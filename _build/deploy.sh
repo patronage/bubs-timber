@@ -83,6 +83,7 @@ else
 
     elif [ "$1" = "staging" ]; then
         echo "Pushing to staging..."
+        git remote rm staging
         git remote add staging ${STAGING_REMOTE}
         git push -f staging deploy:master
         echo "Returning to working branch."
@@ -91,6 +92,7 @@ else
 
     elif [ "$1" = "production" ]; then
         echo "Pushing to production..."
+        git remote rm production
         git remote add production ${PRODUCTION_REMOTE}
         git push -f production deploy:master
         echo "Returning to working branch."
