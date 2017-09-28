@@ -4,14 +4,14 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c99e8a3aed58fb156beb43dbb412c020",
+    "content-hash": "98fc6ffb261f51fac4695a7923f0fb52",
     "packages": [
         {
             "name": "WordPress/WordPress",
-            "version": "4.7.4",
+            "version": "4.8.2",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/WordPress/WordPress/archive/4.7.4.zip",
+                "url": "https://www.dropbox.com/s/wjlvt1v2zc7o49c/empty.zip?dl=1",
                 "reference": null,
                 "shasum": null
             },
@@ -22,10 +22,10 @@
         },
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.5.14",
+            "version": "5.6.2",
             "dist": {
                 "type": "zip",
-                "url": "https://www.dropbox.com/s/wjlvt1v2zc7o49c/empty.zip?dl=1",
+                "url": "https://www.dropbox.com/s/rcrpbzl9ej29i1e/advanced-custom-fields-pro-5.6.2.zip?dl=1",
                 "reference": null,
                 "shasum": null
             },
@@ -313,26 +313,6 @@
             "time": "2016-07-06T12:53:24+00:00"
         },
         {
-            "name": "wpackagist-plugin/acf-pro-sync",
-            "version": "1.0.1",
-            "source": {
-                "type": "svn",
-                "url": "https://plugins.svn.wordpress.org/acf-pro-sync/",
-                "reference": "tags/1.0.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/acf-pro-sync.1.0.1.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "~1.0"
-            },
-            "type": "wordpress-plugin",
-            "homepage": "https://wordpress.org/plugins/acf-pro-sync/"
-        },
-        {
             "name": "wpackagist-plugin/bottom-admin-bar",
             "version": "1.3",
             "source": {
@@ -394,15 +374,15 @@
         },
         {
             "name": "wpackagist-plugin/disable-emojis",
-            "version": "1.5.3",
+            "version": "1.7",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/disable-emojis/",
-                "reference": "tags/1.5.3"
+                "reference": "tags/1.7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.5.3.zip",
+                "url": "https://downloads.wordpress.org/plugin/disable-emojis.1.7.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -434,15 +414,15 @@
         },
         {
             "name": "wpackagist-plugin/enable-media-replace",
-            "version": "3.0.6",
+            "version": "3.1.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/enable-media-replace/",
-                "reference": "tags/3.0.6"
+                "reference": "tags/3.1.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/enable-media-replace.3.0.6.zip",
+                "url": "https://downloads.wordpress.org/plugin/enable-media-replace.3.1.1.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -534,15 +514,15 @@
         },
         {
             "name": "wpackagist-plugin/query-monitor",
-            "version": "2.13.4",
+            "version": "2.14.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/query-monitor/",
-                "reference": "tags/2.13.4"
+                "reference": "tags/2.14.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/query-monitor.2.13.4.zip",
+                "url": "https://downloads.wordpress.org/plugin/query-monitor.2.14.0.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -574,15 +554,15 @@
         },
         {
             "name": "wpackagist-plugin/timber-library",
-            "version": "1.3.0",
+            "version": "1.5.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/timber-library/",
-                "reference": "tags/1.3.0"
+                "reference": "tags/1.5.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/timber-library.1.3.0.zip",
+                "url": "https://downloads.wordpress.org/plugin/timber-library.1.5.0.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -614,15 +594,15 @@
         },
         {
             "name": "wpackagist-plugin/user-switching",
-            "version": "1.0.9",
+            "version": "1.1.0",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/user-switching/",
-                "reference": "tags/1.0.9"
+                "reference": "tags/1.1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/user-switching.1.0.9.zip",
+                "url": "https://downloads.wordpress.org/plugin/user-switching.1.1.0.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -634,15 +614,15 @@
         },
         {
             "name": "wpackagist-plugin/wordpress-seo",
-            "version": "4.9",
+            "version": "5.5.1",
             "source": {
                 "type": "svn",
                 "url": "https://plugins.svn.wordpress.org/wordpress-seo/",
-                "reference": "tags/4.9"
+                "reference": "tags/5.5.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.4.9.zip",
+                "url": "https://downloads.wordpress.org/plugin/wordpress-seo.5.5.1.zip",
                 "reference": null,
                 "shasum": null
             },
