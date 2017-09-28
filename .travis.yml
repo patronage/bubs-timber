@@ -3,7 +3,7 @@ node_js: '6'
 sudo: false
 
 git:
-  depth: 3
+  depth: 50
 
 before_script:
   - yarn global add bower
