@@ -47,6 +47,7 @@
     include_once 'setup/helpers/admin.php';
     include_once 'setup/helpers/env.php';
     include_once 'setup/helpers/global-variables.php';
+    include_once 'setup/helpers/google-login-config.php';
     include_once 'setup/helpers/menus.php';
     include_once 'setup/helpers/rev.php';
 
