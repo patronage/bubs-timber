@@ -2,10 +2,14 @@
   "name": "site",
   "version": "0.0.0",
   "description": "node reqs to generate",
+  "license": "UNLICENSED",
   "private": "true",
   "repository": "",
   "author": "",
-  "license": "BSD",
+  "scripts": {
+    "acf": "chmod -R 777 wp-content/themes/nextgenamerica-2017/acf-json",
+    "postmerge": "bash _build/hook-post-merge.sh"
+  },
   "devDependencies": {
     "browser-sync": "2.18.8",
     "del": "2.2.2",
@@ -27,5 +31,8 @@
     "gulp-useref": "3.1.2",
     "gulp-util": "3.0.8",
     "run-sequence": "1.2.2"
+  },
+  "dependencies": {
+    "husky": "^0.14.3"
   }
 }
