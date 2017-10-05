@@ -67,11 +67,9 @@ function awesome_acf_hide_acf_admin() {
     // check if the current env is dev
     if ( defined('WP_ENV') && WP_ENV == "development" ) {
         // show the acf menu item
-        print ("show");
         return true;
     } else {
         // hide the acf menu item
-        print ("hide");
         return false;
     }
 }
