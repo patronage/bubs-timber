@@ -7,7 +7,7 @@
   "repository": "",
   "author": "",
   "scripts": {
-    "acf": "chmod -R 777 wp-content/themes/nextgenamerica-2017/acf-json",
+    "acf": "chmod -R 777 wp-content/themes/timber/acf-json",
     "postmerge": "bash _build/hook-post-merge.sh"
   },
   "devDependencies": {
