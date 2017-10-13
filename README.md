@@ -1,20 +1,33 @@
-Bubs gives you a clean start to a WordPress project leveraging a few key pieces:
+## Getting Setup
 
-* Timber
-* Gulp
-* Local, Staging, and Production release environments
+1. Clone this repo.
+2. Initialize via [Composer](https://getcomposer.org/), `composer install`
+3. Install [node.js](https://nodejs.org/) if you don't already have it.
+4. Optionally install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn install` -- or `npm i` if you prefer
+5. Install [Bower](http://bower.io/) dependencies, `bower i`
+6. Customize your database settings in `wp-config-local.php`
 
-## Quickstart
+Recommended localhost domain is: `www.bubs.dev`
 
-1. Download and extract to your project: https://github.com/patronage/bubs-wp/archive/master.zip
-2. Run `composer install`, which will initialize the project.
-3. There is a line at the top of .gitignore that excludes `wp-content/plugins/*` -- Remove that.
-4. You'll have a new top level `README.md` (it's copied from `_init/README.md`). Follow instructions in that file for customizing your project further.
+## Setting up the theme
 
-## Documentations
+The default setup has two commands:
 
-Here are a few pages in particular worth checking out from [our wiki](https://github.com/patronage/bubs-wp/wiki)
+* `gulp` -- starts a dev task with dev versions of assets, and live reloading via BrowserSync and watch
+* `gulp release` -- builds production versions of all assets, including asset-hashed files
 
-- [Local development](https://github.com/patronage/bubs-wp/wiki/Local-Development)
-- [Site using bubs](https://github.com/patronage/bubs-wp/wiki/Sites-Using-Bubs)
-- [Multisite](https://github.com/patronage/bubs-wp/wiki/Multisite)
+All assets are stored in `wp-content/themes/timber`.
+
+## Deploying
+
+The `_build` folder has our deploy scripts:
+
+* to manually deploy to staging from your current branch, run `./_build/deploy.sh staging`
+* to manually deploy to production from your current branch, run `./_build/deploy.sh production`
+
+## Based on Bubs
+
+This project is based on [Bubs](https://github.com/patronage/bubs-wp/) by [Patronage](http://www.patronage.org/studio).
+
+For more docs on getting started with local hosting, multi-site, etc. visit the wiki:
+https://github.com/patronage/bubs-wp/wiki
