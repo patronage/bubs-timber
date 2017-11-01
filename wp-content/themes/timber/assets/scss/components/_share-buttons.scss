@@ -6,7 +6,7 @@
 
     .share-buttons {
         a {
-            @include xs {
+            @include media-breakpoint-only(xs) {
                 display: block;
             }
         }

@@ -15,17 +15,15 @@
   ],
   "dependencies": {
     "autotrack": "~2.4.1",
-    "bootstrap-hover-dropdown": "^2.2.1",
     "cookies-js": "~1.2.1",
     "FitVids": "~1.1.0",
     "jquery-smooth-scroll": "~1.5.5",
     "lodash": "~3.10.1",
     "matchHeight": "~0.7.2",
     "magnific-popup": "~1.0.0",
-    "modernizr": "latest",
+    "popper.js": "^1.12.6",
     "query-string": "~1.0.0",
     "slick.js": "~1.5.5",
-    "twbs-bootstrap-sass": "3.3.5",
     "waypoints": "~4.0.0"
   }
 }

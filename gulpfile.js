@@ -137,6 +137,13 @@ gulp.task('copy', function (cb) {
         .pipe(gulp.dest( config.output ));
 });
 
+// copy node deps from package.json
+gulp.task('copy:bootstrap', function (cb) {
+    return gulp.src('./node_modules/bootstrap/{js,scss}/**/*')
+        .pipe($.changed( config.output ))
+        .pipe(gulp.dest( config.assets + '/vendor/bootstrap' ));
+});
+
 // loops through the generated html and replaces all references to static versions
 gulp.task('rev', function (cb) {
     return gulp.src( config.dist + '/{css,js,fonts,img}/**/*' )

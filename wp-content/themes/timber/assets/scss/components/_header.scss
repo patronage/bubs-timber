@@ -39,14 +39,14 @@
         .dropdown-toggle {
             text-align: left;
 
-            @include xs {
+            @include media-breakpoint-only(xs) {
                 width: auto;
                 display: inline-block;
             }
         }
 
         .menu-item {
-            @include sm-and-up { // above mobile, the menu is horizontal
+            @include media-breakpoint-up(sm) { // above mobile, the menu is horizontal
                 display: inline-block;
                 width: auto;
             }
@@ -54,7 +54,7 @@
 
         .nav-link {
             padding: 10px;
-            @include xs {
+            @include media-breakpoint-only(xs) {
                 padding: 5px 0;
             }
         }
@@ -66,28 +66,28 @@
             background-color: inherit;
             text-align: left;
 
-            @include xs {
+            @include media-breakpoint-only(xs) {
                 position: static;
                 width: 100%;
                 border: 0;
                 padding: 0;
             }
-            @include sm-and-up {
+            @include media-breakpoint-up(sm) {
                 padding: 0 10px;
             }
             .menu-item {
-                @include md-and-up {
+                @include media-breakpoint-up(md) {
                     min-width: 180px;
                 }
             }
             .nav-link {
-                @include xs {
+                @include media-breakpoint-only(xs) {
                     padding: 5px 10px;
                 }
             }
         }
         .dropdown-backdrop {
-            @include xs {
+            @include media-breakpoint-only(xs) {
                 position: static;
             }
         }

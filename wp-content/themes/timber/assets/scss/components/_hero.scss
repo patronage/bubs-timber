@@ -3,14 +3,14 @@
     position: relative;
     overflow: hidden;
 
-    @include sm-and-up {
+    @include media-breakpoint-up(sm) {
         max-height: 80vh;
     }
 
     .hero {
         height: auto;
 
-        @include sm-and-up {
+        @include media-breakpoint-up(sm) {
             background-repeat: no-repeat;
             background-size: cover;
             background-position: 50% 50%;
@@ -28,7 +28,7 @@
             width: 100%;
             margin-top: 0;
 
-            @include sm-and-up {
+            @include media-breakpoint-up(sm) {
                 position: absolute;
                 bottom: 0;
             }
