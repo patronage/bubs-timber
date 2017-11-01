@@ -191,9 +191,9 @@ gulp.task('watch', function() {
 gulp.task('release', function (cb) {
     isProduction = true;
     config.output = config.dist;
-    runSequence('clean', ['styles', 'scripts', 'copy'], ['clean:scripts', 'rev', 'staticHeaders'], cb);
+    runSequence('clean', 'copy:bootstrap', ['styles', 'scripts', 'copy'], ['clean:scripts', 'rev', 'staticHeaders'], cb);
 });
 
 gulp.task('default', function (cb) {
-    runSequence('clean', ['styles', 'copy'], ['watch', 'browser-sync'], cb);
+    runSequence('clean', 'copy:bootstrap', ['styles', 'copy'], ['watch', 'browser-sync'], cb);
 });
