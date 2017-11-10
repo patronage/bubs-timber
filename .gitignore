@@ -19,6 +19,7 @@ node_modules
 /composer/
 /vendor/
 npm-debug.log
+yarn-error.log
 
 # production
 wp-content/themes/timber/static
