@@ -5,9 +5,8 @@ Template Name: Homepage
 */
 
 $data = Timber::get_context();
-$home = new TimberPost();
-
-$data['home'] = $home;
+$post = new Timber\Post();
+$data['post'] = $post;
 
 Timber::render('template-home.twig', $data);
 
