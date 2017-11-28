@@ -3,7 +3,7 @@
     {% set next_text = "Older" %}
 
     <div class="row prev-next">
-        <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2">
             <div class="prev">
                 {% if pagination.prev %}
                     <a href="{{ pagination.prev.link }}" class="btn btn-primary btn-prev">{{ prev_text }} </a>
