@@ -1,95 +1,51 @@
 .main-header {
-    .top-level-menu {
-        padding: 10px 0 5px;
+    padding: 10px 0;
+
+    .dropdown-toggle::after {     // subnav arrow
+        vertical-align: 0.1em;
     }
 
-    ul {
-        list-style: none;
-    }
-
-    // '+' mobile dropdown toggle link so see submenus, instead of relying on hover
-    a.plus-expand {
-        margin: 0;
-        padding: 4px;
-        float: right;
-        width: auto;
-        position: relative;
-        top: -8px;
-
-        &:hover {
-            text-decoration: none;
-        }
-
-
-        i {
-            display: none;
-        }
-        &[href]{
-            visibility: visible;
-            i {
-                display: inline;
-            }
-        }
-        i {
-            font-size: 12px;
+    .logo {
+        img {
+            width: 120px;
         }
     }
 
-    .main-header-nav {
-        .dropdown-toggle {
-            text-align: left;
-
-            @include media-breakpoint-only(xs) {
-                width: auto;
-                display: inline-block;
-            }
-        }
-
-        .menu-item {
-            @include media-breakpoint-up(sm) { // above mobile, the menu is horizontal
-                display: inline-block;
-                width: auto;
-            }
-        }
-
-        .nav-link {
-            padding: 10px;
-            @include media-breakpoint-only(xs) {
-                padding: 5px 0;
-            }
-        }
-
-        // in mobile, submenus take up full width
+    .navbar-nav {
         .dropdown-menu {
-            border: 0;
-            box-shadow: none;
-            background-color: inherit;
-            text-align: left;
+            margin-top: 0;
+            padding: 0;
 
             @include media-breakpoint-only(xs) {
-                position: static;
-                width: 100%;
+                display: block;
                 border: 0;
-                padding: 0;
             }
-            @include media-breakpoint-up(sm) {
-                padding: 0 10px;
-            }
-            .menu-item {
-                @include media-breakpoint-up(md) {
-                    min-width: 180px;
-                }
-            }
-            .nav-link {
-                @include media-breakpoint-only(xs) {
-                    padding: 5px 10px;
-                }
+
+            .dropdown-item {
+                font-weight: bold;
+                padding: 12px 24px;
             }
         }
-        .dropdown-backdrop {
-            @include media-breakpoint-only(xs) {
-                position: static;
-            }
+    }
+
+    // enable hover in bootstrap dropdowns
+    .dropdown:hover>.dropdown-menu {
+      display: block;
+    }
+
+    .navbar-nav  {
+        @include media-breakpoint-up(sm) { // nav on the right in desktop
+            margin-left: auto;
+        }
+    }
+    //
+    // Mobile menu styles
+    //
+    @include media-breakpoint-only(xs) {
+        .navbar-toggler {
+            cursor: pointer;
+            border: none;
+            outline: none;
         }
     }
 }
