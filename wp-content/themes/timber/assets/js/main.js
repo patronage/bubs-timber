@@ -15,17 +15,12 @@ var matchHeightInit = function(){
     $('.js-match-height').matchHeight();
 };
 
-var quickShareInit = function(){
-    quickShare();
-};
-
 // init within document.ready
 (function($) {
 
     fitVidInit();
     matchHeightInit();
     smoothScrollInit();
-    quickShareInit();
     analyticsSourcing();
 
 })(jQuery);
