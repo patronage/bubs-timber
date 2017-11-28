@@ -11,6 +11,7 @@ $white:     #FFFFFF;
 $black:     #000000;
 $gray:      #e8e8e8;
 $orange:    #FF4E00;
+$blue:      #006BB6;
 
 $color-email: #138bfd;
 $color-facebook: #3b5998;
@@ -22,8 +23,19 @@ $color-twitter: #55acee;
 //
 
 $font-family-sans-serif:    $font-sans;
-$brand-primary:             $orange;
-$text-color:                $black;
-$link-color:                $orange;
+$headings-font-family: $font-family-sans-serif;
+$font-size-base: 1.1rem;
+$line-height-base: 1.5;
 $grid-gutter-width:         30px;
-$screen-lg:                 1360px;
+
+// bootstrap theme colors (see docs for further customizations available)
+$primary:       $orange;
+$secondary:     $blue;
+$dark:          #24242c;
+$body-color:  #444444; // $text-color
+
+$theme-colors: (
+    "primary":    $primary,
+    "secondary":  $secondary,
+    "dark": $dark
+);
