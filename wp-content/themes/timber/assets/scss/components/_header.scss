@@ -1,7 +1,8 @@
 .main-header {
     padding: 10px 0;
 
-    .dropdown-toggle::after {     // subnav arrow
+    // subnav arrow
+    .dropdown-toggle::after {
         vertical-align: middle;
     }
 
@@ -37,7 +38,8 @@
 
 
     .navbar-nav  {
-        @include media-breakpoint-up(sm) { // nav on the right in desktop
+        // nav on the right in desktop
+        @include media-breakpoint-up(sm) {
             margin-left: auto;
         }
     }
