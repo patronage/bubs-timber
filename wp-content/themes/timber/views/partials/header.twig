@@ -6,8 +6,13 @@
             <li class="nav-item {{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
                 <a class="nav-link {{ item.get_children ? ' dropdown-toggle ' : '' }}"
                     href="{{ item.get_link }}"
-                    {% if tem.get_children %}id="{{ name_class }}-{{loop.index}}"{% endif %}
-                    {% if item.target %}target={{ item.target }}{% endif %}
+                    {% if item.get_children %}
+                        id="{{ name_class }}-{{loop.index}}"
+                        data-toggle="dropdown"
+                        role="button"
+                        aria-haspopup="true" aria-expanded="false"
+                    {% endif %}
+                    {% if item.target %}target="{{ item.target }}"{% endif %}
                 >
                     <span class="text-offset">{{ item.title }}</span>
                 </a>
@@ -15,7 +20,7 @@
                     <div class="dropdown-menu" aria-labelledby="{{ name_class }}-{{loop.index}}">
                         {% for child in item.get_children %}
                             <a class="dropdown-item" href="{{ child.get_link }}"
-                                {% if child.target %}target={{ child.target }}{% endif %}
+                                {% if child.target %}target="{{ child.target }}"{% endif %}
                             >
                                 <span class="text-offset">{{ child.title }}</span>
                             </a>

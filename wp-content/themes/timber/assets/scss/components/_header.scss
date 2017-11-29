@@ -16,8 +16,8 @@
             margin-top: 0;
             padding: 0;
 
-            @include media-breakpoint-only(xs) {
-                display: block;
+            @include media-breakpoint-down(sm) {
+                // display: block; // uncomment to expand subnav in mobile by default
                 border: 0;
             }
 
@@ -29,9 +29,12 @@
     }
 
     // enable hover in bootstrap dropdowns
-    .dropdown:hover>.dropdown-menu {
-      display: block;
+    @include media-breakpoint-up(md) {
+        .dropdown:hover > .dropdown-menu {
+          display: block;
+        }
     }
+
 
     .navbar-nav  {
         @include media-breakpoint-up(sm) { // nav on the right in desktop
