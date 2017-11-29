@@ -46,7 +46,7 @@
     //
     // Mobile menu styles
     //
-    @include media-breakpoint-only(xs) {
+    @include media-breakpoint-down(sm) {
         .navbar-toggler {
             cursor: pointer;
             border: none;
