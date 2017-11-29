@@ -17,7 +17,7 @@ var matchHeightInit = function(){
 
 var headerNav = function(){
     // better dropdown hover intent ( inspired by https://stackoverflow.com/a/42183824/462002 )
-    $('.main-header').on('mouseenter mouseleave','.dropdown',function(e){
+    $('.component-main-header').on('mouseenter mouseleave','.dropdown',function(e){
       var $dropdown =$( e.target ).closest('.dropdown');
       $dropdown.addClass('show');
       setTimeout(function(){
