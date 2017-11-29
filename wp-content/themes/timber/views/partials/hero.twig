@@ -2,7 +2,7 @@
 {# Optional parameter  custom hero_img #}
 {% if not hero_img  %}
 	{% if post.thumbnail %}
-		{% set hero_img = post.thumbnail.src %}
+		{% set hero_img = post.thumbnail %}
 	{% else %} {# Starter default image for bubs only. Feel free to adjust or remove this else clause #}
 		{% set hero_img = TimberImage("https://placeimg.com/1600/650/nature/grayscale") %}
 	{% endif %}
