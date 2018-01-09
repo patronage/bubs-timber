@@ -8,7 +8,6 @@
                     href="{{ item.get_link }}"
                     {% if item.get_children %}
                         id="{{ name_class }}-{{loop.index}}"
-                        data-toggle="dropdown"
                         role="button"
                         aria-haspopup="true" aria-expanded="false"
                     {% endif %}
@@ -19,10 +18,10 @@
                 {% if item.get_children %}
                     <div class="dropdown-menu" aria-labelledby="{{ name_class }}-{{loop.index}}">
                         {% for child in item.get_children %}
-                            <a class="dropdown-item" href="{{ child.get_link }}"
+                            <a class="dropdown-item nav-link" href="{{ child.get_link }}"
                                 {% if child.target %}target="{{ child.target }}"{% endif %}
                             >
-                                <span class="text-offset">{{ child.title }}</span>
+                                {{ child.title }}
                             </a>
                         {% endfor %}
                     </div>
