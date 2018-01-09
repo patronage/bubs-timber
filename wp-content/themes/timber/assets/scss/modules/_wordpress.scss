@@ -32,10 +32,10 @@
 
 // Captions
 .wp-caption {
-    @extend .thumbnail;
+    @extend .img-thumbnail;
 }
 .wp-caption-text {
-    @extend .caption;
+    @extend .figure-caption;
 }
 
 // Text meant only for screen readers
