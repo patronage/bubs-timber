@@ -34,8 +34,15 @@ $secondary:     $blue;
 $dark:          #24242c;
 $body-color:  #444444; // $text-color
 
+//main theme colors.  Example usage: background-color: theme-color('blue');
 $theme-colors: (
     "primary":    $primary,
     "secondary":  $secondary,
     "dark": $dark
 );
+
+// example other colors. Example usage: background-color: color('blue');
+// $colors: (
+//     "gray-light": $gray-light,
+//     "blue" : $blue,
+// );
