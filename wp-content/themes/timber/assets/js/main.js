@@ -8,7 +8,7 @@ var fitVidInit = function(){
 };
 
 var smoothScrollInit = function(){
-    $('a:not(.no-scroll)').smoothScroll();
+    $('a:not(.no-smooth-scroll)').smoothScroll();
 };
 
 var matchHeightInit = function(){
