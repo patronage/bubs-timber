@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "husky": "^0.14.3",
-    "bootstrap": "4.0.0-beta.2"
+    "bootstrap": "4.0.0-beta.3"
   }
 }
