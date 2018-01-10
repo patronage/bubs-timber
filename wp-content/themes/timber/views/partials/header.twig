@@ -1,70 +1,58 @@
 {# render menu macro  #}
-{% macro header_nav( menu, top_classes ) %}
-    <nav class="main-header-nav {{ top_classes }}">
-        <ul class="top-level-menu">
-            {% for item in menu.get_items %}
-                <li class="text-uppercase {{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
-                    <a href="{{ item.get_link }}"
-                        {% if item.target %}target={{ item.target }}{% endif %}
-                        class="nav-link {{ item.get_children ? ' dropdown-toggle ' : '' }}"
-                        {% if item.get_children %} data-hover="dropdown" {% endif %}
-                        role="button" aria-expanded="false">
-                        {{ item.title }}
-                    </a>
+
+{% macro navbar_nav( menu, name_class, top_classes ) %}
+    <ul class="navbar-nav {{ top_classes }}">
+        {% for item in menu.get_items %}
+            <li class="nav-item {{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
+                <a class="nav-link {{ item.get_children ? ' dropdown-toggle ' : '' }}"
+                    href="{{ item.get_link }}"
                     {% if item.get_children %}
-                        {#  In mobile, rather than hover, we have an dropdown
-                            toggle link '+' for submenu items #}
-                        <a href="#" class="plus-expand link-subtle visible-xs" data-toggle="dropdown" role="button" aria-expanded="false">
-                            <i class="fa fa-plus"></i>
-                        </a>
-                        <ul class="dropdown-menu" role="menu">
-                            {% for child in item.get_children %}
-                                <li class="{{ item.classes | join(' ') }}">
-                                    <a href="{{ child.get_link }}" class="nav-link"
-                                        {% if child.target %}target={{ child.target }}{% endif %}
-                                        >
-                                        {{ child.title }}
-                                    </a>
-                                </li>
-                            {% endfor %}
-                        </ul>
+                        id="{{ name_class }}-{{loop.index}}"
+                        role="button"
+                        aria-haspopup="true" aria-expanded="false"
                     {% endif %}
-                </li>
-            {% endfor %}
-        </ul>
-    </nav>
+                    {% if item.target %}target="{{ item.target }}"{% endif %}
+                >
+                    <span class="text-offset">{{ item.title }}</span>
+                </a>
+                {% if item.get_children %}
+                    <div class="dropdown-menu" aria-labelledby="{{ name_class }}-{{loop.index}}">
+                        {% for child in item.get_children %}
+                            <a class="dropdown-item nav-link" href="{{ child.get_link }}"
+                                {% if child.target %}target="{{ child.target }}"{% endif %}
+                            >
+                                {{ child.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 {% endmacro %}
 {% import _self as lm %}
 
 
-{# header starts here #}
-<header class="section main-header bg-gray">
+
+<header class="component-main-header">
     <div class="container">
         <div class="row">
+            <div class="col">
+                <nav class="navbar navbar-expand-md navbar-light">
+                    <a class="navbar-brand logo" href="/">
+                        {# <img src="/path/to/logo.svg" alt=""> #}
+                        {{ wp_title }}
+                    </a>
 
-            <div class="logo col-xs-6 col-sm-3">
-                <a href="/">{{ wp_title }}</a>
-            </div>
+                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#headerNavbar" aria-controls="headerNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
 
-            <div class="col-xs-1 col-sm-6">
-                {{ lm.header_nav(header_menu, 'hidden-xs') }} {# desktop menu #}
-            </div>
-
-            <div class="col-xs-5 col-sm-3">
-                <a class="menu-toggle pull-right visible-xs " role="button" data-toggle="collapse" href="#main-header-menu" aria-expanded="false" aria-controls="main-header-menu">
-                    <i class="fa fa-bars"></i>
-                </a>
-            </div>
-        </div>
-
-        {# mobile menu #}
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="main-header-nav-mobile-holder collapse" id="main-header-menu">
-                    {{ lm.header_nav(header_menu, 'visible-xs') }}
-                </div>
+                    <div class="collapse navbar-collapse" id="headerNavbar">
+                        {{ lm.navbar_nav(header_menu, 'main-header-nav',  '') }}
+                    </div>
+                </nav>
             </div>
         </div>
-
     </div>
 </header>

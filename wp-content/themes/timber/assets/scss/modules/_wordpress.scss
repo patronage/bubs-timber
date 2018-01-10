@@ -10,32 +10,32 @@
 
 .aligncenter {
     display: block;
-    margin: ($line-height-computed / 2) auto;
+    margin: ($line-height-base / 2) auto;
 }
 
 .alignleft,
 .alignright {
-    margin-bottom: ($line-height-computed / 2);
+    margin-bottom: ($line-height-base / 2);
 }
 
-@media (min-width: $screen-sm-min) {
+@include media-breakpoint-up(sm) {
   // Only float if not on an extra small device
     .alignleft {
         float: left;
-        margin-right: ($line-height-computed / 2);
+        margin-right: ($line-height-base / 2);
     }
     .alignright {
         float: right;
-        margin-left: ($line-height-computed / 2);
+        margin-left: ($line-height-base / 2);
     }
 }
 
 // Captions
 .wp-caption {
-    @extend .thumbnail;
+    @extend .img-thumbnail;
 }
 .wp-caption-text {
-    @extend .caption;
+    @extend .figure-caption;
 }
 
 // Text meant only for screen readers

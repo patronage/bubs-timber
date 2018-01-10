@@ -1,0 +1,20 @@
+// Generate `.bg-*` , `.color-*` color classes from palette & theme colors
+// Examples adding classes `bg-primary`, `color-primary` , will color bg or text respectively
+// by colors defined in $theme-colors and $colors in _variables.scss
+// Inspired by https://getbootstrap.com/docs/4.0/getting-started/theming/#modifiers
+// See $colors, $theme-colors in _variables.scss for available classes
+@each $color, $value in $colors {
+  @include bg-variant('.bg-#{$color}', $value);
+
+  .color-#{$color} {
+      color: $value;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  @include bg-variant('.bg-#{$color}', $value);
+
+  .color-#{$color} {
+      color: $value;
+  }
+}

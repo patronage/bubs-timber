@@ -1,16 +1,15 @@
 // Variables before bootstrap
 
 @import "variables";
+@import "modules/_bootstrap-loader";
 
 // Modules and vendor files
 // - Pick which bootstrap modules to load
 // - Other party modules
 
-@import "modules/_bootstrap-loader";
-@import "modules/_bootstrap-helper";
-@import "modules/_breakpoints";
-@import "modules/_triangle";
+// @import "modules/_triangle";
 @import "modules/_wordpress";
+@import "../vendor/slick.js/slick/slick-theme.scss";
 @import "../vendor/slick.js/slick/slick.scss";
 
 // Shared
@@ -18,6 +17,7 @@
 // - Goal is to minimize surface area of these items
 
 @import "shared/_buttons";
+@import "shared/_colors";
 @import "shared/_fonts";
 @import "shared/_forms";
 @import "shared/_icomoon";

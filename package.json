@@ -33,6 +33,7 @@
     "run-sequence": "1.2.2"
   },
   "dependencies": {
-    "husky": "^0.14.3"
+    "husky": "^0.14.3",
+    "bootstrap": "4.0.0-beta.3"
   }
 }

@@ -1,19 +1,34 @@
-{% if post.get_thumbnail %}
-    {% set post_hero = post.thumbnail.src|resize(1500) %}
+
+{# Optional parameter  custom hero_img #}
+{% if not hero_img  %}
+	{% if post.thumbnail %}
+		{% set hero_img = post.thumbnail %}
+	{% else %} {# Starter default image for bubs only. Feel free to adjust or remove this else clause #}
+		{% set hero_img = TimberImage("https://placeimg.com/1600/650/nature/grayscale") %}
+	{% endif %}
 {% endif %}
 
-{# scaffolding, you can delete these next linee #}
-{% set post_hero = "https://placeimg.com/1600/600/nature/grayscale" %}
-{% set title = "Test Hero Title" %}
+{% if not hero_title  %}
+	{% if post.title %}
+		{% set hero_title = post.title %}
+	{% else %} {# Starter default title for bubs only. Feel free to adjust or remove this else clause #}
+		{% set hero_title = "Test Hero Title" %}
+	{% endif %}
+{% endif %}
 
-{% if post_hero %}
+
+{% if hero_img %}
     <div class="hero-container">
-        <div class="hero" style="background-image: url('{{ post_hero }}')">
-            <div class="visible-xs hero-img-xs" style="background-image: url('{{ post_hero }}')">
-            </div>
-            <div class="hero-title">
-                <div class="container">
-                    <h2>{{ post.title ?: title }}</h2>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="hero">
+                        <img src="{{ hero_img.src|resize(1500) }}" alt="{{ hero_img.caption }}">
+
+                        <div class="hero-title">
+                            <h2>{{ hero_title }}</h2>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
