@@ -1,7 +1,7 @@
-<section class="section bg-gray">
+<section class="section-padded bg-gray footer-signup">
     <div class="container ">
         <div class="row">
-            <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
+            <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 text-center">
                 <h3>Call to action</h3>
                 <p>Lorem ipsum</p>
                 <form class="form-inline">
@@ -20,10 +20,10 @@
     </div>
 </section>
 
-<footer class="section bg-black">
+<footer class="component-main-footer section-paddded bg-black">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
+            <div class="col">
                 <p>&copy; {{ "now"|date("Y") }} {{ gv.footer_copyright }}</p>
 
                 <nav class="nav secondary-footer-nav">
@@ -41,7 +41,7 @@
                 </nav>
             </div>
 
-            <div class="col-sm-6 text-right">
+            <div class="col text-right">
 
                 <ul class="list-inline social-links">
                     {% if gv.facebook_link %}
@@ -129,4 +129,3 @@
         </div>
     </div>
 </footer>
-

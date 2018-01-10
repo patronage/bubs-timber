@@ -1,11 +1,5 @@
 <!doctype html>
-<!--[if IE 8 ]>
-<html lang="en" class="oldie ie8">
-<![endif]-->
-<!--[if IE 9 ]>
-<html lang="en" class="oldie ie9">
-<![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -87,7 +81,11 @@
 
         {{ wp_footer }}
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        {% if environment == "development" %}
+            <script src="{{ assets_dir }}/vendor/jquery/dist/jquery.js"></script>
+        {% else %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% endif %}
 
         {#
             - Load JS libs then custom scripts. Paths should be relative to assets folder
@@ -101,12 +99,12 @@
             <script src="vendor/query-string/query-string.js"></script>
             <script src="vendor/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
             <script src="vendor/cookies-js/dist/cookies.js"></script>
-            <script src="vendor/FitVids/jquery.fitvids.js"></script>
-            <script src="vendor/twbs-bootstrap-sass/assets/javascripts/bootstrap/transition.js"></script>
-            <script src="vendor/twbs-bootstrap-sass/assets/javascripts/bootstrap/dropdown.js"></script>
-            <script src="vendor/twbs-bootstrap-sass/assets/javascripts/bootstrap/collapse.js"></script>
-            <script src="vendor/bootstrap-hover-dropdown/bootstrap-hover-dropdown.js"></script>
-            <script src="vendor/matchHeight/jquery.matchHeight.js"></script>
+            <script src="vendor/@bower_components/FitVids/jquery.fitvids.js"></script>
+            <script src="vendor/popper.js/dist/umd/popper.js"></script>
+            <script src="vendor/bootstrap/js/dist/util.js"></script>
+            <script src="vendor/bootstrap/js/dist/dropdown.js"></script>
+            <script src="vendor/bootstrap/js/dist/collapse.js"></script>
+            <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
             <script src="js/console-safe.js"></script>
             <script src="js/analytics-sourcing.js"></script>
             <script src="js/main.js"></script>

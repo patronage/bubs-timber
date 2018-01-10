@@ -10,8 +10,8 @@ register_nav_menus(array(
 ));
 
 function timber_menus( $data ) {
-    $data["header_menu"] = new TimberMenu('header');
-    $data["footer_menu"] = new TimberMenu('footer');
+    $data["header_menu"] = new TimberMenu('header-menu');
+    $data["footer_menu"] = new TimberMenu('footer-menu');
     return $data;
 }
 

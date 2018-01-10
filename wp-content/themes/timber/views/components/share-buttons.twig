@@ -46,7 +46,7 @@
 
 {# Ensure twitter has a link #}
 {% if "http" not in tweet %}
-    {% set tw_link = "https://twitter.com/intent/tweet?text=" ~ tweet|url_encode ~ "&url=" ~ share_link|url_encode%}
+    {% set tw_link = "https://twitter.com/intent/tweet?text=" ~ tweet|url_encode ~ "&url=" ~ share_url|url_encode %}
 {% else %}
     {% set tw_link = "https://twitter.com/intent/tweet?text=" ~ tweet|url_encode %}
 {% endif %}
