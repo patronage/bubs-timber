@@ -17,29 +17,29 @@
         </div>
     </div>
 {% else %}
-    <nav class="text-center">
+    <nav class="table-center text-center" aria-label="Pagination">
         <ul class="pagination">
             {% if pagination.prev %}
                 <li>
-                    <a href="{{ pagination.prev.link }}" class="prev {{ pagination.prev.link|length ? '' : 'invisible' }}">
+                    <a href="{{ pagination.prev.link }}" class="page-link prev {{ pagination.prev.link|length ? '' : 'invisible' }}">
                         <i class="fa fa-chevron-left"></i>
                     </a>
                 </li>
             {% endif %}
 
             {% for page in pagination.pages %}
-                <li {% if "current" in page.class %} class="active"{% endif %}>
+                <li class="page-item {{ "current" in page.class ? ' active ' : '' }}">
                     {% if page.link %}
-                        <a class="{{ page.class  }}{" href="{{ page.link }}">{{ page.title }}</a>
+                        <a class="page-link {{ page.class  }}{" href="{{ page.link }}">{{ page.title }}</a>
                     {% else %}
-                        <span class="{{ page.class }}">{{ page.title }}</span>
+                        <span class="page-link {{ page.class }}">{{ page.title }}</span>
                     {% endif %}
                 </li>
             {% endfor %}
 
             {% if pagination.next %}
-                <li>
-                    <a href="{{ pagination.next.link }}" class="next {{ pagination.next.link|length ? '' : 'invisible' }}">
+                <li class="page-item">
+                    <a href="{{ pagination.next.link }}" class="page-link next {{ pagination.next.link|length ? '' : 'invisible' }}">
                         <i class="fa fa-chevron-right"></i>
                     </a>
                 </li>
