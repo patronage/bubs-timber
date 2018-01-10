@@ -13,7 +13,7 @@ var analyticsSourcing = function() {
     var parsed = queryString.parse(location.search);
     var prefix = 'bubs_';
     var comboField = 'MarketSource'; // Sample for ngpvan
-    var $form = $('form');
+    // var $form = $('form');
 
     // Option to save source and subsource to a specific variable
     if ( parsed.source ) {
@@ -52,7 +52,7 @@ var analyticsSourcing = function() {
     }
 
     // attach these fields to form inputs (might need to customize)
-    if ( $form ) {
-        $form.append('<input type="hidden" name="' + comboField + '" value="' + comboSource + '" />');
-    }
+    // if ( $form ) {
+    //     $form.append('<input type="hidden" name="' + comboField + '" value="' + comboSource + '" />');
+    // }
 };

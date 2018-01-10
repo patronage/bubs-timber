@@ -10,6 +10,7 @@ function env_helper( $data ) {
     }
 
     $theme = get_stylesheet_directory_uri();
+    $data["theme_dir"] = $theme;
 
     if ( $data["environment"] == "production" ) {
         $data["assets_dir"] = $theme . '/dist';

@@ -8,7 +8,8 @@
   "author": "",
   "scripts": {
     "acf": "chmod -R 777 wp-content/themes/timber/acf-json",
-    "postmerge": "bash _build/hook-post-merge.sh"
+    "postmerge": "bash _build/hook-post-merge.sh",
+    "postinstall": "rm -rf wp-content/themes/timber/assets/vendor && node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules'), 'wp-content/themes/timber/assets/vendor', 'junction') } catch (e) { }\""
   },
   "devDependencies": {
     "browser-sync": "2.18.8",
@@ -30,10 +31,22 @@
     "gulp-uglify": "2.0.1",
     "gulp-useref": "3.1.2",
     "gulp-util": "3.0.8",
+    "husky": "^0.14.3",
     "run-sequence": "1.2.2"
   },
   "dependencies": {
-    "husky": "^0.14.3",
-    "bootstrap": "4.0.0-beta.3"
+    "@bower_components/fitvids": "davatron5000/FitVids.js#^1.2.0",
+    "autotrack": "2.4.1",
+    "bootstrap": "4.0.0-beta.3",
+    "cookies-js": "1.2.3",
+    "jquery": "3.2.1",
+    "jquery-match-height": "0.7.2",
+    "jquery-smooth-scroll": "2.2.0",
+    "lodash": "4.17.4",
+    "magnific-popup": "1.1.0",
+    "popper.js": "1.12.9",
+    "query-string": "1.0.0",
+    "slick-carousel": "1.8.1",
+    "waypoints": "4.0.1"
   }
 }

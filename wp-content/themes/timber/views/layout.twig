@@ -81,7 +81,11 @@
 
         {{ wp_footer }}
 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% if environment == "development" %}
+            <script src="{{ theme_dir }}/assets/vendor/jquery/dist/jquery.js"></script>
+        {% else %}
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        {% endif %}
 
         {#
             - Load JS libs then custom scripts. Paths should be relative to assets folder
@@ -95,12 +99,12 @@
             <script src="vendor/query-string/query-string.js"></script>
             <script src="vendor/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
             <script src="vendor/cookies-js/dist/cookies.js"></script>
-            <script src="vendor/FitVids/jquery.fitvids.js"></script>
+            <script src="vendor/@bower_components/FitVids/jquery.fitvids.js"></script>
             <script src="vendor/popper.js/dist/umd/popper.js"></script>
             <script src="vendor/bootstrap/js/dist/util.js"></script>
             <script src="vendor/bootstrap/js/dist/dropdown.js"></script>
             <script src="vendor/bootstrap/js/dist/collapse.js"></script>
-            <script src="vendor/matchHeight/jquery.matchHeight.js"></script>
+            <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
             <script src="js/console-safe.js"></script>
             <script src="js/analytics-sourcing.js"></script>
             <script src="js/main.js"></script>

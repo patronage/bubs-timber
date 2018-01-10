@@ -3,11 +3,12 @@
 1. Clone this repo.
 2. Initialize via [Composer](https://getcomposer.org/), `composer install`
 3. Install [node.js](https://nodejs.org/) if you don't already have it.
-4. Optionally install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn install` -- or `npm i` if you prefer
-5. Install [Bower](http://bower.io/) dependencies, `bower i`
-6. Customize your database settings in `wp-config-local.php`
+4. Install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn install.
+5. Customize your database settings in `wp-config-local.php`
 
 Recommended localhost domain is: `www.bubs.dev`
+
+Note that you must use Yarn, and not NPM to manage client-side dependencies. This is because certain libraries which formerly used bower aren't in NPM, and only Yarn can install packages from any github repo.
 
 ## Setting up the theme
 

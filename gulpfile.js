@@ -137,13 +137,6 @@ gulp.task('copy', function (cb) {
         .pipe(gulp.dest( config.output ));
 });
 
-// copy node deps from package.json
-gulp.task('copy:bootstrap', function (cb) {
-    return gulp.src('./node_modules/bootstrap/{js,scss}/**/*')
-        .pipe($.changed( config.output ))
-        .pipe(gulp.dest( config.assets + '/vendor/bootstrap' ));
-});
-
 // loops through the generated html and replaces all references to static versions
 gulp.task('rev', function (cb) {
     return gulp.src( config.dist + '/{css,js,fonts,img}/**/*' )
@@ -191,9 +184,9 @@ gulp.task('watch', function() {
 gulp.task('release', function (cb) {
     isProduction = true;
     config.output = config.dist;
-    runSequence('clean', 'copy:bootstrap', ['styles', 'scripts', 'copy'], ['clean:scripts', 'rev', 'staticHeaders'], cb);
+    runSequence('clean', ['styles', 'scripts', 'copy'], ['clean:scripts', 'rev', 'staticHeaders'], cb);
 });
 
 gulp.task('default', function (cb) {
-    runSequence('clean', 'copy:bootstrap', ['styles', 'copy'], ['watch', 'browser-sync'], cb);
+    runSequence('clean', ['styles', 'copy'], ['watch', 'browser-sync'], cb);
 });
