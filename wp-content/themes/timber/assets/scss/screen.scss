@@ -9,8 +9,8 @@
 
 // @import "modules/_triangle";
 @import "modules/_wordpress";
-@import "../vendor/slick.js/slick/slick-theme.scss";
-@import "../vendor/slick.js/slick/slick.scss";
+// @import "../vendor/slick-carousel/slick/slick-theme.scss";
+// @import "../vendor/slick-carousel/slick/slick.scss";
 
 // Shared
 // - This is for things that aren't components, but are global in scope and might be reused elsewhere
@@ -40,6 +40,6 @@
 // Individual pages
 // - Page specific styles
 // - Should be alphabetical
-// - Don't over-ride components in here
+// - Don't override components in here
 
 @import "pages/_home";
