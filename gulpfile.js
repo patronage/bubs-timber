@@ -54,19 +54,51 @@ var isProduction = false;
 
 // Error Handling
 
-var handleErrors = function() {
-    var args = Array.prototype.slice.call(arguments);
+var handleErrors = function(err) {
 
-    $.notify.onError({
-        title: 'Compile Error',
-        message: '<%= error.message %>'
-    }).apply(this, args);
+    // console.log(err);
 
+    // pretty error reporting
+    var report = '\n';
+    var chalk = $.util.colors.white.bgRed;
+
+    // special variables for uglify
+    if ( err.cause ){
+        err.message = err.cause.message;
+        err.line = err.cause.line;
+        err.column = err.cause.col;
+    }
+
+    if (err.plugin) {
+        report += chalk('PLUGIN:') + ' [' + err.plugin + ']\n';
+    }
+
+    if (err.message) {
+        report += chalk('ERROR:\040') + ' ' + err.message + '\n';
+    }
+
+    console.error(report);
+
+    // notifications
+    if (err.line && err.column) {
+        var notifyMessage = 'LINE ' + err.line + ':' + err.column + ' -- ';
+    } else {
+        var notifyMessage = '';
+    }
+
+    $.notify({
+        title: 'FAIL: ' + err.plugin,
+        message: notifyMessage + err.message,
+    }).write(err);
+
+    $.util.beep(); // System beep
+
+    // Tell Travis to FAIL
     if ( isProduction ) {
-        // Tell Travis to Stop Bro
         process.exit(1);
     }
 
+    // Prevent the 'watch' task from stopping
     this.emit('end');
 };
 
@@ -121,7 +153,7 @@ gulp.task('scripts', function() {
         .pipe($.filter(['**', '!**/layout.twig'], {'restore': true}))
         .pipe($.copy( config.output ))
         .pipe($.rename(rename))
-        .pipe($.if('*.js', $.uglify(uglifyOptions).on('error', handleErrors)))
+        .pipe($.uglify(uglifyOptions).on('error', handleErrors))
         .pipe(gulp.dest( config.output ));
 });
 
@@ -166,15 +198,12 @@ gulp.task('browser-sync', function() {
         tunnel: localConfig.bs.tunnel || false,
         logLevel: localConfig.bs.logLevel || 'info'
     });
-});
 
-gulp.task('watch', function() {
-    gulp.watch([config.theme + '/**/*.{twig,php}'], browserSync.reload);
+    gulp.watch(config.theme + '/**/*.{twig,php}').on('change', browserSync.reload);
     gulp.watch([config.assets + '/scss/**/*.scss'], ['styles']);
-    gulp.watch([config.assets + '/js/**/*.js'], ['scripts', browserSync.reload]);
-    gulp.watch([config.assets + '/{img,fonts}/**'], ['copy', browserSync.reload]);
+    gulp.watch(config.assets + '/js/**/*.js').on('change', browserSync.reload);
+    gulp.watch(config.assets + '/{img,fonts}/**').on('copy', browserSync.reload);
 });
-
 
 //
 // Multi-step tasks
@@ -188,5 +217,5 @@ gulp.task('release', function (cb) {
 });
 
 gulp.task('default', function (cb) {
-    runSequence('clean', ['styles', 'copy'], ['watch', 'browser-sync'], cb);
+    runSequence('clean', ['styles', 'copy'], ['browser-sync'], cb);
 });
