@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@bower_components/fitvids@davatron5000/FitVids.js#^1.2.0":
+"@bower_components/fitvids@davatron5000/fitvids.js#^1.2.0":
   version "0.0.0"
-  resolved "https://codeload.github.com/davatron5000/FitVids.js/tar.gz/d028a2287a633478005a49fe6d1f3fcbe9f2d955"
+  resolved "https://codeload.github.com/davatron5000/fitvids.js/tar.gz/d028a2287a633478005a49fe6d1f3fcbe9f2d955"
 
 "@gulp-sourcemaps/identity-map@1.X":
   version "1.0.1"
