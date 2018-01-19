@@ -10,7 +10,6 @@ check_run() {
 
 # Example usage
 check_run yarn.lock "yarn install"
-check_run bower.json "bower install"
 
 echo "acf permissions check"
 yarn acf
