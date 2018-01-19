@@ -93,7 +93,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "bash ls ./_init/init.sh"
+            "bash ./_init/init.sh"
         ]
     }
 }
