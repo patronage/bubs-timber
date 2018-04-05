@@ -20,9 +20,6 @@
 
     // Post Types
     // include_once 'setup/post-types/heroes.php';
-    include_once 'setup/cpt-destinations.php';
-    include_once 'setup/cpt-profiles.php';
-    include_once 'setup/cpt-testimonials.php';
 
 
     // Taxonomies

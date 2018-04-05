@@ -1,0 +1,56 @@
+.component-main-header {
+    padding: 10px 0;
+
+    // subnav arrow
+    .dropdown-toggle::after {
+        vertical-align: middle;
+    }
+
+    .logo {
+        img {
+            width: 120px;
+        }
+    }
+
+    .navbar-nav {
+        .dropdown-menu {
+            margin-top: 0;
+            padding: 0;
+
+            @include media-breakpoint-down(sm) {
+                // display: block; // uncomment to expand subnav in mobile by default
+                border: 0;
+            }
+
+            .dropdown-item {
+                font-weight: bold;
+                padding: 12px 24px;
+            }
+        }
+    }
+
+    // enable hover in bootstrap dropdowns
+    @include media-breakpoint-up(md) {
+        .dropdown:hover > .dropdown-menu {
+          display: block;
+        }
+    }
+
+
+    .navbar-nav  {
+        // nav on the right in desktop
+        @include media-breakpoint-up(sm) {
+            margin-left: auto;
+        }
+    }
+    //
+    // Mobile menu styles
+    //
+    @include media-breakpoint-down(sm) {
+        .navbar-toggler {
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+    }
+}

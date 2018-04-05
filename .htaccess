@@ -2,18 +2,18 @@
 <IfModule mod_rewrite.c>
 
     ## Rewrite no-www to www
-    RewriteCond %{HTTP_HOST} ^unsettled.loc$
-    RewriteRule (.*)$ http://www.unsettled.loc/$1 [R=301,L]
+    RewriteCond %{HTTP_HOST} ^bubs.com$
+    RewriteRule (.*)$ http://www.bubs.com/$1 [R=301,L]
 
     ## Rewrite images if hosting locally
     ## Allows us to pull staging server SQL and use same images
     RewriteCond %{HTTP_HOST} =localhost:8888$ [OR]
     RewriteCond %{HTTP_HOST} =localhost:3000$ [OR]
     RewriteCond %{HTTP_HOST} =localhost:3002$ [OR]
-    RewriteCond %{HTTP_HOST} ^www.unsettled.loc$ [OR]
-    RewriteCond %{HTTP_HOST} ^unsettled.loc$
+    RewriteCond %{HTTP_HOST} ^www.bubs.dev$ [OR]
+    RewriteCond %{HTTP_HOST} ^bubs.dev$
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^wp-content/uploads/(.*)$ http://unsettled.wpengine.com/wp-content/uploads/$1 [L]
+    RewriteRule ^wp-content/uploads/(.*)$ http://bubs.wpengine.com/wp-content/uploads/$1 [L]
 
     # Simple 404 for missing files
     <FilesMatch "(\.jpe?g|gif|png|bmp|ico)$">
