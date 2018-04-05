@@ -7,7 +7,8 @@
         <title>{{ "wp_title"|function("-") }}</title>
 
         {# insert webfonts here #}
-        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" />
         <link rel="stylesheet" href="{{ function("rev", "css/screen.css") }}">
 
         {% if gv.ga_id %}
@@ -81,16 +82,13 @@
 
         {{ wp_footer }}
 
-        {% if environment == "development" %}
-            <script src="{{ theme_dir }}/assets/vendor/jquery/dist/jquery.js"></script>
-        {% else %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        {% endif %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
 
         {#
-            - Load JS libs then custom scripts. Paths should be relative to assets folder
-            - Build block uses gulp-useref to copy/rev assets
-            - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
+        - Load JS libs then custom scripts. Paths should be relative to assets folder
+        - Build block uses gulp-useref to copy/rev assets
+        - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
         #}
 
         {% set rev_js %}
@@ -106,7 +104,7 @@
             <script src="vendor/bootstrap/js/dist/collapse.js"></script>
             <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
             <script src="js/console-safe.js"></script>
-            <script src="js/analytics-sourcing.js"></script>
+            {# <script src="js/analytics-sourcing.js"></script> #}
             <script src="js/main.js"></script>
             <!-- endbuild -->
         {% endset %}
