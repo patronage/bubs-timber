@@ -12,6 +12,7 @@
         "upstatement/routes": "0.4.0",
         "wpackagist-plugin/acf-to-wp-api": "1.4.0",
         "wpackagist-plugin/bottom-admin-bar": "1.3",
+        "wpackagist-plugin/classic-editor": "0.4",
         "wpackagist-plugin/debug-bar": "0.9",
         "wpackagist-plugin/debug-bar-timber": "0.3",
         "wpackagist-plugin/disable-emojis": "1.7.2",
