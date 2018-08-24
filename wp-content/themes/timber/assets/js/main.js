@@ -26,6 +26,20 @@ var headerNav = function(){
     });
 };
 
+// a widow (single word on it's own line) adjuster. Typically fills in the last line with previous word(s)
+// inspired by http://justinhileman.info/article/a-jquery-widont-snippet/
+var widont = function() {
+    $('h1,h2,h3,p').each(function() {
+        var $element = $(this);
+
+        // use  .no-widont to opt out of using it on the element above (handy for react element, highlighed text, ..)
+        if ($element.hasClass('no-widont')){
+            return;
+        }
+        $element.html($(this).html().replace(/\s([^\s<]{0,8})\s*$/,'&nbsp;$1'));
+    });
+};
+
 // init within document.ready
 (function($) {
 
@@ -34,5 +48,6 @@ var headerNav = function(){
     matchHeightInit();
     smoothScrollInit();
     analyticsSourcing();
+    widont();
 
 })(jQuery);
