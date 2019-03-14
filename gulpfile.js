@@ -137,9 +137,7 @@ gulp.task('scripts', function() {
 
     var uglifyOptions = {
         mangle: false,
-        compress: {
-            drop_console: true
-        }
+        compress: false
     };
 
     var rename = function(path){
