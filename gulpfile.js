@@ -1,6 +1,7 @@
 // load gulp and gulp plugins
 var gulp = require("gulp");
 var $    = require('gulp-load-plugins')();
+var stylish = require('jshint-stylish');
 
 // load node modules
 var del = require('del');
@@ -144,9 +145,16 @@ gulp.task('scripts', function() {
         path.dirname = "js";
     }
 
+    var f = $.filter(['**', '!**/assets/vendor/**'], {'restore': true})
+
     return gulp.src( config.theme + '/views/layout.twig' )
         .pipe(assets)
         .pipe($.filter(['**', '!**/layout.twig'], {'restore': true}))
+        .pipe(f)
+        .pipe($.jshint())
+        .pipe($.jshint.reporter(stylish))
+        .pipe($.jshint.reporter('fail').on('error', handleErrors))
+        .pipe(f.restore)
         .pipe($.copy( config.output ))
         .pipe($.rename(rename))
         .pipe($.uglify(uglifyOptions).on('error', handleErrors))
