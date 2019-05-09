@@ -1789,12 +1789,13 @@ gulp-rev@8.1.1:
     vinyl-file "^3.0.0"
 
 gulp-sass@3.2.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/gulp-sass/-/gulp-sass-3.1.0.tgz#53dc4b68a1f5ddfe4424ab4c247655269a8b74b7"
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/gulp-sass/-/gulp-sass-3.2.0.tgz#1997e6e722a5e83d6dc227d1ce260ee7a9c08b8b"
+  integrity sha512-lIF2rC8LejqVLw5lnL7efLWjOrir/n87icopRNxOMCfz9rE52IXUP9Bgxt/OAWzIsBbNSjVWlbxaHtjDFnPhfQ==
   dependencies:
     gulp-util "^3.0"
     lodash.clonedeep "^4.3.2"
-    node-sass "^4.2.0"
+    node-sass "^4.8.1"
     through2 "^2.0.0"
     vinyl-sourcemaps-apply "^0.2.0"
 
@@ -2400,7 +2401,12 @@ jquery-smooth-scroll@2.2.0:
   dependencies:
     jquery ">=1.7.0"
 
-jquery@3.2.1, jquery@>=1.7.0:
+jquery@3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.4.0.tgz#8de513fa0fa4b2c7d2e48a530e26f0596936efdf"
+  integrity sha512-ggRCXln9zEqv6OqAGXFEcshF5dSBvCkzj6Gm2gzuR5fWawaX8t7cxKVkkygKODrDAzKdoYw3l/e3pm3vlT4IbQ==
+
+jquery@>=1.7.0:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
