@@ -1,0 +1,32 @@
+{% if not field_name %}
+    {% set field_name = "flex_content" %}
+{% endif %}
+
+{% extends "layout.twig" %}
+
+{% block content %}
+
+    <div class="template-flex">
+        {# field_name set above #}
+
+        {# Starter default module for bubs only. Feel free to remove once ACF established #}
+            {% include "flex/flex-text-content.twig" with { "post": content } %}
+        {# End bubs starter #}
+
+        {% for content in post.get_field( field_name ) %}
+            {% set flex_id %}flex-{{ loop.index }}{% endset %}
+            {% if content.section_slug %}
+                {% set item_slug = function('sanitize_title', content.section_slug ) %}
+            {% else %}
+                {% set item_slug = "section-" ~ loop.index %}
+            {% endif %}
+
+            {% if content.acf_fc_layout == "text_content" %}
+                {% include "flex/flex-text-content.twig" with { "post": content } %}
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

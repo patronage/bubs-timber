@@ -1,0 +1,14 @@
+<section class="flex-text-content {{ post.section_classes }} {{ flex_id }}" id="{{ item_slug }}">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2 class="section-heading">
+                    {{ title|dummy(5) }}
+                </h2>
+                <div class="section-content">
+                    {{ title|dummy(100)|wpautop }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
