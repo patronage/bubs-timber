@@ -9,6 +9,10 @@
     <div class="template-flex">
         {# field_name set above #}
 
+        {# Starter default module for bubs only. Feel free to remove once ACF established #}
+            {% include "flex/flex-text-content.twig" with { "post": content } %}
+        {# End bubs starter #}
+
         {% for content in post.get_field( field_name ) %}
             {% set flex_id %}flex-{{ loop.index }}{% endset %}
             {% if content.section_slug %}
@@ -20,7 +24,6 @@
             {% if content.acf_fc_layout == "text_content" %}
                 {% include "flex/flex-text-content.twig" with { "post": content } %}
             {% endif %}
-
 
         {% endfor %}
 
