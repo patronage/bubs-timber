@@ -3,7 +3,7 @@
 1. Clone this repo.
 2. Initialize via [Composer](https://getcomposer.org/), `composer install`
 3. Install [node.js](https://nodejs.org/) if you don't already have it.
-4. Install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn install.
+4. Install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn add`.
 5. Customize your database settings in `wp-config-local.php`
 
 Recommended localhost domain is: `www.bubs.dev`
