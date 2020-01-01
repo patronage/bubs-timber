@@ -29,6 +29,7 @@ if ( is_day() ) {
     $data['title'] = single_tag_title( '', false );
 } else if ( is_category() ) {
     $data['title'] = single_cat_title( '', false );
+    $data['term'] = new TimberTerm();
     array_unshift( $templates, 'archive-' . get_query_var( 'cat' ) . '.twig' );
 } else if ( is_tax() ) {
     $data['title'] = single_cat_title( '', false );
