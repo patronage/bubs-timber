@@ -1,13 +1,10 @@
-## Getting Setup
+# BUBS - A Wordpress Development Environment
 
-1. Clone this repo.
-2. Initialize via [Composer](https://getcomposer.org/), `composer install`
-3. Install [node.js](https://nodejs.org/) if you don't already have it.
-4. Install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn add`.
+Bubs is Patronage's open-source Wordpress development environment. 
 
-# Getting Started (Docker)
+## Getting Started (Docker)
 
-## Prerequisites 
+### Prerequisites 
 
 You should have the following installed and ready in your development environment:
 
@@ -17,11 +14,11 @@ You should have the following installed and ready in your development environmen
 * `Yarn Package Manager`
 * `Sequel Pro` or a SQL GUI to import site database
 
-## 1. Install Docker
+### 1. Install Docker
 
 Install Docker on your computer. [Here's a link to the Desktop Installer](https://www.docker.com/products/docker-desktop).
 
-## 2. Checkout this repo and prepare local dependencies
+### 2. Checkout this repo and prepare local dependencies
 
 Run the following in your terminal
 
@@ -29,23 +26,23 @@ Run the following in your terminal
 * `nvm use`
 * `yarn`
 
-## 3. Start Docker and development environment
+### 3. Start Docker and development environment
 
 Run in Terminal
 
 * `docker-compose up -d && gulp`
 
-## 4. Get Started
+### 4. Get Started
 
 * Open a browser tab to (http://localhost:3000)[http://localhost:3000]. When you make a CSS or Twig change, the site should live reload the changes!
 
-## 5. Wrapping up development
+### 5. Wrapping up development
 
 * Open Docker Desktop, and click the "stop" button to turn off Docker and make your computer a little faster and less warm:
 
 ![image](https://user-images.githubusercontent.com/525011/77448037-c5573380-6dc6-11ea-8bdd-e9d4025d671d.png)
 
-## Bonus. Update SQL database with newer SQL
+### Bonus. Update SQL database with newer SQL
 
 * Open Sequel Pro and connect to the MySQL Instance inside of Docker like this:
 
@@ -57,11 +54,11 @@ Open Sequel Pro and connect to MySQL in the Docker instance like this:
 
 * Download an export of Production site SQL (in .sql format) and import into Sequel Pro. The new SQL will be ready inside of the Dockerized Wordpress
 
-# Development
+## Development
 
 Note that you must use Yarn, and not NPM to manage client-side dependencies. This is because certain libraries which formerly used bower aren't in NPM, and only Yarn can install packages from any github repo.
 
-## Setting up the theme
+### Setting up the theme
 
 The default setup has two commands:
 
@@ -70,7 +67,7 @@ The default setup has two commands:
 
 All assets are stored in `wp-content/themes/timber`.
 
-## Deploying
+### Deploying
 
 The `_build` folder has our deploy scripts:
 
@@ -96,7 +93,7 @@ ignoreThis(); // jshint ignore:line
 
 You can read more about [JSHint here](https://jshint.com/docs/)
 
-## Based on Bubs
+### Based on Bubs
 
 This project is based on [Bubs](https://github.com/patronage/bubs-wp/) by [Patronage](http://www.patronage.org/studio).
 
