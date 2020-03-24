@@ -4,9 +4,60 @@
 2. Initialize via [Composer](https://getcomposer.org/), `composer install`
 3. Install [node.js](https://nodejs.org/) if you don't already have it.
 4. Install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn add`.
-5. Customize your database settings in `wp-config-local.php`
 
-Recommended localhost domain is: `www.bubs.dev`
+# Getting Started (Docker)
+
+## Prerequisites 
+
+You should have the following installed and ready in your development environment:
+
+* `composer`
+* `Node.js`
+* `nvm`
+* `Yarn Package Manager`
+* `Sequel Pro` or a SQL GUI to import site database
+
+## 1. Install Docker
+
+Install Docker on your computer. [Here's a link to the Desktop Installer](https://www.docker.com/products/docker-desktop).
+
+## 2. Checkout this repo and prepare local dependencies
+
+Run the following in your terminal
+
+* `composer install`
+* `nvm use`
+* `yarn`
+
+## 3. Start Docker and development environment
+
+Run in Terminal
+
+* `docker-compose up -d && gulp`
+
+## 4. Get Started
+
+* Open a browser tab to (http://localhost:3000)[http://localhost:3000]. When you make a CSS or Twig change, the site should live reload the changes!
+
+## 5. Wrapping up development
+
+* Open Docker Desktop, and click the "stop" button to turn off Docker and make your computer a little faster and less warm:
+
+![image](https://user-images.githubusercontent.com/525011/77448037-c5573380-6dc6-11ea-8bdd-e9d4025d671d.png)
+
+## Bonus. Update SQL database with newer SQL
+
+* Open Sequel Pro and connect to the MySQL Instance inside of Docker like this:
+
+Open Sequel Pro and connect to MySQL in the Docker instance like this:
+
+<img width="491" alt="Screen Shot 2020-02-29 at 1 32 28 AM" src="https://user-images.githubusercontent.com/108172/75583336-5c182500-5a93-11ea-822f-c090c75031b3.png">
+ 
+(password is `wordpress` like in the `docker-composer.yaml` file)
+
+* Download an export of Production site SQL (in .sql format) and import into Sequel Pro. The new SQL will be ready inside of the Dockerized Wordpress
+
+# Development
 
 Note that you must use Yarn, and not NPM to manage client-side dependencies. This is because certain libraries which formerly used bower aren't in NPM, and only Yarn can install packages from any github repo.
 
