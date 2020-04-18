@@ -1,14 +1,14 @@
 _build/
+_data/
 _init/
-.bowerrc
 .editorconfig
 .gitignore
 .npmrc
 .nvmrc
-.travis.yml
 bower.json
 composer.json
 composer.lock
+docker-compose.yml
 gulpfile.js
 package.json
 README.md

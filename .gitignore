@@ -10,7 +10,6 @@ tmp/
 wp-content/themes/timber/dev/
 wp-config-local.php
 /wp-content/mu-plugins/local-plugins.php
-_data/
 /gulpconfig.json
 
 *.sublime*
@@ -20,6 +19,11 @@ node_modules
 /vendor/
 npm-debug.log
 yarn-error.log
+
+## no sql, except for our local scaffolding (nothing sensitive in there)
+_data/*
+!_data/local.sql
+!_data/empty.sql
 
 # bower vendor symlink to node_modules is customized per developer
 wp-content/themes/timber/assets/vendor

@@ -42,17 +42,18 @@ Run in Terminal
 
 ![image](https://user-images.githubusercontent.com/525011/77448037-c5573380-6dc6-11ea-8bdd-e9d4025d671d.png)
 
-### Bonus. Update SQL database with newer SQL
+### 6. Updating SQL database with newer SQL
 
-* Open Sequel Pro and connect to the MySQL Instance inside of Docker like this:
+First save your new DB file (.sql, .zip, or .gz) to the `_data` folder. to check the option to drop tables. Then run `yarn db` to import.
 
-Open Sequel Pro and connect to MySQL in the Docker instance like this:
+Alternatively, you can use Sequel Pro or another client and import manually.
 
-<img width="491" alt="Screen Shot 2020-02-29 at 1 32 28 AM" src="https://user-images.githubusercontent.com/108172/75583336-5c182500-5a93-11ea-822f-c090c75031b3.png">
- 
-(password is `wordpress` like in the `docker-composer.yaml` file)
+To connect from Sequel Pro to explore the database, use the following settings:
 
-* Download an export of Production site SQL (in .sql format) and import into Sequel Pro. The new SQL will be ready inside of the Dockerized Wordpress
+Host: `127.0.0.1`
+User: `wordpress`
+Pass: `wordpress`
+Port: `3307`
 
 ## Development
 
@@ -95,7 +96,7 @@ You can read more about [JSHint here](https://jshint.com/docs/)
 
 ### Based on Bubs
 
-This project is based on [Bubs](https://github.com/patronage/bubs-wp/) by [Patronage](http://www.patronage.org/studio).
+This project is based on [Bubs](https://github.com/patronage/bubs/) by [Patronage](http://www.patronage.org/).
 
 For more docs on getting started with local hosting, multi-site, etc. visit the wiki:
-https://github.com/patronage/bubs-wp/wiki
+https://github.com/patronage/bubs/wiki
