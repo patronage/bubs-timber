@@ -45,6 +45,15 @@ ignoreThis(); // jshint ignore:line
 
 You can read more about [JSHint here](https://jshint.com/docs/)
 
+## Auto Deployment to WP Engine via Github Actions
+We've included a Github Action (in the `.github/` folder) which can be used to deploy your site to WP Engine after deploying some changes to the `master` branch on Github. JS and SCSS assets are built using `gulp`, and everything deploys as it would if you ran `sh _build/deploy.sh`. The Github action deploy is optional and can be removed if you are not using WP Engine or do not want your site to automatically deploy.
+
+In order to setup, a SSH key needs to be created and the private & public keys need to be set inside the Secrets section of your Github repo's settings. They should be called `WPENGINE_SSH_KEY_PUBLIC` and `WPENGINE_SSH_KEY_PRIVATE`. The same public key in `WPENGINE_SSH_KEY_PUBLIC` needs to be set inside inside the WP Engine environment in order to deploy.
+
+You'll also want to setup a Slack webhook URL and set it as the `SLACK_WEBHOOK` environment variable. You will get deployment updates for both success and failure.
+
+In our usage, we've found that a moderately complex site can deploy to WP Engine within 3-4 minutes of pushing code to Github.
+
 ## Based on Bubs
 
 This project is based on [Bubs](https://github.com/patronage/bubs-wp/) by [Patronage](http://www.patronage.org/studio).
