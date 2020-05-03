@@ -17,6 +17,9 @@ const stylish = require('jshint-stylish');
 import browserSync from 'browser-sync';
 browserSync.create();
 
+const debug = require('gulp-debug');
+
+
 //
 // Gulp config
 //
@@ -65,6 +68,8 @@ let isProduction = false;
 // Error Handling
 
 const handleErrors = err => {
+    console.log(err); // note the error on console as well
+
     // special variables for uglify
     if (err.cause) {
         err.message = err.cause.message;
@@ -119,6 +124,7 @@ const styles = done => {
 
 const scripts = done => {
 
+    // generates the asset file paths we'll proccess,  extracted from layout.twig etc.
     const assets = $.useref({
         searchPath: config.assets,
         noconcat: true,
@@ -135,8 +141,10 @@ const scripts = done => {
 
     const f = $.filter(['**', '!**/assets/vendor/**', '!**/assets/js/lib/**'], { 'restore': true });
 
-    pump([gulp.src(config.theme + '/views/layout.twig'),
-        assets,
+    pump([
+        gulp.src(config.theme + '/views/layout.twig'),
+        assets,  // parse the build block in that file
+        // debug({'title' : 'debug: ', 'showFiles' : true}), //to debug files getting proccessed
     $.filter(['**', '!**/layout.twig'], { 'restore': true }),
         f,
     $.jshint(),
@@ -225,18 +233,21 @@ gulp.task('browser-sync', function(){
 
 
 
-
-const reload = done => {
-    console.log("reloading");
+// When we don't need a full page reload (e.g.: scss change/css inject)
+const reloadStream = done => {
     browserSync.reload({stream: true});
+    done();
+}
+
+// For fuller page reload
+const reload = done => {
+    browserSync.reload();
     done();
 }
 
 //
 gulp.task('watch', gulp.parallel('browser-sync', function(done){
-  gulp.watch(config.assets + '/scss/**/*.scss', styles);
-
-
+  gulp.watch(config.assets + '/scss/**/*.scss', styles, reloadStream);
   gulp.watch(config.theme + '/**/*.{twig,php}', reload);
   gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, reload));
   gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
