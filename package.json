@@ -30,13 +30,13 @@
     "gulp-notify": "^3.2.0",
     "gulp-rename": "2.0.0",
     "gulp-rev-all": "2.0.3",
-    "gulp-sass": "^4.0.2",
+    "gulp-sass": "^4.1.0",
     "gulp-uglify": "^3.0.2",
     "gulp-useref": "4.0.1",
     "husky": "^0.14.3",
     "jshint": "^2.11.0",
     "jshint-stylish": "^2.2.1",
-    "node-sass": "^4.13.1"
+    "node-sass": "^4.14.0"
   },
   "dependencies": {
     "@bower_components/fitvids": "davatron5000/fitvids.js#^1.2.0",
