@@ -21,19 +21,22 @@ const server = browserSync.create();
 //
 
 // Override defaults with custom local config
+var localConfig = {
+    bs: {
+        proxy: "www.bubs.loc",
+        logLevel: "info",
+        tunnel: "",
+        open: false,
+        notify: false
+    }
+};
 
+// If there's a gulpconfig.json file, it additively overrides any of those default localConfig options
 try {
-    var localConfig = require('./gulpconfig.json');
+    var localConfigFromConfig = require('./gulpconfig.json');
+    Object.assign(localConfig, localConfigFromConfig);
 } catch (err) {
-    var localConfig = {
-        bs: {
-            proxy: "www.bubs.loc",
-            logLevel: "info",
-            tunnel: "",
-            open: false,
-            notify: false
-        }
-    };
+    // didn't fine the file? no overriding done. use defaults
 }
 
 // Build themeDir variable based on current theme from config file, fallback to default
