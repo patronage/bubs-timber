@@ -15,7 +15,8 @@ const stylish = require('jshint-stylish');
 
 // others
 import browserSync from 'browser-sync';
-const server = browserSync.create();
+browserSync.create();
+
 //
 // Gulp config
 //
@@ -210,27 +211,39 @@ export const clean = done => {
     done();
 }
 
-const serve = done => {
-    server.init({
-        proxy: localConfig.bs.proxy,
-        notify: localConfig.bs.notify || false,
-        open: localConfig.bs.open || true,
-        tunnel: localConfig.bs.tunnel || false,
-        logLevel: localConfig.bs.logLevel || 'info'
-    });
 
-    gulp.watch(config.theme + '/**/*.{twig,php}', reload);
-    gulp.watch(config.assets + '/scss/**/*.scss', styles);
-    gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, reload));
-    gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
+gulp.task('browser-sync', function(){
 
-    done();
-}
+  browserSync.init({
+      proxy: localConfig.bs.proxy,
+      notify: localConfig.bs.notify || false,
+      open: localConfig.bs.open || true,
+      tunnel: localConfig.bs.tunnel || false,
+      logLevel: localConfig.bs.logLevel || 'info'
+  })
+})
+
+
+
 
 const reload = done => {
-    server.reload();
+    console.log("reloading");
+    browserSync.reload({stream: true});
     done();
 }
+
+//
+gulp.task('watch', gulp.parallel('browser-sync', function(done){
+  gulp.watch(config.assets + '/scss/**/*.scss', styles);
+
+
+  gulp.watch(config.theme + '/**/*.{twig,php}', reload);
+  gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, reload));
+  gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
+
+  done();
+}));
+
 
 //gulp release
 export const release = done => {
@@ -241,6 +254,6 @@ export const release = done => {
 }
 
 const compile = gulp.series(clean, styles, scripts, copy, cleanScripts, rev, staticHeaders);
-export const defaultTasks = gulp.series(clean, styles, copy, serve);
+export const defaultTasks = gulp.series(clean, styles, copy, 'watch');
 
 export default defaultTasks;
