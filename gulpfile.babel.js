@@ -152,10 +152,10 @@ const scripts = done => {
     $.jshint.reporter('fail'),
     f.restore,
     $.rename(renameOptions),
-    $.uglify(uglifyOptions),
     $.babel({
         presets: ['@babel/preset-env']
     }),
+    $.uglify(uglifyOptions),
     gulp.dest(config.output)
     ], err => {
         if (err) {
