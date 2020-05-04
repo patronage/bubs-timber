@@ -30,7 +30,7 @@ try {
             proxy: "www.bubs.loc",
             logLevel: "info",
             tunnel: "",
-            open: false,
+            open: true,
             notify: false
         }
     };
@@ -102,7 +102,7 @@ const styles = done => {
     $.if(isProduction, $.autoprefixer('last 2 versions')),
     $.if(isProduction, $.csso()),
     gulp.dest(config.output + '/css', { sourcemaps: !isProduction }),
-    browserSync.stream()
+    server.stream()
     ], err => {
         if (err) {
             handleErrors(err);
