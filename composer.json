@@ -4,7 +4,7 @@
         "vendor-dir": "wp-content/plugins/composer-libs"
     },
     "require": {
-        "php": ">=7.3.16",
+        "php": ">=7.3",
         "wordpress/wordpress": "5.4",
         "advanced-custom-fields/advanced-custom-fields-pro": "5.8.9",
         "roots/soil": "3.9.0",
