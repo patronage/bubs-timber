@@ -11,7 +11,7 @@ $.sass.compiler = require('node-sass');
 import del from 'del';
 import pump from 'pump';
 import beeper from 'beeper';
-const stylish = require('jshint-stylish');
+import { argv } from 'yargs';
 
 // others
 import browserSync from 'browser-sync';
@@ -133,10 +133,11 @@ const scripts = done => {
 
     pump([gulp.src(config.theme + '/views/layout.twig'),
         assets,
+    $.debug({ 'title': 'debug: ', 'showFiles': argv.debug }), //to debug files getting proccessed
     $.filter(['**', '!**/layout.twig'], { 'restore': true }),
         f,
     $.jshint(),
-    $.jshint.reporter(stylish),
+    $.jshint.reporter('jshint-stylish'),
     $.jshint.reporter('fail'),
     f.restore,
     $.rename(renameOptions),
