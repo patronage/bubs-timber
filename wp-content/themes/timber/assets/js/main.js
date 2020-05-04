@@ -40,13 +40,9 @@ var widont = function() {
     });
 };
 
-var funcss = () => {
-    console.log('heyz2');
-};
 
 // init within document.ready
 (function($) {
-    funcss();
     headerNav();
     fitVidInit();
     matchHeightInit();
