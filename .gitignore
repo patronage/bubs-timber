@@ -1,7 +1,8 @@
 #### BUBS ONLY EXCLUSIONS
-# we just want to keep these out of bubs
-# remove when creating a project
+# we just want to keep these files out of bubs itself
+# remove these when creating a project, so they can be versioned then
 wp-content/plugins/*
+composer.lock
 
 #### JTS RULES
 
