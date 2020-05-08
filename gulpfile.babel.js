@@ -61,6 +61,11 @@ let isProduction = false;
 // Error Handling
 
 const handleErrors = err => {
+
+    if (err.message){ // note the error on console as well
+        console.log(err.message);
+    }
+
     // special variables for uglify
     if (err.cause) {
         err.message = err.cause.message;
