@@ -1,0 +1,54 @@
+server {
+    # Listen on specified port.
+    listen 80;
+    listen [::]:80;
+
+    # Local server setup
+    server_name ${NGINX_HOST} www.${NGINX_HOST};
+    index index.php index.html index.htm;
+    root /var/www/html;
+
+    location / {
+        # Give control of 404 errors to WordPress' index.php with arguments
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    # Handle PHP processing and proxying with php-fpm
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_split_path_info ^(.+\.php)(/.+)$;
+        fastcgi_pass wordpress:9000;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param PATH_INFO $fastcgi_path_info;
+    }
+
+    location ~ /\.ht {
+        # Don't serve .htaccess files at all
+        deny all;
+    }
+
+    location = /favicon.ico {
+        # Turn off logging for favicons.
+        access_log off;
+        log_not_found off;
+    }
+
+    location = /robots.txt {
+        # Turn off logging for robots.txt.
+        access_log off;
+        log_not_found off;
+
+        # Allow access to robots.txt files.
+        allow all;
+    }
+
+    location ~* \.(css|gif|ico|jpeg|jpg|js|png|svg)$ {
+        # Mark these files as highly cacheable
+        expires max;
+
+        # Turn off logging
+        log_not_found off;
+    }
+}

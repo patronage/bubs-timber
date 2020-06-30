@@ -1,249 +1,324 @@
-'use strict';
+/**
+ * -----------------------------------------------------------------------------
+ * Module Import & Settings
+ * -----------------------------------------------------------------------------
+ */
 
-// load gulp and gulp plugins
+// Import Gulp
 import gulp from 'gulp';
-import plugins from 'gulp-load-plugins';
-const $ = plugins();
-
-$.sass.compiler = require('node-sass');
-
-// load node modules
-import del from 'del';
-import pump from 'pump';
-import beeper from 'beeper';
 import { argv } from 'yargs';
+import del from 'del';
+import path from 'path';
 
-// others
-import browserSync from 'browser-sync';
-const server = browserSync.create();
-//
-// Gulp config
-//
+// Import CSS Modules
+import autoprefixer from 'autoprefixer';
+import easings from 'postcss-easings';
+import mqp from 'css-mqpacker';
+import nano from 'cssnano';
+import postcss from 'gulp-postcss';
+import sass from 'gulp-sass';
+import sourcemaps from 'gulp-sourcemaps';
 
-// Override defaults with custom local config
+// Import Javascript Modules
+import babel from 'babelify';
+import browserify from 'browserify';
+import buffer from 'vinyl-buffer';
+import es from 'event-stream';
+import glob from 'glob';
+import plumber from 'gulp-plumber';
+import source from 'vinyl-source-stream';
+import uglify from 'gulp-uglify';
+import watchify from 'watchify';
 
-try {
-    var localConfig = require('./gulpconfig.json');
-} catch (err) {
-    var localConfig = {
-        bs: {
-            proxy: "www.bubs.loc",
-            logLevel: "info",
-            tunnel: "",
-            open: true,
-            notify: false
-        }
-    };
-}
+// Import Image Related Modules
+import imagemin from 'gulp-imagemin';
 
-// Build themeDir variable based on current theme from config file, fallback to default
+// Import Utility Modules
+import cache from 'gulp-cache';
+import lineec from 'gulp-line-ending-corrector';
+import log from 'fancy-log';
+import rename from 'gulp-rename';
 
-const themeRoot = 'wp-content/themes/';
-const theme = localConfig.activeTheme || 'timber';
-const themeDir = themeRoot + theme;
+/**
+ * -----------------------------------------------------------------------------
+ * Configuration
+ * -----------------------------------------------------------------------------
+ */
 
-// Defaults
-
+// Script Settings
 const config = {
-    theme: themeDir,
-    assets: themeDir + '/assets',
-    dist: themeDir + '/dist',
-    dev: themeDir + '/dev',
-    output: themeDir + '/dev', // default to dev
-    static: themeDir + '/static',
-    init: './_init'
+    directory: {
+        images: './src/assets/img/**/*',
+        js: './src/assets/js/**/*.js',
+        scss: './src/assets/scss/**/*.scss',
+    },
 };
 
+// Runtime Variables
+const isProduction = argv.production !== undefined;
 
-// in production tasks, we set this to true
-let isProduction = false;
+/**
+ * -----------------------------------------------------------------------------
+ * Error Handler
+ *
+ * @param Mixed err
+ * -----------------------------------------------------------------------------
+ */
 
-// Error Handling
+const errorHandler = (r) => {
+    log.error('❌ ERROR: <%= error.message %>')(r);
+};
 
-const handleErrors = err => {
+/**
+ * -----------------------------------------------------------------------------
+ * Task: `init`.
+ *
+ * @description Initialization functions for the gulp task runner.
+ * -----------------------------------------------------------------------------
+ */
 
-    if (err.message){ // note the error on console as well
-        console.log(err.message);
-    }
+async function init() {
+    log('🚀 — Initializing gulp tasks...');
 
-    // special variables for uglify
-    if (err.cause) {
-        err.message = err.cause.message;
-        err.line = err.cause.line;
-        err.column = err.cause.col;
-    }
+    // Clear out assets directory before running.
+    await del(['./src/dist']);
 
-    // notifications
-    if (err.line && err.column) {
-        var notifyMessage = 'LINE ' + err.line + ':' + err.column + ' -- ';
+    // Clear image cache.
+    await cache.clearAll();
+}
+
+gulp.task('init', gulp.series(init));
+
+/**
+ * -----------------------------------------------------------------------------
+ * Task: `styles`.
+ *
+ * @description Compiles SCSS, Autoprefixes and minifies CSS.
+ *
+ * This task does the following:
+ *    1. Gets the source SCSS files.
+ *    2. Compiles SCSS to CSS.
+ *    3. Combines media queries and autoprefixes with PostCSS.
+ *    4. Writes the sourcemaps for it.
+ *    5. Renames the CSS file to style.min.css.
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task('styles', () => {
+    log('⚡️ — Processing stylesheets...');
+
+    let gulpTask = gulp
+        .src(config.directory.scss, {
+            allowEmpty: true,
+        })
+        .pipe(plumber(errorHandler));
+
+    if (!isProduction) {
+        gulpTask = gulpTask
+            .pipe(
+                rename((filePath) => ({
+                    dirname: filePath.dirname,
+                    basename: filePath.basename,
+                    extname: '.css',
+                })),
+            )
+            .pipe(
+                sourcemaps.init({
+                    loadMaps: true,
+                }),
+            );
     } else {
-        var notifyMessage = '';
+        gulpTask = gulpTask.pipe(
+            rename((filePath) => ({
+                dirname: filePath.dirname,
+                basename: filePath.basename,
+                extname: '.min.css',
+            })),
+        );
     }
 
-    $.notify({
-        title: 'FAIL: ' + err.plugin,
-        message: notifyMessage + err.message
-    });
+    gulpTask = gulpTask
+        .pipe(
+            sass({
+                errorLogToConsole: true,
+                indentWidth: 4,
+                outputStyle: !isProduction ? 'expanded' : 'compressed',
+                precision: 10,
+            }),
+        )
+        .on('error', sass.logError)
+        .pipe(
+            postcss([
+                autoprefixer('defaults'),
+                mqp({
+                    sort: true,
+                }),
+                nano({
+                    preset: [
+                        'default',
+                        {
+                            normalizeWhitespace: !!isProduction,
+                        },
+                    ],
+                }),
+                easings(),
+            ]),
+        );
 
-    beeper(); // System beep
+    if (!isProduction) gulpTask = gulpTask.pipe(sourcemaps.write('./'));
 
-    // Tell Travis to FAIL
-    if (isProduction) {
-        process.exit(1);
-    }
-};
+    gulpTask = gulpTask.pipe(lineec()).pipe(gulp.dest('./src/dist/css'));
 
-//
-// Gulp Tasks
-//
+    gulpTask = gulpTask.on('end', () => log('✅ STYLES — completed!'));
 
-const styles = done => {
-    const sassOptions = {
-        outputStyle: 'expanded'
-    };
+    return gulpTask;
+});
 
-    pump([gulp.src(config.assets + '/scss/*.scss', { sourcemaps: !isProduction }),
-    $.sass(sassOptions),
-    $.if(isProduction, $.autoprefixer('last 2 versions')),
-    $.if(isProduction, $.csso()),
-    gulp.dest(config.output + '/css', { sourcemaps: !isProduction }),
-    server.stream()
-    ], err => {
-        if (err) {
-            handleErrors(err);
-            return done();
-        } else {
-            return done();
-        }
-    });
-}
+/**
+ * -----------------------------------------------------------------------------
+ * Task: `scripts`.
+ *
+ * @description Bundles javascript with Browserify.
+ *
+ * @todo Fill out a description for this section.
+ * -----------------------------------------------------------------------------
+ */
 
-const scripts = done => {
+gulp.task('scripts', (done) => {
+    log('⚙️ — Bundling scripts...');
 
-    const assets = $.useref({
-        searchPath: config.assets,
-        noconcat: true,
-    });
+    glob(config.directory.js, (err, files) => {
+        if (err) done(err);
 
-    const uglifyOptions = {
-        mangle: false,
-        compress: false
-    };
+        const gulpTasks = files.map((entry) => {
+            const entryName = entry.split(path.sep).slice(4).join('/');
 
-    const renameOptions = path => {
-        path.dirname = "js";
-    };
+            let bundler = browserify(entry, {
+                debug: true,
+            }).transform(babel);
 
-    const f = $.filter(['**', '!**/assets/vendor/**', '!**/assets/js/lib/**'], { 'restore': true });
+            if (!isProduction) bundler = watchify(bundler);
 
-    pump([gulp.src(config.theme + '/views/layout.twig'),
-        assets,
-    $.debug({ 'title': 'debug: ', 'showFiles': argv.debug }), //to debug files getting proccessed
-    $.filter(['**', '!**/layout.twig'], { 'restore': true }),
-        f,
-    $.jshint(),
-    $.jshint.reporter('jshint-stylish'),
-    $.jshint.reporter('fail'),
-    f.restore,
-    $.rename(renameOptions),
-    $.babel({
-        presets: ['@babel/preset-env']
-    }),
-    $.uglify(uglifyOptions),
-    gulp.dest(config.output)
-    ], err => {
-        if (err) {
-            handleErrors(err);
-            return done();
-        } else {
-            return done();
-        }
-    });
-}
+            let bundleScripts = bundler
+                .bundle()
+                .pipe(plumber(errorHandler))
+                .pipe(source(entryName))
+                .pipe(buffer());
 
-// When scripts runs, it creates extra files in copying from vendor we can delete
-const cleanScripts = done => {
-    del.sync([config.output + '/wp-content']);
-    done();
-}
-
-// copy unmodified files
-const copy = done => {
-    pump([gulp.src(config.assets + '/{img,fonts,js}/**/*', { base: config.assets }),
-    $.newer(config.output),
-    gulp.dest(config.output)
-    ], done);
-}
-
-// loops through the generated html and replaces all references to static versions
-const rev = done => {
-    pump([gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
-    $.revAll.revision({ dontSearchFile: ['.js'] }),
-    gulp.dest(config.static),
-    $.revAll.manifestFile(),
-    gulp.dest(config.static)],
-        err => {
-            if (err) {
-                handleErrors(err);
-                return done();
-            } else {
-                return done();
+            if (!isProduction) {
+                bundleScripts = bundleScripts.pipe(
+                    sourcemaps.init({
+                        loadMaps: true,
+                    }),
+                );
             }
-        });
-}
 
-// write far futures expires headers for revved files
-const staticHeaders = done => {
-    pump([gulp.src(config.init + '/static.htaccess', { base: '' }),
-    $.rename(".htaccess"),
-    gulp.dest(config.static)],
-        err => {
-            if (err) {
-                handleErrors(err);
-                return done();
-            } else {
-                return done();
+            if (isProduction) bundleScripts = bundleScripts.pipe(uglify());
+
+            if (!isProduction) {
+                bundleScripts = bundleScripts.pipe(sourcemaps.write('./'));
             }
+
+            bundleScripts = bundleScripts
+                .pipe(lineec())
+                .pipe(gulp.dest('./src/dist/js'));
+
+            if (!isProduction) bundler.on('update', () => bundleScripts);
+
+            return bundleScripts;
         });
-}
 
-// clean output directory
-export const clean = done => {
-    del.sync([config.dev, config.static, config.dist]);
-    done();
-}
-
-const serve = done => {
-    server.init({
-        proxy: localConfig.bs.proxy,
-        notify: localConfig.bs.notify || false,
-        open: localConfig.bs.open || true,
-        tunnel: localConfig.bs.tunnel || false,
-        logLevel: localConfig.bs.logLevel || 'info'
+        es.merge(gulpTasks).on('end', () => {
+            log('✅ JS — completed!');
+            done();
+        });
     });
+});
 
-    gulp.watch(config.theme + '/**/*.{twig,php}', reload);
-    gulp.watch(config.assets + '/scss/**/*.scss', styles);
-    gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, reload));
-    gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
+/**
+ * -----------------------------------------------------------------------------
+ * Task: `images`.
+ *
+ * @description Minifies PNG, JPEG, GIF and SVG images.
+ *
+ * This task does the following:
+ *     1. Gets the source of images raw folder.
+ *     2. Minifies PNG, JPEG, GIF and SVG images.
+ *     3. Generates and saves the optimized images.
+ * -----------------------------------------------------------------------------
+ */
 
-    done();
-}
+gulp.task('images', () => {
+    log('📷 — Processing images...');
 
-const reload = done => {
-    server.reload();
-    done();
-}
+    let gulpTask = gulp
+        .src(config.directory.images)
+        .pipe(
+            cache(
+                imagemin([
+                    imagemin.gifsicle({
+                        interlaced: true,
+                        optimizationLevel: 2,
+                        colors: 256,
+                    }),
+                    imagemin.jpegtran({
+                        progressive: true,
+                        arithmetic: false,
+                    }),
+                    imagemin.optipng({
+                        optimizationLevel: 3,
+                        bitDepthReduction: true,
+                        colorTypeReduction: true,
+                        paletteReduction: true,
+                    }),
+                    imagemin.svgo({
+                        plugins: [
+                            {
+                                removeViewBox: false,
+                            },
+                            {
+                                cleanupIDs: false,
+                            },
+                        ],
+                    }),
+                ]),
+            ),
+        )
+        .pipe(gulp.dest('./dist/assets/img'));
 
-//gulp release
-export const release = done => {
-    isProduction = true;
-    config.output = config.dist;
-    compile();
-    done();
-}
+    gulpTask = gulpTask.on('end', () => log('✅ IMAGES — completed!'));
 
-const compile = gulp.series(clean, styles, scripts, copy, cleanScripts, rev, staticHeaders);
-export const defaultTasks = gulp.series(clean, styles, copy, serve);
+    return gulpTask;
+});
 
-export default defaultTasks;
+/**
+ * -----------------------------------------------------------------------------
+ * Task: `watch`.
+ *
+ * @description Watch tasks for the gulp processes.
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task('watch', () => {
+    log('🔍 — Watching files for changes...');
+
+    gulp.watch(config.directory.images, gulp.series('images'));
+    gulp.watch(config.directory.js, gulp.series('scripts'));
+    gulp.watch(config.directory.scss, gulp.series('styles'));
+});
+
+/**
+ * -----------------------------------------------------------------------------
+ * Task: `default`.
+ *
+ * @description Runs gulp tasks and initializes browserSync and watches files.
+ * -----------------------------------------------------------------------------
+ */
+
+gulp.task(
+    'default',
+    gulp.series(
+        init,
+        gulp.parallel('styles', 'scripts', /*'images', */ 'watch'),
+    ),
+);

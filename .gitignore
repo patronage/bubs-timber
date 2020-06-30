@@ -1,106 +1,88 @@
-#### BUBS ONLY EXCLUSIONS
-# we just want to keep these files out of bubs itself
-# remove these when creating a project, so they can be versioned then
-wp-content/plugins/*
-composer.lock
+# gitignore
 
-#### JTS RULES
-
-# development-environment
-tmp/
-wp-content/themes/timber/dev/
-wp-config-local.php
-/wp-content/mu-plugins/local-plugins.php
-_data/
-/gulpconfig.json
-
-*.sublime*
-.sass-cache
-node_modules
-/composer/
-/vendor/
-npm-debug.log
-yarn-error.log
-
-# bower vendor symlink to node_modules is customized per developer
-wp-content/themes/timber/assets/vendor
-
-# production
-wp-content/themes/timber/static
-wp-content/themes/timber/dist
-
-#### WordPress Core
-# comment out if you want to track wordpress in source
-/index.php
-/license.txt
-/readme.html
-/wp-activate.php
-/wp-blog-header.php
-/wp-comments-post.php
-/wp-cron.php
-/wp-links-opml.php
-/wp-load.php
-/wp-login.php
-/wp-mail.php
-/wp-settings.php
-/wp-signup.php
-/wp-trackback.php
-/xmlrpc.php
-wp-admin/
-wp-includes/
-
-# ignore everything in the "plugins" directory,
-# except the plugins you specify
-# wp-content/plugins/*
-#!wp-content/plugins/stop-emails/
-
-# ignore everything in the "themes" directory,
-# except the themes you specify
-wp-content/themes/*
-!wp-content/themes/timber/
-wp-content/themes/timber/assets/vendor/*
-
-#### WPENGINE BELOW HERE
-
+# always ignore
 *~
-.DS_Store
-.svn
-.cvs
+**.DS_Store*
+*.esproj
+*.sublime-project
+*.sublime-workspace
+*.un~
+._*
+.AppleDouble
 *.bak
+.cache
+.cvs
+.LSOverride
+.project
+.settings
+.Spotlight-V100
+.svn
 *.swp
+.tmproj
+.Trashes
+Desktop.ini
+ehthumbs.db
+nbproject
 Thumbs.db
+
+# wordpress specific
 
 # wpengine specific
 .smushit-status
 .gitattributes
-_wpeprivate
-wp-content/object-cache.php
-wp-content/mu-plugins/wpengine-common/
-wp-content/mu-plugins/mu-plugin.php
-wp-content/mu-plugins/slt-force-strong-passwords.php
-wp-content/mu-plugins/limit-login-attempts
-# wp-content/mu-*~
-.DS_Store
-.svn
-.cvs
-*.bak
-*.swp
-Thumbs.db
+_wpeprivate*
 
-# wordpress specific
-wp-config.php
-wp-content/uploads/
-wp-content/blogs.dir/
-wp-content/upgrade/*
-wp-content/backup-db/*
-wp-content/advanced-cache.php
-wp-content/wp-cache-config.php
-wp-content/cache/*
-wp-content/cache/supercache/*
+# logs and databases
+logs
+*.env*
+!.env.example
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.sql
 
+# eslint cache
+.eslintcache
+
+# sass generated files
+**/.sass-cache
+**/.sass-cache/*
+**/.map
+
+# npm
+node_modules/
+/node_modules/
+npm-debug.log
+.node_repl_history
+.npm
+jspm_packages/
+
+# yarn
+yarn-error.log
+.pnp/
+.pnp.js
+.yarn-integrity
+
+# compiled files and build directories
+dist
+build/**
+/README.html
+
+# ides and editors
+.idea
+.vscode
+library/vendors/composer
+/codekit-config.json
+*.codekit
+**.codekit-cache/*
+
+# composer
+wpcs/
+/vendor/
+composer.phar
 
 # large/disallowed file types
-# a CDN should be used for these
 *.hqx
 *.bin
 *.exe
@@ -133,3 +115,12 @@ wp-content/cache/supercache/*
 *.asf
 *.wmv
 *.avi
+*.7z
+*.bz2
+*.gz
+*.jar
+*.map
+*.rar
+*.tar
+*.tgz
+*.zip
