@@ -1,0 +1,17 @@
+<div class="template-flex" id="{{ block.id }}">
+
+    {# field_name set above #}
+    {% for content in fields.flex_content %}
+        {% set flex_id %}flex-{{ loop.index }}{% endset %}
+
+        {% if content.acf_fc_layout == "content" %}
+            {% include "flex/text-content.twig" with { "post": content } %}
+        {% endif %}
+
+
+        {% if content.acf_fc_layout == "full_width_image" %}
+            {% include "flex/full-width-image.twig" with { "post": content } %}
+        {% endif %}
+    {% endfor %}
+
+</div>

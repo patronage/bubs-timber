@@ -43,6 +43,7 @@
     // WP Helper Functions
 
     include_once 'setup/helpers/admin.php';
+    include_once 'setup/helpers/blocks.php';
     include_once 'setup/helpers/env.php';
     include_once 'setup/helpers/global-variables.php';
     include_once 'setup/helpers/google-login-config.php';

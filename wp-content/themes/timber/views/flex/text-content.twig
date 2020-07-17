@@ -3,10 +3,10 @@
         <div class="row justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <h2 class="section-heading">
-                    {{ title|dummy(5) }}
+                    {{ post.title }}
                 </h2>
                 <div class="section-content">
-                    {{ title|dummy(100)|wpautop }}
+                    {{ post.content|wpautop }}
                 </div>
             </div>
         </div>

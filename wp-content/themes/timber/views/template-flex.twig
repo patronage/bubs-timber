@@ -6,6 +6,7 @@
 
 {% block content %}
 
+
     <div class="template-flex">
         {# field_name set above #}
 
@@ -21,10 +22,14 @@
                 {% set item_slug = "section-" ~ loop.index %}
             {% endif %}
 
-            {% if content.acf_fc_layout == "text_content" %}
+            {% if content.acf_fc_layout == "content" %}
                 {% include "flex/flex-text-content.twig" with { "post": content } %}
             {% endif %}
 
+
+            {% if content.acf_fc_layout == "full_width_image" %}
+                {% include "flex/flex-full-width-image.twig" with { "post": content } %}
+            {% endif %}
         {% endfor %}
 
     </div>

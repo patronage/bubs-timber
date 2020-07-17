@@ -1,0 +1,15 @@
+<section class="flex-full-image  {{ post.section_classes }} {{ flex_id }}" id="{{ item_slug }}">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2 class="section-heading">
+                    {{ post.title }}
+                </h2>
+
+                <figure class="main-image">
+                    <img src="{{Image(post.image).src|resize(1400)}}" alt="">
+                </figure>
+            </div>
+        </div>
+    </div>
+</section>
