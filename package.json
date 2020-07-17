@@ -48,7 +48,7 @@
         "jquery": "3.5.1",
         "jquery-match-height": "0.7.2",
         "jquery-smooth-scroll": "2.2.0",
-        "lodash": "4.17.15",
+        "lodash": "4.17.19",
         "magnific-popup": "1.1.0",
         "popper.js": "1.16.1",
         "query-string": "1.0.0",
