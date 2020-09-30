@@ -1,93 +1,78 @@
 {
     "name": "patronage/bubs",
     "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
         "vendor-dir": "wp-content/plugins/composer-libs"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "require": {
-        "php": ">=7.3",
-        "wordpress/wordpress": "5.4.2",
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.8.9",
+        "php": ">=7.4.0",
+        "composer/installers": "^1.8",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.9.1",
         "roots/soil": "3.9.0",
-        "upstatement/routes": "0.6.0",
+        "roots/wordpress": "5.5.1",
+        "upstatement/routes": "0.8.0",
         "wpackagist-plugin/acf-to-wp-api": "1.4.0",
         "wpackagist-plugin/airplane-mode": "0.2.5",
-        "wpackagist-plugin/bottom-admin-bar": "1.3",
-        "wpackagist-plugin/classic-editor": "1.5",
-        "wpackagist-plugin/debug-bar": "1.0.1",
-        "wpackagist-plugin/debug-bar-timber": "0.3",
+        "wpackagist-plugin/classic-editor":"1.6",
+        "wpackagist-plugin/debug-bar":"1.0.1",
+        "wpackagist-plugin/debug-bar-timber":"1.0.6",
         "wpackagist-plugin/disable-emojis": "1.7.2",
-        "wpackagist-plugin/duplicate-post": "3.2.4",
-        "wpackagist-plugin/enable-media-replace": "3.4.1",
+        "wpackagist-plugin/duplicate-post":"3.2.6",
+        "wpackagist-plugin/enable-media-replace":"3.4.2",
         "wpackagist-plugin/filter-page-by-template": "1.4",
         "wpackagist-plugin/google-apps-login": "3.4.2",
         "wpackagist-plugin/gutenberg-ramp": "1.1.0",
         "wpackagist-plugin/post-type-archive-links": "1.3.1",
         "wpackagist-plugin/post-type-switcher": "3.2.0",
-        "wpackagist-plugin/query-monitor": "3.6.0",
-        "wpackagist-plugin/quick-pagepost-redirect-plugin": "5.1.9",
+        "wpackagist-plugin/query-monitor":"3.6.4",
+        "wpackagist-plugin/redirection":"4.8",
         "wpackagist-plugin/term-management-tools": "1.1.4",
-        "wpackagist-plugin/timber-library": "1.16.0",
-        "wpackagist-plugin/transients-manager": "1.8",
-        "wpackagist-plugin/user-switching": "1.5.4",
-        "wpackagist-plugin/wordpress-seo": "14.3",
+        "wpackagist-plugin/timber-library":"1.18.1",
+        "wpackagist-plugin/transients-manager": "1.8.1",
+        "wpackagist-plugin/user-switching":"1.5.6",
+        "wpackagist-plugin/wordpress-seo": "15.0",
         "wpackagist-plugin/wp-api-yoast-meta": "1.2.0",
-        "wpackagist-plugin/wp-rest-api-v2-menus": "0.7.7"
+        "wpackagist-plugin/wp-rest-api-v2-menus":"0.8"
     },
     "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "wordpress/wordpress",
-                "type": "webroot",
-                "version": "5.4.2",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://github.com/WordPress/WordPress/archive/5.4.2.zip"
-                },
-                "require": {
-                    "fancyguy/webroot-installer": "~1.1"
-                }
-            }
-        },
         {
             "type": "composer",
             "url": "https://wpackagist.org"
         },
         {
-            "type": "package",
-            "package": {
-                "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.8.9",
-                "type": "wordpress-plugin",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://www.dropbox.com/s/khivi7470f6wrtm/empty.zip?dl=1"
-                },
-                "autoload": {
-                    "psr-0": {
-                        "acf\\advanced-custom-fields-pro": ""
-                    }
-                },
-                "require": {
-                    "composer/installers": "1.9.0"
-                }
+          "type": "package",
+          "package": {
+            "name": "advanced-custom-fields/advanced-custom-fields-pro",
+            "version": "5.9.1",
+            "type": "wordpress-plugin",
+            "dist": {
+              "type": "zip",
+              "url": "https://connect.advancedcustomfields.com/index.php?a=download&p=pro&k={%PLUGIN_ACF_KEY}&t={%VERSION}"
+            },
+            "require": {
+              "ffraenz/private-composer-installer": "^4.0"
             }
-        }
+          }
+      }
     ],
     "extra": {
         "webroot-dir": "composer",
         "webroot-package": "wordpress/wordpress",
         "installer-paths": {
-            "composer/wp-content/mu-plugins/{$name}/": [
-                "type:wordpress-muplugin"
-            ],
-            "composer/wp-content/plugins/{$name}/": [
-                "type:wordpress-plugin"
-            ],
-            "composer/wp-content/themes/{$name}/": [
-                "type:wordpress-theme"
-            ]
-        }
+          "composer/wp-content/mu-plugins/{$name}/": [
+            "type:wordpress-muplugin"
+          ],
+          "composer/wp-content/plugins/{$name}/": [
+            "type:wordpress-plugin"
+          ],
+          "composer/wp-content/themes/{$name}/": [
+            "type:wordpress-theme"
+          ]
+        },
+        "wordpress-install-dir": "composer/wp"
     },
     "scripts": {
         "post-install-cmd": [
