@@ -152,11 +152,11 @@ const scripts = (done) => {
             $.jshint(),
             $.jshint.reporter("jshint-stylish"),
             $.jshint.reporter("fail"),
-            f.restore,
-            $.rename(renameOptions),
             $.babel({
                 presets: ["@babel/preset-env"],
-            }),
+            }), //only run babel on our files then restore vendor/lib js
+            f.restore,
+            $.rename(renameOptions),
             $.uglify(uglifyOptions),
             gulp.dest(config.output),
         ],
