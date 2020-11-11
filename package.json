@@ -16,7 +16,7 @@
         "@babel/preset-env": "^7.9.6",
         "@babel/register": "^7.9.0",
         "beeper": "^2.0.0",
-        "browser-sync": "^2.26.7",
+        "browser-sync": "^2.26.13",
         "del": "^5.1.0",
         "gulp": "^4.0.2",
         "gulp-autoprefixer": "^7.0.1",

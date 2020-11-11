@@ -10,9 +10,9 @@
     "require": {
         "php": ">=7.4.0",
         "composer/installers": "^1.8",
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.9.1",
+        "advanced-custom-fields/advanced-custom-fields-pro": "5.9.3",
         "roots/soil": "3.9.0",
-        "roots/wordpress": "5.5.1",
+        "roots/wordpress": "5.5.3",
         "upstatement/routes": "0.8.0",
         "wpackagist-plugin/acf-to-wp-api": "1.4.0",
         "wpackagist-plugin/airplane-mode": "0.2.5",
@@ -46,7 +46,7 @@
           "type": "package",
           "package": {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.9.1",
+            "version": "5.9.3",
             "type": "wordpress-plugin",
             "dist": {
               "type": "zip",
