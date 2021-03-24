@@ -27,7 +27,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4.0",
+        "php": ">=7.3.0",
         "composer/installers": "^1.8",
         "advanced-custom-fields/advanced-custom-fields-pro": "5.9.5",
         "roots/soil": "3.9.0",
