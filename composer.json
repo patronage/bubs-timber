@@ -20,15 +20,15 @@
                     "url": "https://connect.advancedcustomfields.com/index.php?a=download&p=pro&k={%PLUGIN_ACF_KEY}&t={%VERSION}"
                 },
                 "require": {
-                    "composer/installers": "^1.8",
-                    "ffraenz/private-composer-installer": "^5.0"
+                    "composer/installers": "^1.10.0",
+                    "ffraenz/private-composer-installer": "^5.0.1"
                 }
             }
         }
     ],
     "require": {
         "php": ">=7.3.0",
-        "composer/installers": "^1.8",
+        "composer/installers": "^1.10.0",
         "advanced-custom-fields/advanced-custom-fields-pro": "5.9.5",
         "roots/soil": "3.9.0",
         "roots/wordpress": "5.7.0",
