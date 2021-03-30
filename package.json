@@ -1,11 +1,10 @@
 {
-    "name": "site",
-    "version": "0.0.0",
-    "description": "node reqs to generate",
+    "name": "patronage/bubs",
+    "description": "node reqs to generate bubs based site.",
     "license": "UNLICENSED",
     "private": "true",
-    "repository": "",
-    "author": "",
+    "repository": "patronage/bubs",
+    "author": "Patronage.org",
     "scripts": {
         "acf": "chmod -R 777 wp-content/themes/timber/acf-json",
         "postmerge": "bash _build/hook-post-merge.sh",
