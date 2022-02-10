@@ -16,3 +16,6 @@
 ## Set local admin user login to: admin:password
 UPDATE `wp_users` SET `user_login` = 'admin', `user_nicename` = 'admin' WHERE `ID` = '1';
 UPDATE `wp_users` SET `user_pass` = '$P$BfuqvWHay8/zebob.mxuJvgSb.L0s4/' WHERE `ID` = '1';
+
+## Prevent local dev errors  to propagate to a live admin email account.
+UPDATE `wp_options` set `option_value` = 'dev@localhost.localdomain' where `option_name` = 'admin_email';
