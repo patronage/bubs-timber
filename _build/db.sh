@@ -1,10 +1,15 @@
 #!/usr/bin/env bash
 
+## env export, with unset at end of script
+if [ -f ".env" ]; then
+    export $(grep -v '^#' .env | xargs)
+fi
+
 WORDPRESS_DB_HOST="127.0.0.1"
 WORDPRESS_DB_PORT=3307
 WORDPRESS_DB_USER="root"
 WORDPRESS_DB_PASSWORD="somewordpress"
-WORDPRESS_DB_NAME="wordpress"
+WORDPRESS_DB_NAME=${COMPOSE_PROJECT_NAME:-wordpress}
 
 ## Ideally these would work without having to hardcode above
 ## instead coming from docker ENV
@@ -28,6 +33,10 @@ then
     echo "$file imported."
 else
     echo "$file not found."
+fi
+
+if [ -f ".env" ]; then
+    unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 fi
 
 echo 'import complete'

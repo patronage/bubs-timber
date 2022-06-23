@@ -27,7 +27,7 @@ try {
 } catch (err) {
     var localConfig = {
         bs: {
-            proxy: "www.bubs.loc",
+            proxy: "localhost:8000",
             logLevel: "info",
             tunnel: "",
             open: true,
