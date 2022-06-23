@@ -9,6 +9,7 @@ _init/
 bower.json
 composer.json
 composer.lock
+docker-compose.yml
 gulpfile.js
 package.json
 README.md

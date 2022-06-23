@@ -2,7 +2,7 @@
     "_comment": "activeTheme and proxy should be updated for the site you want to build, the rest are custom prefs",
     "activeTheme": "timber",
     "bs": {
-        "proxy": "wwww.bubs.loc",
+        "proxy": "localhost:8000",
         "logLevel": "info",
         "tunnel": "",
         "open": false

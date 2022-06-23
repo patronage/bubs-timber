@@ -8,6 +8,7 @@
     ## Rewrite images if hosting locally
     ## Allows us to pull staging server SQL and use same images
     RewriteCond %{HTTP_HOST} =localhost:8888$ [OR]
+    RewriteCond %{HTTP_HOST} =localhost:8000$ [OR]
     RewriteCond %{HTTP_HOST} =localhost:3000$ [OR]
     RewriteCond %{HTTP_HOST} =localhost:3002$ [OR]
     RewriteCond %{HTTP_HOST} ^www.bubs.dev$ [OR]
