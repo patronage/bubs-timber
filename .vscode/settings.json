@@ -13,5 +13,11 @@
   },
   "[twig]": {
     "editor.defaultFormatter": "mblode.twig-language-2"
+  },
+  "files.associations": {
+    "*.twig": "twig"
+  },
+  "emmet.includeLanguages": {
+    "twig": "html"
   }
 }
