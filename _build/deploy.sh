@@ -48,7 +48,7 @@ else
     branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 
     git checkout -b deploy
-    gulp release || error_exit "Gulp release failed."
+    npx gulp release || error_exit "Gulp release failed."
 
     echo "Adding built files that are normally .gitignored..."
     array=()

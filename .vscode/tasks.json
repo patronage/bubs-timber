@@ -11,7 +11,7 @@
     {
       "label": "Wordpress DB Import",
       "type": "shell",
-      "command": "bash _build/db.sh"
+      "command": "cd ./ && bash _build/db.sh"
     },
     {
       "label": "Wordpress Dev",
@@ -21,7 +21,7 @@
     {
       "label": "Gulp Dev",
       "type": "shell",
-      "command": "gulp"
+      "command": "cd ./ && yarn dev"
     },
     {
       "label": "Wordpress Docker Recreate",

@@ -2,7 +2,7 @@
 
 ## env export, with unset at end of script
 if [ -f ".env" ]; then
-    export $(grep -v '^#' .env | xargs)
+  export $(grep -v '^#' .env | xargs)
 fi
 
 WORDPRESS_DB_HOST="127.0.0.1"
@@ -18,25 +18,25 @@ echo $sql
 ext=${sql##*.}
 
 if [ $ext = "zip" ]; then
-    unzip -p $sql | mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME
+  unzip -p $sql | mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME
 elif [ $ext = "gz" ]; then
-    gunzip < $sql | mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME
+  gunzip < $sql | mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME
 else
-    mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME < $sql
+  mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME < $sql
 fi
 
 # run local mods if present
 file="_data/local.sql"
 if [ -f "$file" ]
 then
-    mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME < $file
-    echo "$file imported."
+  mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -h $WORDPRESS_DB_HOST -P $WORDPRESS_DB_PORT $WORDPRESS_DB_NAME < $file
+  echo "$file imported."
 else
-    echo "$file not found."
+  echo "$file not found."
 fi
 
 if [ -f ".env" ]; then
-    unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
+  unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 fi
 
 echo 'import complete'
