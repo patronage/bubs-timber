@@ -90,7 +90,7 @@ if ( defined( 'WP_LOCAL_DEV' ) && WP_LOCAL_DEV ) {
     run_activate_plugin('query-monitor/query-monitor.php' );
     run_activate_plugin('transients-manager/transients-manager.php' );
     run_activate_plugin('user-switching/user-switching.php' );
-    run_activate_plugin('airplane-mode/airplane-mode.php' );
+    // run_activate_plugin('airplane-mode/airplane-mode.php' );
     // run_activate_plugin('object-cache.php' );
 
 }

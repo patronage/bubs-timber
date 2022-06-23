@@ -5,11 +5,13 @@ _init/
 .gitignore
 .npmrc
 .nvmrc
+.prettierignore
+.prettierrc
 .yarnrc
 composer.json
 composer.lock
 docker-compose.yml
-gulpfile.js
+gulpfile.babel.js
 package.json
 README.md
 .stylelintignore

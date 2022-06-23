@@ -1,83 +1,87 @@
 {
-    "name": "patronage/bubs",
-    "type": "project",
-    "license": "MIT",
-    "description": "WordPress boilerplate for pairing with Next.js",
-    "homepage": "https://www.patronage.org",
-    "repositories": [
-        {
-            "type":"composer",
-            "url":"https://wpackagist.org"
+  "name": "patronage/bubs",
+  "type": "project",
+  "license": "MIT",
+  "description": "WordPress boilerplate for pairing with Next.js",
+  "homepage": "https://www.patronage.org",
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "advanced-custom-fields/advanced-custom-fields-pro",
+        "version": "5.12.2",
+        "type": "wordpress-plugin",
+        "dist": {
+          "type": "zip",
+          "url": "https://connect.advancedcustomfields.com/index.php?a=download&p=pro&k={%PLUGIN_ACF_KEY}&t={%VERSION}"
         },
-        {
-            "type": "package",
-            "package": {
-                "name": "advanced-custom-fields/advanced-custom-fields-pro",
-                "version": "5.9.5",
-                "type": "wordpress-plugin",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://connect.advancedcustomfields.com/index.php?a=download&p=pro&k={%PLUGIN_ACF_KEY}&t={%VERSION}"
-                },
-                "require": {
-                    "composer/installers": "^1.10.0",
-                    "ffraenz/private-composer-installer": "^5.0.1"
-                }
-            }
+        "require": {
+          "composer/installers": "^1.10.0",
+          "ffraenz/private-composer-installer": "^5.0.1"
         }
-    ],
-    "require": {
-        "php": ">=7.3.0",
-        "composer/installers": "^1.10.0",
-        "advanced-custom-fields/advanced-custom-fields-pro": "5.9.5",
-        "roots/soil": "3.9.0",
-        "upstatement/routes": "0.8.0",
-        "wpackagist-plugin/classic-editor":"1.6",
-        "wpackagist-plugin/debug-bar":"1.1.2",
-        "wpackagist-plugin/debug-bar-timber":"1.0.8",
-        "wpackagist-plugin/disable-emojis": "1.7.2",
-        "wpackagist-plugin/duplicate-post":"3.2.6",
-        "wpackagist-plugin/enable-media-replace":"3.5.0",
-        "wpackagist-plugin/filter-page-by-template": "1.6",
-        "wpackagist-plugin/google-apps-login": "3.4.3",
-        "wpackagist-plugin/gutenberg-ramp": "1.1.0",
-        "wpackagist-plugin/post-type-archive-links": "1.3.1",
-        "wpackagist-plugin/post-type-switcher": "3.2.0",
-        "wpackagist-plugin/query-monitor":"3.6.7",
-        "wpackagist-plugin/redirection":"5.0.1",
-        "wpackagist-plugin/term-management-tools": "2.0.1",
-        "wpackagist-plugin/timber-library":"1.18.2",
-        "wpackagist-plugin/transients-manager": "1.8.1",
-        "wpackagist-plugin/user-switching":"1.5.6",
-        "wpackagist-plugin/wordpress-seo": "16.0.2"
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "preferred-install": "dist",
-        "vendor-dir": "wp-content/plugins/composer-libs"
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
-    "extra": {
-        "installer-paths": {
-          "composer/wp-content/mu-plugins/{$name}/": [
-            "type:wordpress-muplugin"
-          ],
-          "composer/wp-content/plugins/{$name}/": [
-            "type:wordpress-plugin"
-          ],
-          "composer/wp-content/themes/{$name}/": [
-            "type:wordpress-theme"
-          ]
-        },
-        "wordpress-install-dir": "composer/wp"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "bash ./_init/init.sh"
-        ],
-        "post-update-cmd": [
-            "bash ./_init/init.sh"
-        ]
+      }
     }
+  ],
+  "require": {
+    "php": ">=7.3.0",
+    "composer/installers": "^1.10.0",
+    "advanced-custom-fields/advanced-custom-fields-pro": "5.12.2",
+    "roots/soil": "3.9.0",
+    "upstatement/routes": "0.8.0",
+    "wpackagist-plugin/classic-editor": "1.6.2",
+    "wpackagist-plugin/debug-bar": "1.1.3",
+    "wpackagist-plugin/debug-bar-timber": "1.1.6",
+    "wpackagist-plugin/disable-emojis": "1.7.4",
+    "wpackagist-plugin/duplicate-post": "4.4",
+    "wpackagist-plugin/enable-media-replace": "3.6.3",
+    "wpackagist-plugin/filter-page-by-template": "2.2",
+    "wpackagist-plugin/google-apps-login": "3.4.4",
+    "wpackagist-plugin/gutenberg-ramp": "1.1.0",
+    "wpackagist-plugin/post-type-archive-links": "1.3.1",
+    "wpackagist-plugin/post-type-switcher": "3.2.1",
+    "wpackagist-plugin/query-monitor": "3.9.0",
+    "wpackagist-plugin/redirection": "5.2.3",
+    "wpackagist-plugin/term-management-tools": "2.0.1",
+    "wpackagist-plugin/timber-library": "1.20.0",
+    "wpackagist-plugin/transients-manager": "2.0.2",
+    "wpackagist-plugin/user-switching": "1.5.8",
+    "wpackagist-plugin/wordpress-seo": "19.1"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "vendor-dir": "wp-content/plugins/composer-libs",
+    "allow-plugins": {
+      "ffraenz/private-composer-installer": true,
+      "composer/installers": true
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "extra": {
+    "installer-paths": {
+      "composer/wp-content/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "composer/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "composer/wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    },
+    "wordpress-install-dir": "composer/wp"
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "bash ./_init/init.sh"
+    ],
+    "post-update-cmd": [
+      "bash ./_init/init.sh"
+    ]
+  }
 }
