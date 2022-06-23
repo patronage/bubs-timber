@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## Per Project Variables -- CUSTOMIZE THESE FIRST
-STAGING_REMOTE="git@git.wpengine.com:staging/bubs.git"
 PRODUCTION_REMOTE="git@git.wpengine.com:production/bubs.git"
+STAGING_REMOTE="git@git.wpengine.com:production/bubsstg.git"
 GIT_EMAIL="hello+bubs@patronage.org"
 GIT_NAME="Bubs Deploy"
 

@@ -1,10 +1,6 @@
 # BEGIN CUSTOM
 <IfModule mod_rewrite.c>
 
-    ## Rewrite no-www to www
-    RewriteCond %{HTTP_HOST} ^bubs.com$
-    RewriteRule (.*)$ http://www.bubs.com/$1 [R=301,L]
-
     ## Rewrite images if hosting locally
     ## Allows us to pull staging server SQL and use same images
     RewriteCond %{HTTP_HOST} =localhost:8888$ [OR]

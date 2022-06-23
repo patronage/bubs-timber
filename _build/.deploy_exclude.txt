@@ -1,18 +1,19 @@
 _build/
 _init/
-.bowerrc
+.babelrc
 .editorconfig
 .gitignore
 .npmrc
 .nvmrc
-.travis.yml
-bower.json
+.yarnrc
 composer.json
 composer.lock
 docker-compose.yml
 gulpfile.js
 package.json
 README.md
+.stylelintignore
+.stylelintrc.json
 yarn.lock
 
 wp-content/plugins/acf-pro-sync/*
