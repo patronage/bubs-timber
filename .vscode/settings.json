@@ -11,9 +11,6 @@
     // For Stylelint
     "source.fixAll.stylelint": true
   },
-  "[twig]": {
-    "editor.defaultFormatter": "mblode.twig-language-2"
-  },
   "files.associations": {
     "*.twig": "twig"
   },
