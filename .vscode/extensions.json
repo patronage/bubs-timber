@@ -1,7 +1,3 @@
 {
-  "recommendations": [
-    "stylelint.vscode-stylelint",
-    "esbenp.prettier-vscode",
-    "mblode.twig-language-2"
-  ]
+  "recommendations": ["stylelint.vscode-stylelint", "esbenp.prettier-vscode"]
 }
