@@ -1,0 +1,20 @@
+{
+  // Global default is to use VS Code prettier plugin
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  // As of version 14, stylelint needs to be told to validate SCSS
+  "stylelint.validate": ["css", "scss"],
+  // Turn on auto-fixing for project defined linters.
+  "editor.codeActionsOnSave": {
+    // For ESLint
+    // "source.fixAll.eslint": true,
+    // For Stylelint
+    "source.fixAll.stylelint": true
+  },
+  "files.associations": {
+    "*.twig": "twig"
+  },
+  "emmet.includeLanguages": {
+    "twig": "html"
+  }
+}

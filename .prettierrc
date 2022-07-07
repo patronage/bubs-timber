@@ -1,0 +1,8 @@
+{
+    "semi": true,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 90,
+    "phpVersion": "7.4",
+    "braceStyle": "1tbs"
+}

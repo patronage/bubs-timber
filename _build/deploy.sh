@@ -1,8 +1,8 @@
 #!/bin/bash
 
 ## Per Project Variables -- CUSTOMIZE THESE FIRST
-STAGING_REMOTE="git@git.wpengine.com:staging/bubs.git"
 PRODUCTION_REMOTE="git@git.wpengine.com:production/bubs.git"
+STAGING_REMOTE="git@git.wpengine.com:production/bubsstg.git"
 GIT_EMAIL="hello+bubs@patronage.org"
 GIT_NAME="Bubs Deploy"
 
@@ -48,7 +48,7 @@ else
     branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 
     git checkout -b deploy
-    gulp release || error_exit "Gulp release failed."
+    npx gulp release || error_exit "Gulp release failed."
 
     echo "Adding built files that are normally .gitignored..."
     array=()
