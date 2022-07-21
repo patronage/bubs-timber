@@ -46,14 +46,6 @@ include_once 'setup/helpers/google-login-cookies.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
 
-// Optional postlight inspired conveniences for headless wp (Get json data by slug, etc.)
-// See https://github.com/postlight/headless-wp-starter/
-// redirects the resulting posts/pages to their json data rather than a rendered theme page
-// Uncomment the following and also see setup/json-api/redirect-samples.php for enabling page/post redirects
-// include_once 'setup/json-api/logs.php';
-// include_once 'setup/json-api/cors.php';
-// include_once 'setup/json-api/api-routes.php';
-
 // Wordpress Theme Support Config
 // REMOVAL OF THESE = POTIENTAL LOSS OF DATA
 

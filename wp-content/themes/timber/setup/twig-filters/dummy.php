@@ -1,14 +1,14 @@
 <?php
 
-function simple_truncate($phrase, $max_words){
-    $phrase_array = explode(' ',$phrase);
-    if(count($phrase_array) > $max_words && $max_words > 0){
-        $phrase = implode(' ',array_slice($phrase_array, 0, $max_words));
+function simple_truncate($phrase, $max_words) {
+    $phrase_array = explode(' ', $phrase);
+    if (count($phrase_array) > $max_words && $max_words > 0) {
+        $phrase = implode(' ', array_slice($phrase_array, 0, $max_words));
     }
     return $phrase;
 }
 
-function apply_dummy($words){
+function apply_dummy($words) {
     $lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer non nibh nec lectus hendrerit lobortis eget mattis ligula. Nam auctor lectus odio, at consequat nisi lobortis sed. Mauris vel nibh mattis, rutrum nisl id, elementum tortor.
 
     Fusce facilisis purus ac mattis dignissim. Aliquam pellentesque, enim dapibus imperdiet rhoncus, nisl felis mattis augue, ut ultricies mi magna ultrices nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Mauris dapibus massa a risus dictum fringilla. Cras aliquet feugiat elit id faucibus. Donec in faucibus purus. Donec laoreet sagittis eros, quis tristique velit. Etiam id nisl vel risus aliquet pretium non sed massa. Aliquam erat volutpat.
@@ -35,19 +35,17 @@ function apply_dummy($words){
     ';
     $text = $lorem;
     $starting_position = rand(0, strlen($text));
-    $leading_text = substr( $text , $starting_position);
-    $text = ucfirst(trim($leading_text)) . ' ' .$text;
+    $leading_text = substr($text, $starting_position);
+    $text = ucfirst(trim($leading_text)) . ' ' . $text;
     $text = simple_truncate($text, $words);
     return $text;
 }
 
-function apply_dummy_filter($text, $words){
-    if (!strlen(trim($text))){
+function apply_dummy_filter($text, $words) {
+    if (!strlen(trim($text))) {
         return apply_dummy($words);
     }
     return $text;
 }
-
-
 
 ?>

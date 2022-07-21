@@ -14,33 +14,33 @@
  * @since   Timber 0.2
  */
 
-$templates = array( 'archive.twig', 'index.twig' );
+$templates = ['archive.twig', 'index.twig'];
 
 $data = Timber::get_context();
 
 $data['title'] = 'Archive';
-if ( is_day() ) {
-    $data['title'] = 'Archive: '.get_the_date( 'D M Y' );
-} else if ( is_month() ) {
-    $data['title'] = 'Archive: '.get_the_date( 'M Y' );
-} else if ( is_year() ) {
-    $data['title'] = 'Archive: '.get_the_date( 'Y' );
-} else if ( is_tag() ) {
-    $data['title'] = single_tag_title( '', false );
-} else if ( is_category() ) {
-    $data['title'] = single_cat_title( '', false );
+if (is_day()) {
+    $data['title'] = 'Archive: ' . get_the_date('D M Y');
+} elseif (is_month()) {
+    $data['title'] = 'Archive: ' . get_the_date('M Y');
+} elseif (is_year()) {
+    $data['title'] = 'Archive: ' . get_the_date('Y');
+} elseif (is_tag()) {
+    $data['title'] = single_tag_title('', false);
+} elseif (is_category()) {
+    $data['title'] = single_cat_title('', false);
     $data['term'] = new TimberTerm();
-    array_unshift( $templates, 'archive-' . get_query_var( 'cat' ) . '.twig' );
-} else if ( is_tax() ) {
-    $data['title'] = single_cat_title( '', false );
+    array_unshift($templates, 'archive-' . get_query_var('cat') . '.twig');
+} elseif (is_tax()) {
+    $data['title'] = single_cat_title('', false);
     $data['term'] = new TimberTerm();
-     array_unshift( $templates, 'archive-' . get_query_var( 'cat' ) . '.twig' );
-} else if ( is_post_type_archive() ) {
-    $data['title'] = post_type_archive_title( '', false );
-    array_unshift( $templates, 'archive-' . get_post_type() . '.twig' );
+    array_unshift($templates, 'archive-' . get_query_var('cat') . '.twig');
+} elseif (is_post_type_archive()) {
+    $data['title'] = post_type_archive_title('', false);
+    array_unshift($templates, 'archive-' . get_post_type() . '.twig');
 }
 
 $data['posts'] = Timber::get_posts();
 $data['pagination'] = Timber::get_pagination();
 
-Timber::render( $templates, $data );
+Timber::render($templates, $data);

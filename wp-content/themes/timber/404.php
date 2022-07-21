@@ -7,9 +7,9 @@
  * @package  WordPress
  * @subpackage  Timber
  * @since    Timber 0.1
-*/
+ */
 
 $data = Timber::get_context();
 $data['post'] = Timber::get_post('pagename=not-found');
 
-Timber::render( array( '404.twig', 'page.twig' ), $data );
+Timber::render(['404.twig', 'page.twig'], $data);
