@@ -1,30 +1,38 @@
-## Getting Setup
+## Developer Setup
+
+This repo is configured for VS Code, notably including extensions and settings that run Prettier on `.scss` and `.php` files. We also have a number of [tasks](https://code.visualstudio.com/docs/editor/tasks) that we refer to by name. If you are using a different editor, then you can always look at the .vscoded/tasks.json to map those to the underlying shell commands.
+
+## Getting up and running
 
 1. Clone this repo.
-2. Initialize via [Composer](https://getcomposer.org/), `composer install`
-3. Install [node.js](https://nodejs.org/) if you don't already have it.
-4. Install [Yarn](https://yarnpkg.com/en/), then add dependencies via `yarn add`.
-5. Customize your database settings in `wp-config-local.php`
+2. Duplicate .env.sample to .env
+3. Initiate Docker, by running the `WordPress Docker Recreate` task.
+4. Add node/gulp dependencies by running `yarn install`.
 
-Recommended localhost domain is: `www.bubs.dev`
+That should be it. You can build your theme assets by running `Gulp Dev` task, then go to the URL in your console to see the site. Note that this will be an empty WordPress site, see below for importing content.
 
-Note that you must use Yarn, and not NPM to manage client-side dependencies. This is because certain libraries which formerly used bower aren't in NPM, and only Yarn can install packages from any github repo.
+## Importing database
 
-## Setting up the theme
+We have an import script that will grab the most recent folder from a root level `_data` folder that is otherwise gitignored.
 
-The default setup has two commands:
+On top of that import, a few modifications for localhosting will be run. These live in `_init/local.sql`, and those should be copied to the `_data` folder.
 
-* `gulp` -- starts a dev task with dev versions of assets, and live reloading via BrowserSync and watch
-* `gulp release` -- builds production versions of all assets, including asset-hashed files
+After copying that `local.sql` file, export your DB from production (check the boxes to add drop tables), and save it into the `_data` folder. Import by running `WordPress DB Import` task.
+
+Your wordpress admin will be viewable at /wp-login.php, and you can use the username: `admin` and password: `password`.
+
+## Editng up the theme
 
 All assets are stored in `wp-content/themes/timber`.
+
+For vendor libraries, we install with NPM. There is a symlink that gets installed via the `postinstall` task after you install deps that aliases those all of those files from a vendor folder inside of `timber/assets/vendor`.
 
 ## Deploying
 
 The `_build` folder has our deploy scripts:
 
-* to manually deploy to staging from your current branch, run `./_build/deploy.sh staging`
-* to manually deploy to production from your current branch, run `./_build/deploy.sh production`
+- to manually deploy to staging from your current branch, run `./_build/deploy.sh staging`
+- to manually deploy to production from your current branch, run `./_build/deploy.sh production`
 
 During the deploy process `gulp release` will run using JSHint which will alert you in the terminal for any warnings/errors. We are only looking at js files in the `build:js` block of `layout.twig` and we have it set to skip any `/vendor` js files.
 
@@ -45,18 +53,9 @@ ignoreThis(); // jshint ignore:line
 
 You can read more about [JSHint here](https://jshint.com/docs/)
 
-## Auto Deployment to WP Engine via Github Actions
-We've included a Github Action (in the `.github/` folder) which can be used to deploy your site to WP Engine after deploying some changes to the `master` branch on Github. JS and SCSS assets are built using `gulp`, and everything deploys as it would if you ran `sh _build/deploy.sh`. The Github action deploy is optional and can be removed if you are not using WP Engine or do not want your site to automatically deploy.
-
-In order to setup, a SSH key needs to be created and the private & public keys need to be set inside the Secrets section of your Github repo's settings. They should be called `WPENGINE_SSH_KEY_PUBLIC` and `WPENGINE_SSH_KEY_PRIVATE`. The same public key in `WPENGINE_SSH_KEY_PUBLIC` needs to be set inside inside the WP Engine environment in order to deploy.
-
-You'll also want to setup a Slack webhook URL and set it as the `SLACK_WEBHOOK` environment variable. You will get deployment updates for both success and failure.
-
-In our usage, we've found that a moderately complex site can deploy to WP Engine within 3-4 minutes of pushing code to Github.
-
 ## Based on Bubs
 
-This project is based on [Bubs](https://github.com/patronage/bubs-wp/) by [Patronage](http://www.patronage.org/studio).
+This project is based on [Bubs](https://github.com/patronage/bubs-timber/) by [Patronage](http://www.patronage.org/).
 
 For more docs on getting started with local hosting, multi-site, etc. visit the wiki:
-https://github.com/patronage/bubs-wp/wiki
+https://github.com/patronage/bubs-timber/wiki
