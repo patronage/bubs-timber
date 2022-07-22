@@ -16,6 +16,10 @@ rm -rf ./wp-content/plugins/!(composer-libs)
 # copy everything over
 cp -R ./composer/* ./
 
+# remove unwanted defaults
+rm -rf wp-content/plugins/akismet/
+rm -rf wp-content/plugins/hello.php
+
 # init files if they don't exist
 mkdir -p wp-content/mu-plugins
 cp -n _init/local-plugins.php wp-content/mu-plugins/local-plugins.php 2>/dev/null || :
