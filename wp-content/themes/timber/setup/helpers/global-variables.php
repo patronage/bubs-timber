@@ -4,9 +4,9 @@
 // Global Variables added to timber
 //
 
-function global_variables( $data ) {
+function global_variables($data) {
     // First load from theme options
-    $data["gv"] = get_theme_mods();
+    $data['gv'] = get_theme_mods();
     // Add any others that we want in version control
     // $data["gv"]["ga_id"] = "";
     // $data["gv"]["fb_app_id"] = "";
@@ -15,6 +15,6 @@ function global_variables( $data ) {
     return $data;
 }
 
-add_filter( 'timber_context', 'global_variables' );
+add_filter('timber_context', 'global_variables');
 
 ?>

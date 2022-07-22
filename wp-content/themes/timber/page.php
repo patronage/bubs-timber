@@ -25,8 +25,8 @@ $data = Timber::get_context();
 $post = new TimberPost();
 $data['post'] = $post;
 
-if ( post_password_required( $post->ID ) ){
-    Timber::render( 'single-password.twig', $data );
+if (post_password_required($post->ID)) {
+    Timber::render('single-password.twig', $data);
 } else {
-    Timber::render( array( 'page-' . $post->post_name . '.twig', 'page.twig' ), $data );
+    Timber::render(['page-' . $post->post_name . '.twig', 'page.twig'], $data);
 }
