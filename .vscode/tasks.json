@@ -9,6 +9,11 @@
       "command": "chmod -R 777 wp-content/themes/timber/acf-json"
     },
     {
+      "label": "Wordpress DB Export",
+      "type": "shell",
+      "command": "cd ./ && bash _build/db.sh export"
+    },
+    {
       "label": "Wordpress DB Import",
       "type": "shell",
       "command": "cd ./ && bash _build/db.sh"
