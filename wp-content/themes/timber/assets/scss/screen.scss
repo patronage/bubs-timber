@@ -1,14 +1,15 @@
 // Variables before bootstrap
 
-@import "variables";
-@import "modules/_bootstrap-loader";
+@import 'variables';
+@import '../vendor/bootstrap/scss/bootstrap';
 
 // Modules and vendor files
 // - Pick which bootstrap modules to load
 // - Other party modules
 
 // @import "modules/_triangle";
-@import "modules/_wordpress";
+@import 'modules/_wordpress';
+
 // @import "../vendor/slick-carousel/slick/slick-theme.scss";
 // @import "../vendor/slick-carousel/slick/slick.scss";
 
@@ -16,14 +17,13 @@
 // - This is for things that aren't components, but are global in scope and might be reused elsewhere
 // - Goal is to minimize surface area of these items
 
-@import "shared/_buttons";
-@import "shared/_colors";
-@import "shared/_fonts";
-@import "shared/_forms";
-@import "shared/_icomoon";
-@import "shared/_images";
-@import "shared/_spacing";
-@import "shared/_type";
+@import 'shared/_buttons';
+@import 'shared/_colors';
+@import 'shared/_fonts';
+@import 'shared/_forms';
+@import 'shared/_images';
+@import 'shared/_spacing';
+@import 'shared/_type';
 
 // Reusable components
 // - Should be in alphabetical order
@@ -32,14 +32,14 @@
 // - If you need a variation that is page specific, pass in a modifier and keep styles in the component file
 // - e.g. .component-foo--about {} vs. overriding in the pages/about.scss file
 
-@import "components/_header";
-@import "components/_footer";
-@import "components/_hero";
-@import "components/_share-buttons";
+@import 'components/_header';
+@import 'components/_footer';
+@import 'components/_hero';
+@import 'components/_share-buttons';
 
 // Individual pages
 // - Page specific styles
 // - Should be alphabetical
 // - Don't override components in here
 
-@import "pages/_home";
+@import 'pages/_home';
