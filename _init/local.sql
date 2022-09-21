@@ -1,12 +1,13 @@
 ## Update main site
+UPDATE `wp_options` SET `option_value` = 'http://localhost:8000' WHERE `option_name` = 'siteurl';
+UPDATE `wp_options` SET `option_value` = 'http://localhost:8000' WHERE `option_name` = 'home';
+
+## Update multisites
 -- UPDATE `wp_site` SET `domain` = 'localhost:8000' WHERE `id` = '1';
 -- UPDATE `wp_blogs` SET `domain` = 'localhost:8000' WHERE `blog_id` = '1';
 
 -- UPDATE `wp_sitemeta` SET `meta_value` = 'http://localhost:8000' WHERE `meta_key` = 'siteurl';
--- UPDATE `wp_options` SET `option_value` = 'http://localhost:8000' WHERE `option_name` = 'siteurl';
--- UPDATE `wp_options` SET `option_value` = 'http://localhost:8000' WHERE `option_name` = 'home';
 
-## Update second site
 -- UPDATE `wp_site` SET `domain` = 'www.bubs2.dev' WHERE `id` = '2';
 -- UPDATE `wp_blogs` SET `domain` = 'www.bubs2.dev' WHERE `blog_id` = '2';
 
