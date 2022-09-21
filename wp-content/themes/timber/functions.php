@@ -38,6 +38,7 @@ add_filter('get_twig', 'add_to_twig');
 
 // WP Helper Functions
 
+include_once 'setup/helpers/acf-wysiwyg.php';
 include_once 'setup/helpers/admin.php';
 include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/global-variables.php';
