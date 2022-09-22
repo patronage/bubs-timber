@@ -46,6 +46,7 @@ include_once 'setup/helpers/google-login-cookies.php';
 // include_once 'setup/helpers/google-login-force.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
+include_once 'setup/helpers/role-super-editor.php';
 
 // Wordpress Theme Support Config
 // REMOVAL OF THESE = POTIENTAL LOSS OF DATA
