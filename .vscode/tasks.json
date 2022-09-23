@@ -31,12 +31,12 @@
     {
       "label": "Wordpress Composer Install",
       "type": "shell",
-      "command": "cd ./ && composer install"
+      "command": "cd ./ && composer install --ignore-platform-reqs"
     },
     {
       "label": "Wordpress Composer Update",
       "type": "shell",
-      "command": "cd ./ && composer update"
+      "command": "cd ./ && composer update --ignore-platform-reqs"
     },
     {
       "label": "WP Engine Deploy Production",
