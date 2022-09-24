@@ -14,7 +14,13 @@
   "files.associations": {
     "*.twig": "twig"
   },
-  "emmet.includeLanguages": {
-    "twig": "html"
-  }
+  "[twig]": {
+    "editor.defaultFormatter": "mblode.twig-language-2"
+  },
+  "twig-language-2.bracePadding": true,
+  "twig-language-2.indentStyle": "space",
+  "twig-language-2.preserve": 1,
+  "twig-language-2.comments": true,
+  "twig-language-2.commentLine": true,
+  "twig-language-2.wrap": 120
 }
