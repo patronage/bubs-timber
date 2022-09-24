@@ -1,5 +1,5 @@
 // Variables before bootstrap
-
+@import 'modules/_unit-utils';
 @import 'variables';
 @import '../vendor/bootstrap/scss/bootstrap';
 
@@ -9,9 +9,6 @@
 
 // @import "modules/_triangle";
 @import 'modules/_wordpress';
-
-// @import "../vendor/slick-carousel/slick/slick-theme.scss";
-// @import "../vendor/slick-carousel/slick/slick.scss";
 
 // Shared
 // - This is for things that aren't components, but are global in scope and might be reused elsewhere
