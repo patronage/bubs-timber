@@ -21,7 +21,7 @@
     {
       "label": "Wordpress DB Import",
       "type": "shell",
-      "command": "cd ./ && bash _build/db.sh"
+      "command": "cd ./ && bash _build/db.sh import"
     },
     {
       "label": "Wordpress Dev",

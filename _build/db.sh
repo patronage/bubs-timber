@@ -12,8 +12,9 @@ fi
 WORDPRESS_DB_USER="root"
 WORDPRESS_DB_PASSWORD="somewordpress"
 WORDPRESS_DB_NAME=${COMPOSE_PROJECT_NAME:-wordpress}
-DB_CONTAINER="${COMPOSE_PROJECT_NAME:-wordpress}_db_1"
 PRODUCTION_SSH="${COMPOSE_WPE_PRODUCTION}@${COMPOSE_WPE_PRODUCTION}.ssh.wpengine.net"
+STAGING_SSH="${COMPOSE_WPE_STAGING}@${COMPOSE_WPE_STAGING}.ssh.wpengine.net"
+DEVELOPMENT_SSH="${COMPOSE_WPE_DEVELOPMENT}@${COMPOSE_WPE_STAGING}.ssh.wpengine.net"
 
 # handle script errors, exit and kick you to working branch
 function error_exit {
@@ -23,6 +24,20 @@ function error_exit {
 }
 
 function db_import() {
+  # get the docker container
+  containers=$(docker ps --format "{{.Image}}|{{.Names}}")
+  for str in ${containers[@]}; do
+    if [[ $str == *${COMPOSE_PROJECT_NAME}* ]] && [[ $str == *"mariadb"* ]]; then
+      DB_CONTAINER=${str#*|}
+    fi
+  done
+
+  if [ -z ${DB_CONTAINER+x} ]; then
+    error_exit "Couldn't find a DB container for '$COMPOSE_PROJECT_NAME', please make sure it is running."
+  else
+    echo "DB container '$DB_CONTAINER' detected; proceeding with import";
+  fi
+
   sql=`ls -Art _data/* | tail -n 1`
   echo $sql
   ext=${sql##*.}
@@ -57,12 +72,10 @@ function db_export() {
 
   if [ "$TARGET" = "staging" ]; then
     SSH_TARGET=$STAGING_SSH
-  elif [ "$TARGET" = "production" ]; then
-    SSH_TARGET=$PRODUCTION_SSH
   elif [ "$TARGET" = "development" ]; then
     SSH_TARGET=$DEVELOPMENT_SSH
   else
-    error_exit "Export task requires a target. Specify a target (staging, development, production)"
+    SSH_TARGET=$PRODUCTION_SSH
   fi
 
   echo "connecting to $SSH_TARGET"
