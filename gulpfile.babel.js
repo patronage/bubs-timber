@@ -124,7 +124,7 @@ const styles = (done) => {
       } else {
         return done();
       }
-    },
+    }
   );
 };
 
@@ -172,7 +172,7 @@ const scripts = (done) => {
       } else {
         return done();
       }
-    },
+    }
   );
 };
 
@@ -192,7 +192,7 @@ const copy = (done) => {
       $.newer(config.output),
       gulp.dest(config.output),
     ],
-    done,
+    done
   );
 };
 
@@ -213,7 +213,7 @@ const rev = (done) => {
       } else {
         return done();
       }
-    },
+    }
   );
 };
 

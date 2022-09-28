@@ -38,6 +38,9 @@ add_filter('get_twig', 'add_to_twig');
 
 // WP Helper Functions
 
+
+include_once 'setup/helpers/acf-options.php';
+include_once 'setup/helpers/acf-wysiwyg.php';
 include_once 'setup/helpers/admin.php';
 include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/global-variables.php';
@@ -45,6 +48,7 @@ include_once 'setup/helpers/google-login-cookies.php';
 // include_once 'setup/helpers/google-login-force.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
+include_once 'setup/helpers/role-super-editor.php';
 
 // Wordpress Theme Support Config
 // REMOVAL OF THESE = POTIENTAL LOSS OF DATA

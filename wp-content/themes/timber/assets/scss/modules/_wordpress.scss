@@ -3,43 +3,44 @@
 
 // Media alignment
 .alignnone {
-    margin-left: 0;
-    margin-right: 0;
-    max-width: 100%;
+  max-width: 100%;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .aligncenter {
-    display: block;
-    margin: ($font-size-base / 2) auto;
+  display: block;
+  margin: div($font-size-base, 2) auto;
 }
 
 .alignleft,
 .alignright {
-    margin-bottom: ($font-size-base / 2);
+  margin-bottom: div($font-size-base, 2);
 }
 
 @include media-breakpoint-up(sm) {
   // Only float if not on an extra small device
-    .alignleft {
-        float: left;
-        margin-right: ($font-size-base / 2);
-    }
-    .alignright {
-        float: right;
-        margin-left: ($font-size-base / 2);
-    }
+  .alignleft {
+    margin-right: div($font-size-base, 2);
+    float: left;
+  }
+
+  .alignright {
+    margin-left: div($font-size-base, 2);
+    float: right;
+  }
 }
 
 // Captions
 .wp-caption {
-    @extend .img-thumbnail;
+  @extend .img-thumbnail;
 }
+
 .wp-caption-text {
-    @extend .figure-caption;
+  @extend .figure-caption;
 }
 
 // Text meant only for screen readers
 .screen-reader-text {
-    @extend .sr-only;
-    @extend .sr-only-focusable;
+  @extend .visually-hidden-focusable;
 }
