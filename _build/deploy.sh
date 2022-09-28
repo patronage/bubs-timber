@@ -13,8 +13,11 @@ fi
 PRODUCTION_REMOTE="git@git.wpengine.com:production/${COMPOSE_WPE_PRODUCTION}.git"
 STAGING_REMOTE="git@git.wpengine.com:production/${COMPOSE_WPE_STAGING}.git"
 DEVELOPMENT_REMOTE="git@git.wpengine.com:production/${COMPOSE_WPE_DEVELOPMENT}.git"
-GIT_EMAIL="hello+bubs@patronage.org"
-GIT_NAME="Bubs Deploy"
+WORDPRESS_DB_NAME=${COMPOSE_PROJECT_NAME:-wordpress}
+
+# Defined in .env
+# GIT_EMAIL="hello+bubs@patronage.org"
+# GIT_NAME="Bubs Deploy"
 
 # read txt files with list of files to include/exclude
 function get_array {
@@ -72,7 +75,7 @@ else
   git commit -m "Committing build changes"
 
   if [ "$1" = "staging" ]; then
-    echo "Pushing to staging..."
+    echo "Pushing to staging: ${STAGING_REMOTE}..."
     git remote rm staging
     git remote add staging ${STAGING_REMOTE}
     git push -f staging deploy:master
@@ -80,8 +83,17 @@ else
     git stash
     git checkout $branch
 
+  elif [ "$1" = "development" ]; then
+    echo "Pushing to development: ${DEVELOPMENT}..."
+    git remote rm production
+    git remote add production ${DEVELOPMENT}
+    git push -f production deploy:master
+    echo "Returning to working branch."
+    git stash
+    git checkout $branch
+
   elif [ "$1" = "production" ]; then
-    echo "Pushing to production..."
+    echo "Pushing to production: ${PRODUCTION_REMOTE}..."
     git remote rm production
     git remote add production ${PRODUCTION_REMOTE}
     git push -f production deploy:master

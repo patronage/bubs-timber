@@ -7,7 +7,6 @@ composer.lock
 #### JTS RULES
 
 # development-environment
-.env
 tmp/
 wp-content/themes/timber/dev/
 wp-config-local.php
