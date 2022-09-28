@@ -1,18 +1,50 @@
 // As much as possible, set type by customizing the default bootstrap variables in _variables.scss
+body {
+  font-size: rem-calc(16px);
+  line-height: 130%;
+}
+
+h1 {
+  font-weight: bold;
+
+  a {
+    text-decoration: none;
+  }
+}
 
 // Bottom margin only
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6,
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6,
 p {
-    margin-top: 0;
+  margin-top: 0;
 
-    // last element shouldn't have margin to prevent doubling up
-    &:last-child {
-        margin-bottom: 0;
-    }
+  // last element shouldn't have margin to prevent doubling up
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.text-white {
+  &,
+  a,
+  a:hover {
+    color: white;
+  }
+}
+
+// focus
+
+:focus {
+  outline: none;
 }
