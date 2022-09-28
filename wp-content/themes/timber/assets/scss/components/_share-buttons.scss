@@ -1,15 +1,13 @@
 .component-share-buttons {
+  .share-title {
+    font-weight: bold;
+  }
 
-    .share-title {
-        font-weight: bold;
+  .share-buttons {
+    a {
+      @include media-breakpoint-only(xs) {
+        display: block;
+      }
     }
-
-    .share-buttons {
-        a {
-            @include media-breakpoint-only(xs) {
-                display: block;
-            }
-        }
-    }
-
+  }
 }

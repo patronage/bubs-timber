@@ -1,22 +1,22 @@
 .hero {
-    height: auto;
-    position: relative;
-    overflow: hidden;
-    
-    .hero-title {
-        background-color: rgba(0, 0, 0, 0.75);
-        color: $white;
-        width: 100%;
-        margin-top: 0;
-        padding: 15px 30px;
+  position: relative;
+  overflow: hidden;
+  height: auto;
 
-        @include media-breakpoint-up(sm) {
-            position: absolute;
-            bottom: 0;
-        }
-    }
+  .hero-title {
+    width: 100%;
+    padding: 15px 30px;
+    margin-top: 0;
+    background-color: rgba(0, 0, 0, 75%);
+    color: $white;
 
     @include media-breakpoint-up(sm) {
-        max-height: 80vh;
+      position: absolute;
+      bottom: 0;
     }
+  }
+
+  @include media-breakpoint-up(sm) {
+    max-height: 80vh;
+  }
 }

@@ -4,27 +4,27 @@
 // Inspired by https://getbootstrap.com/docs/4.0/getting-started/theming/#modifiers
 // See $colors, $theme-colors in _variables.scss for available classes
 @each $color, $value in $colors {
-  //bg-variant mixin is depreciated as of bootstrap 4.4 so we just set the background-color
-  //@include bg-variant('.bg-#{$color}', $value);
+  // bg-variant mixin is depreciated as of bootstrap 4.4 so we just set the background-color
+  // @include bg-variant('.bg-#{$color}', $value);
 
   .bg-#{$color} {
     background-color: $value !important;
   }
 
   .color-#{$color} {
-      color: $value;
+    color: $value;
   }
 }
 
 @each $color, $value in $theme-colors {
-  //bg-variant mixin is depreciated as of bootstrap 4.4 so we just set the background-color
-  //@include bg-variant('.bg-#{$color}', $value);
+  // bg-variant mixin is depreciated as of bootstrap 4.4 so we just set the background-color
+  // @include bg-variant('.bg-#{$color}', $value);
 
   .bg-#{$color} {
     background-color: $value !important;
   }
-  
+
   .color-#{$color} {
-      color: $value;
+    color: $value;
   }
 }
