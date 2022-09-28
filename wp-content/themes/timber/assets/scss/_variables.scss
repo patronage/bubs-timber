@@ -20,6 +20,7 @@ $color-twitter: #55acee;
 // spacing
 // we set spacing in 10px increments, allowing up to 10, e.g. p-10.
 // we also enable negative spacers
+$enable-negative-margins: true;
 $spacer-px: 10px;
 $spacer: rem-calc(10px);
 $spacers: (
@@ -66,3 +67,12 @@ $theme-colors: (
 //     "gray-light": $gray-light,
 //     "blue" : $blue,
 // );
+
+// customize grid
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+  xxl: 1340px,
+);
