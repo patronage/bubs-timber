@@ -84,10 +84,10 @@ else
     git checkout $branch
 
   elif [ "$1" = "development" ]; then
-    echo "Pushing to development: ${DEVELOPMENT}..."
-    git remote rm production
-    git remote add production ${DEVELOPMENT}
-    git push -f production deploy:master
+    echo "Pushing to development: ${DEVELOPMENT_REMOTE}..."
+    git remote rm development
+    git remote add development ${DEVELOPMENT_REMOTE}
+    git push -f development deploy:master
     echo "Returning to working branch."
     git stash
     git checkout $branch
