@@ -5,7 +5,7 @@ This repo is configured for VS Code, notably including extensions and settings t
 ## Getting up and running
 
 1. Clone this repo.
-2. Duplicate .env.sample to .env, customize values for project if needed
+2. In `.env`, customize values for project if needed
 3. Initiate Docker, by running the `WordPress Docker Recreate` task.
 4. Add node/gulp dependencies by running `yarn install`.
 
