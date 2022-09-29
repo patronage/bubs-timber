@@ -5,13 +5,13 @@ This repo is configured for VS Code, notably including extensions and settings t
 ## Getting up and running
 
 1. Clone this repo.
-2. Duplicate .env.sample to .env
+2. In `.env`, customize values for project if needed
 3. Initiate Docker, by running the `WordPress Docker Recreate` task.
 4. Add node/gulp dependencies by running `yarn install`.
 
 That should be it. You can build your theme assets by running `Gulp Dev` task, then go to the URL in your console to see the site. Note that this will be an empty WordPress site, see below for importing content.
 
-## Importing database
+## Exporting and Importing database
 
 We have an import script that will grab the most recent folder from a root level `_data` folder that is otherwise gitignored.
 
@@ -20,6 +20,8 @@ On top of that import, a few modifications for localhosting will be run. These l
 After copying that `local.sql` file, export your DB from production (check the boxes to add drop tables), and save it into the `_data` folder. Import by running `WordPress DB Import` task.
 
 Your wordpress admin will be viewable at /wp-login.php, and you can use the username: `admin` and password: `password`.
+
+To help with exports, we also have tasks "Wordpress DB Export" for both production and staging that will save the latest DB to the \_data folder. You will need a local version of [WP CLI](https://wp-cli.org/) in order for this to work. You can quickly install by running `brew install wp-cli`
 
 ## Editng up the theme
 
