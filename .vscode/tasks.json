@@ -51,12 +51,12 @@
     {
       "label": "WP Engine Deploy Production",
       "type": "shell",
-      "command": "cd ./ && sh _build/deploy.sh production"
+      "command": "cd ./ && bash _build/deploy.sh production"
     },
     {
       "label": "WP Engine Deploy Staging",
       "type": "shell",
-      "command": "cd ./ && sh _build/deploy.sh staging"
+      "command": "cd ./ && bash _build/deploy.sh staging"
     }
   ]
 }

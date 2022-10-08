@@ -21,9 +21,9 @@ After copying that `local.sql` file, export your DB from production (check the b
 
 Your wordpress admin will be viewable at /wp-login.php, and you can use the username: `admin` and password: `password`.
 
-To help with exports, we also have tasks "Wordpress DB Export" for both production and staging that will save the latest DB to the \_data folder. You will need a local version of [WP CLI](https://wp-cli.org/) in order for this to work. You can quickly install by running `brew install wp-cli`
+To help with exports, we also have tasks "Wordpress DB Export" for both production and staging that will save the latest DB to the \_data folder. You will need a local version of [WP CLI](https://wp-cli.org/) in order for this to work. You can quickly install by running `brew install wp-cli` if you use use homebrew.
 
-## Editng up the theme
+## Editing up the theme
 
 All assets are stored in `wp-content/themes/timber`.
 

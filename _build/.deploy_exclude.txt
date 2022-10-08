@@ -2,6 +2,7 @@ _build/
 _init/
 .babelrc
 .editorconfig
+.env
 .gitignore
 .npmrc
 .nvmrc

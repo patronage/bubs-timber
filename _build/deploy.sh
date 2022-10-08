@@ -4,7 +4,7 @@
 if [ -f ".env" ]; then
   export $(grep -v '^#' .env | xargs)
 else
-  echo ".env file required, please copy from the .env.sample"
+  echo ".env file required"
   exit 1;
 fi
 
@@ -13,7 +13,6 @@ fi
 PRODUCTION_REMOTE="git@git.wpengine.com:production/${COMPOSE_WPE_PRODUCTION}.git"
 STAGING_REMOTE="git@git.wpengine.com:production/${COMPOSE_WPE_STAGING}.git"
 DEVELOPMENT_REMOTE="git@git.wpengine.com:production/${COMPOSE_WPE_DEVELOPMENT}.git"
-WORDPRESS_DB_NAME=${COMPOSE_PROJECT_NAME:-wordpress}
 
 # Defined in .env
 # GIT_EMAIL="hello+bubs@patronage.org"
