@@ -11,7 +11,6 @@ _init/
 .prettierrc
 .stylelintignore
 .stylelintrc.json
-.yarnrc
 composer.json
 composer.lock
 docker-compose.yml
