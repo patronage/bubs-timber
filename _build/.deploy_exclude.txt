@@ -8,6 +8,8 @@ _init/
 .nvmrc
 .prettierignore
 .prettierrc
+.stylelintignore
+.stylelintrc.json
 .yarnrc
 composer.json
 composer.lock
@@ -15,8 +17,6 @@ docker-compose.yml
 gulpfile.babel.js
 package.json
 README.md
-.stylelintignore
-.stylelintrc.json
 yarn.lock
 
 wp-content/plugins/acf-pro-sync/*
