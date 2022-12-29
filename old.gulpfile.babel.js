@@ -3,12 +3,16 @@
 // load gulp and gulp plugins
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
+// const $ = plugins({
+//   postRequireTransforms: {
+//     sass: function (sass) {
+//       return sass(require('sass'));
+//     },
+//   },
+// });
+
 const $ = plugins({
-  postRequireTransforms: {
-    sass: function (sass) {
-      return sass(require('sass'));
-    },
-  },
+  config: process.env.npm_package_json,
 });
 
 // load node modules
