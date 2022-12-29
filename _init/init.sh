@@ -6,13 +6,6 @@ shopt -s extglob
 rm -rf ./wp-content/plugins/!(composer-libs)
 # rm -rf ./wp-content/plugins/!(composer-libs|gravityforms*)
 
-# clean composer before copying
-# rm -rf ./composer/wp/wp-config-sample.php
-# rm -rf ./composer/wp-content/plugins/hello.php
-# rm -rf ./composer/wp/wp-content/
-# mv -n ./composer/wp/* ./composer
-# rm -rf ./composer/wp/
-
 # copy everything over
 cp -R ./composer/* ./
 

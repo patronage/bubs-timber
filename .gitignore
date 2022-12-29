@@ -55,6 +55,10 @@ wp-includes/
 # wp-content/plugins/*
 #!wp-content/plugins/stop-emails/
 
+# ignore certain plugins
+wp-content/plugins/hello.php
+wp-content/plugins/akismet/
+
 # ignore everything in the "themes" directory,
 # except the themes you specify
 wp-content/themes/*
