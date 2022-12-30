@@ -35,7 +35,7 @@ var widont = function () {
     $element.html(
       $(this)
         .html()
-        .replace(/\s([^\s<]{0,8})\s*$/, '&nbsp;$1'),
+        .replace(/\s([^\s<]{0,8})\s*$/, '&nbsp;$1')
     );
   });
 };

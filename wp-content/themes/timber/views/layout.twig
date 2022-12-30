@@ -29,9 +29,7 @@
                 ga( 'require', 'outboundLinkTracker' );{% if environment == "development" or user %}
 
 // No GA data sent while in dev or logged in
-                    ga( 'set', 'sendHitTask', null );{% endif %}
-
-                ga( 'send', 'pageview' );
+                    ga( 'set', 'sendHitTask', null );{% endif %}ga( 'send', 'pageview' );
             </script>
 
             <script src='https://www.google-analytics.com/analytics.js'></script>
@@ -100,10 +98,10 @@
         {% endif %}
 
         {#
-                    - Load JS libs then custom scripts. Paths should be relative to assets folder
-                    - Build block uses gulp-useref to copy/rev assets
-                    - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
-                #}
+                            - Load JS libs then custom scripts. Paths should be relative to assets folder
+                            - Build block uses gulp-useref to copy/rev assets
+                            - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
+                        #}
 
         {% set rev_js %}
         <!-- build:js js/all.js -->
@@ -113,7 +111,6 @@
         <script src="vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
         <script src="js/console-safe.js"></script>
-        <script src="js/analytics-sourcing.js"></script>
         <script src="js/main.js"></script>
         <!-- endbuild -->
         {% endset %}
