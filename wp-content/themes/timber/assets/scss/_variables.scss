@@ -1,7 +1,3 @@
-// layout
-$section-spacing: 60px;
-$section-spacing-mobile: 30px;
-
 // type
 $font-sans: 'Source Sans Pro', 'Myriad Pro', 'Helvetica', helvetica, arial, sans-serif;
 $font-thin: 300;
@@ -20,6 +16,9 @@ $color-twitter: #55acee;
 // spacing
 // we set spacing in 10px increments, allowing up to 10, e.g. p-10.
 // we also enable negative spacers
+// spacing
+// we set spacing in 10px increments, allowing up to 10, e.g. p-10.
+// we also enable negative spacers
 $enable-negative-margins: true;
 $spacer-px: 10px;
 $spacer: rem-calc(10px);
@@ -35,9 +34,9 @@ $spacers: (
   8: 8 * $spacer-px,
   9: 9 * $spacer-px,
   10: 10 * $spacer-px,
-  11: 11 * $spacer-px,
-  12: 12 * $spacer-px,
 );
+$section-padding: 80px;
+$section-padding-mobile: 40px;
 
 //
 // bootstrap vars -- customize bootstrap here, leave vendor files untouched
