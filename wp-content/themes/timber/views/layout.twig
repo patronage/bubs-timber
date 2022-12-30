@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
         <title>{{ "wp_title"|function("-") }}</title>
 
@@ -13,24 +13,25 @@
         {% if gv.ga_id %}
             {# https://github.com/googleanalytics/autotrack #}
             <script>
-                window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                ga('create', '{{ gv.ga_id }}', 'auto');
+                window.ga = window.ga || function () {
+                    ( ga.q = ga.q || [] ).push( arguments )
+                };
+                ga.l = + new Date;
+                ga( 'create', '{{ gv.ga_id }}', 'auto' );
 
-                ga('require', 'cleanUrlTracker', {
+                ga( 'require', 'cleanUrlTracker', {
                     stripQuery: true,
                     indexFilename: 'index.html',
                     trailingSlash: 'remove'
-                });
+                } );
 
-                ga('require', 'eventTracker');
-                ga('require', 'outboundLinkTracker');
+                ga( 'require', 'eventTracker' );
+                ga( 'require', 'outboundLinkTracker' );{% if environment == "development" or user %}
 
-                {% if environment == "development" or user %}
-                    // No GA data sent while in dev or logged in
-                    ga('set', 'sendHitTask', null);
-                {% endif %}
+// No GA data sent while in dev or logged in
+                    ga( 'set', 'sendHitTask', null );{% endif %}
 
-                ga('send', 'pageview');
+                ga( 'send', 'pageview' );
             </script>
 
             <script src='https://www.google-analytics.com/analytics.js'></script>
@@ -43,11 +44,18 @@
 
         {% if environment != "development" and gv.gtm_id %}
             <!-- Google Tag Manager -->
-            <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','{{ gv.gtm_id }}');</script>
+            <script>
+                ( function ( w, d, s, l, i ) {
+                    w[ l ] = w[ l ] || [];
+                    w[ l ].push( { 'gtm.start': new Date().getTime(), event: 'gtm.js' } );
+                    var f = d.getElementsByTagName( s )[0],
+                        j = d.createElement( s ),
+                        dl = l != 'dataLayer' ? '&l=' + l : '';
+                    j.async = true;
+                    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                    f.parentNode.insertBefore( j, f );
+                } )( window, document, 'script', 'dataLayer','{{ gv.gtm_id }}' );
+            </script>
             <!-- End Google Tag Manager -->
         {% endif %}
 
@@ -56,18 +64,22 @@
         {% block head %}{% endblock %}
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-            <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-            <!--[if lt IE 9]>
-              <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-              <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!-- [if lt IE 9]> <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script
+        src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+                <![endif] -->
     </head>
     <body {{ function('body_class', body_classes ) }} id="{{ body_id }}">
 
         {% if environment != "development" and gv.gtm_id %}
             <!-- Google Tag Manager (noscript) -->
-            <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ gv.gtm_id }}"
-            height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+            <noscript>
+                <iframe
+                    src="https://www.googletagmanager.com/ns.html?id={{ gv.gtm_id }}"
+                    height="0"
+                    width="0"
+                    style="display:none;visibility:hidden"></iframe>
+            </noscript>
             <!-- End Google Tag Manager (noscript) -->
         {% endif %}
 
@@ -88,23 +100,22 @@
         {% endif %}
 
         {#
-            - Load JS libs then custom scripts. Paths should be relative to assets folder
-            - Build block uses gulp-useref to copy/rev assets
-            - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
-        #}
+                    - Load JS libs then custom scripts. Paths should be relative to assets folder
+                    - Build block uses gulp-useref to copy/rev assets
+                    - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
+                #}
 
         {% set rev_js %}
-            <!-- build:js js/all.js -->
-            <script src="vendor/autotrack/autotrack.js"></script>
-            <script src="vendor/jquery-smooth-scroll/jquery.smooth-scroll.js"></script>
-            <script src="vendor/fitvids.js/jquery.fitvids.js"></script>
-            <script src="vendor/popper.js/dist/umd/popper.js"></script>
-            <script src="vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
-            <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
-            <script src="js/console-safe.js"></script>
-            <script src="js/analytics-sourcing.js"></script>
-            <script src="js/main.js"></script>
-            <!-- endbuild -->
+        <!-- build:js js/all.js -->
+        <script src="vendor/autotrack/autotrack.js"></script>
+        <script src="vendor/fitvids.js/jquery.fitvids.js"></script>
+        <script src="vendor/popper.js/dist/umd/popper.js"></script>
+        <script src="vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
+        <script src="js/console-safe.js"></script>
+        <script src="js/analytics-sourcing.js"></script>
+        <script src="js/main.js"></script>
+        <!-- endbuild -->
         {% endset %}
 
         {# Output assets #}
@@ -112,7 +123,6 @@
 
         {# Individual templates can load scripts here #}
         {% block footer_scripts %}{% endblock %}
-
 
     </body>
 </html>
