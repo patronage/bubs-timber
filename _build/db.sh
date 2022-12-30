@@ -108,12 +108,17 @@ function media_export() {
 
   if [ "$TARGET" = "staging" ]; then
     SSH_TARGET=$STAGING_SSH
+    PROJECT=$COMPOSE_WPE_STAGING
   elif [ "$TARGET" = "development" ]; then
     SSH_TARGET=$DEVELOPMENT_SSH
+    PROJECT=$COMPOSE_WPE_DEVELOPMENT
   else
     SSH_TARGET=$PRODUCTION_SSH
     PROJECT=$COMPOSE_WPE_PRODUCTION
   fi
+
+  # We don't need all thumbnails, just the original files
+  EXCLUDE_REGEX="*[0-9]*x[0-9]*\.[a-zA-Z0-9]*"
 
   echo "connecting to $SSH_TARGET"
 
@@ -121,7 +126,7 @@ function media_export() {
 
   if [[ $status == ok ]] ; then
     echo "auth ok, proceeding with media export"
-    rsync -rlD -vz --size-only $SSH_TARGET:sites/$PROJECT/wp-content/uploads/ ./wp-content/uploads/
+    rsync -rlD -vz --size-only --exclude=$EXCLUDE_REGEX $SSH_TARGET:sites/$PROJECT/wp-content/uploads/ ./wp-content/uploads/
     echo "export complete";
   elif [[ $status == "Permission denied"* ]] ; then
     echo no_auth
