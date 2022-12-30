@@ -77,7 +77,7 @@ else
     echo "Pushing to staging: ${STAGING_REMOTE}..."
     git remote rm staging
     git remote add staging ${STAGING_REMOTE}
-    git push -f staging deploy:master
+    git push -f staging deploy:main
     echo "Returning to working branch."
     git stash
     git checkout $branch
@@ -86,7 +86,7 @@ else
     echo "Pushing to development: ${DEVELOPMENT_REMOTE}..."
     git remote rm development
     git remote add development ${DEVELOPMENT_REMOTE}
-    git push -f development deploy:master
+    git push -f development deploy:main
     echo "Returning to working branch."
     git stash
     git checkout $branch
@@ -95,7 +95,7 @@ else
     echo "Pushing to production: ${PRODUCTION_REMOTE}..."
     git remote rm production
     git remote add production ${PRODUCTION_REMOTE}
-    git push -f production deploy:master
+    git push -f production deploy:main
     echo "Returning to working branch."
     git stash
     git checkout $branch
