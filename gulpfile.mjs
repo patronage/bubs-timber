@@ -19,20 +19,6 @@ import beeper from 'beeper';
 import yargs from 'yargs';
 const argv = yargs.argv;
 
-// define functions
-// const hello = (done) => {
-//   console.log('Hello');
-//   done();
-// };
-
-// const world = (done) => {
-//   console.log('World!');
-//   done();
-// };
-
-// // Expose helloworld series task
-// export default gulp.series(hello, world);
-
 // others
 import browserSync from 'browser-sync';
 const server = browserSync.create();
