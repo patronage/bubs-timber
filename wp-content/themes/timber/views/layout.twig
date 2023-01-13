@@ -6,10 +6,19 @@
 
         <title>{{ "wp_title"|function("-") }}</title>
 
-        {# insert webfonts here #}
+        <!-- parse-ignore-start -->
+        {# preloads #}
+        <link rel="preload" href="{{ function("rev", "fonts/Mona-Sans-Regular.woff2") }}" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="{{ function("rev", "fonts/Mona-Sans-RegularItalic.woff2") }}" as="font" type="font/woff2" crossorigin />
+        <link rel="preload" href="{{ function("rev", "fonts/Mona-Sans-Bold.woff2") }}" as="font" type="font/woff2" crossorigin />
+        <linl rel="preload" href="{{ function("rev", "fonts/Mona-Sans-BoldItalic.woff2") }}" as="font" type="font/woff2" crossorigin />
+
+        {# webfonts #}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
         <link rel="stylesheet" href="{{ function("rev", "css/screen.css") }}">
+        <!-- parse-ignore-end -->
 
+        <!-- parse-ignore-start -->
         {% if gv.ga_id %}
             {# https://github.com/googleanalytics/autotrack #}
             <script>
@@ -26,14 +35,17 @@
                 } );
 
                 ga( 'require', 'eventTracker' );
-                ga( 'require', 'outboundLinkTracker' );{% if environment == "development" or user %}
-
-// No GA data sent while in dev or logged in
-                    ga( 'set', 'sendHitTask', null );{% endif %}ga( 'send', 'pageview' );
+                ga( 'require', 'outboundLinkTracker' );
+                {% if environment == "development" or user %}
+                // No GA data sent while in dev or logged in
+                ga( 'set', 'sendHitTask', null );
+                {% endif %}
+                ga( 'send', 'pageview' );
             </script>
 
             <script src='https://www.google-analytics.com/analytics.js'></script>
         {% endif %}
+        <!-- parse-ignore-end -->
 
         <!-- GTM array to catch events -->
         <script>
@@ -60,12 +72,6 @@
         {{ wp_head }}
 
         {% block head %}{% endblock %}
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!-- [if lt IE 9]> <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> <script
-        src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-                <![endif] -->
     </head>
     <body {{ function('body_class', body_classes ) }} id="{{ body_id }}">
 
@@ -122,6 +128,5 @@
 
         {# Individual templates can load scripts here #}
         {% block footer_scripts %}{% endblock %}
-
     </body>
 </html>
