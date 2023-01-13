@@ -25,6 +25,9 @@
   },
   "devDependencies": {
     "@prettier/plugin-php": "0.19.2",
+    "@babel/core": "7.9.6",
+    "@babel/preset-env": "7.9.6",
+    "@babel/register": "7.9.0",
     "beeper": "3.0.0",
     "browser-sync": "2.27.11",
     "del": "7.0.0",

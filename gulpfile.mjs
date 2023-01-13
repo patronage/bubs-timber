@@ -166,7 +166,7 @@ const scripts = (done) => {
     [
       gulp.src(config.theme + '/views/layout.twig'),
       assets,
-      $.debug({ title: 'debug: ', showFiles: argv.debug }), //to debug files getting proccessed
+      $.debug({ title: 'debug: ', showFiles: argv?.debug }), // to debug files getting proccessed
       $.filter(['**', '!**/layout.twig'], { restore: true }),
       f,
       $.jshint(),
