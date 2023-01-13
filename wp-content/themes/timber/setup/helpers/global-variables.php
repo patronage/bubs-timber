@@ -9,7 +9,7 @@ function global_variables($data) {
     $theme_mods = get_theme_mods();
 
     if (function_exists('acf_add_options_page')) {
-        $theme_options = get_fields('options');
+        $theme_options = get_fields('options') ? get_fields('options') : [];
         $base_variables = array_merge($theme_mods, $theme_options);
         $data['gv'] = $base_variables;
     } else {
