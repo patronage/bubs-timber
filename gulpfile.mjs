@@ -214,10 +214,26 @@ const copy = (done) => {
 
 // loops through the generated html and replaces all references to static versions
 const rev = (done) => {
+  let extensions = [
+    '.html',
+    '.css',
+    '.js',
+    '.png',
+    '.jpg',
+    '.jpeg',
+    '.gif',
+    '.svg',
+    '.woff',
+    '.woff2',
+    '.ttf',
+    '.eot',
+    '.otf',
+  ];
+
   pump(
     [
       gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
-      revAll.revision({ dontSearchFile: ['.js'] }),
+      revAll.revision({ dontSearchFile: ['.js'], includeFilesInManifest: extensions }),
       gulp.dest(config.static),
       revAll.manifestFile(),
       gulp.dest(config.static),
