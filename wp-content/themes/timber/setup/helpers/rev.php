@@ -12,9 +12,12 @@ function rev($file, $domain = null) {
     $dev = 'dev';
     $assets = 'assets';
     $manifest = 'rev-manifest.json';
-    $jsondata = @file_get_contents(
-        get_stylesheet_directory() . '/' . $static . '/' . $manifest,
-    );
+    $file_path = get_stylesheet_directory() . '/' . $static . '/' . $manifest;
+    if (file_exists($file_path)) {
+        $jsondata = @file_get_contents($file_path);
+    } else {
+        $jsondata = false;
+    }
 
     if (defined('WP_ENV')) {
         $env = WP_ENV;
@@ -47,22 +50,21 @@ function rev($file, $domain = null) {
         // first check exact folder
         $rev_check = isset($json[$file]);
         if ($rev_check) {
-            $file_check = file_exists(
-                get_stylesheet_directory() . '/static/' . $json[$file],
-            );
+            $file_check = @file_exists(get_stylesheet_directory() . '/static/' . $json[$file]);
         }
 
         if ($rev_check && $file_check) {
             $url = $theme . '/' . $static . '/' . $json[$file];
         } else {
             // js gets flattened, check there as well
-            $file = 'js/' . basename($file);
-            $file_check = file_exists(
-                get_stylesheet_directory() . '/static/' . $json[$file],
-            );
-            if ($file_check) {
-                $url = $theme . '/' . $static . '/' . $json[$file];
+            $jsfile = 'js/' . basename($file);
+            if (array_key_exists($jsfile, (array) $json)) {
+                $file_check = @file_exists(get_stylesheet_directory() . '/static/' . $json[$jsfile]);
+                if ($file_check) {
+                    $url = $theme . '/' . $static . '/' . $json[$jsfile];
+                }
             } else {
+                // return the original file
                 $url = $theme . '/' . $folder . '/' . $file;
             }
         }
