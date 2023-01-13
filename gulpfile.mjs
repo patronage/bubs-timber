@@ -4,6 +4,7 @@ import plugins from 'gulp-load-plugins';
 import dartSass from 'sass';
 import path from 'path';
 import gulpSass from 'gulp-sass';
+import revAll from 'gulp-rev-all';
 const sass = gulpSass(dartSass);
 
 const $ = plugins({
@@ -216,9 +217,9 @@ const rev = (done) => {
   pump(
     [
       gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
-      $.revAll.revision({ dontSearchFile: ['.js'] }),
+      revAll.revision({ dontSearchFile: ['.js'] }),
       gulp.dest(config.static),
-      $.revAll.manifestFile(),
+      revAll.manifestFile(),
       gulp.dest(config.static),
     ],
     (err) => {
