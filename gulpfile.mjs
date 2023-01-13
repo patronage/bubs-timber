@@ -1,21 +1,23 @@
-'use strict';
-
 // load gulp and gulp plugins
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
+import dartSass from 'sass';
+import path from 'path';
+import gulpSass from 'gulp-sass';
+import revAll from 'gulp-rev-all';
+const sass = gulpSass(dartSass);
+
 const $ = plugins({
-  postRequireTransforms: {
-    sass: function (sass) {
-      return sass(require('sass'));
-    },
-  },
+  config: path.join(process.cwd(), 'package.json'),
 });
 
 // load node modules
-import del from 'del';
+import { deleteSync } from 'del';
 import pump from 'pump';
 import beeper from 'beeper';
-import { argv } from 'yargs';
+
+import yargs from 'yargs';
+const argv = yargs.argv;
 
 // others
 import browserSync from 'browser-sync';
@@ -111,7 +113,7 @@ const styles = (done) => {
       gulp.src(config.assets + '/scss/*.scss', {
         sourcemaps: !isProduction,
       }),
-      $.sass(sassOptions),
+      sass(sassOptions),
       $.if(isProduction, $.autoprefixer('last 2 versions')),
       $.if(isProduction, $.csso()),
       gulp.dest(config.output + '/css', { sourcemaps: !isProduction }),
@@ -151,7 +153,7 @@ const scripts = (done) => {
     [
       gulp.src(config.theme + '/views/layout.twig'),
       assets,
-      $.debug({ title: 'debug: ', showFiles: argv.debug }), //to debug files getting proccessed
+      $.debug({ title: 'debug: ', showFiles: argv?.debug }), // to debug files getting proccessed
       $.filter(['**', '!**/layout.twig'], { restore: true }),
       f,
       $.jshint(),
@@ -178,7 +180,7 @@ const scripts = (done) => {
 
 // When scripts runs, it creates extra files in copying from vendor we can delete
 const cleanScripts = (done) => {
-  del.sync([config.output + '/wp-content']);
+  deleteSync([config.output + '/wp-content']);
   done();
 };
 
@@ -198,12 +200,28 @@ const copy = (done) => {
 
 // loops through the generated html and replaces all references to static versions
 const rev = (done) => {
+  let extensions = [
+    '.html',
+    '.css',
+    '.js',
+    '.png',
+    '.jpg',
+    '.jpeg',
+    '.gif',
+    '.svg',
+    '.woff',
+    '.woff2',
+    '.ttf',
+    '.eot',
+    '.otf',
+  ];
+
   pump(
     [
       gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
-      $.revAll.revision({ dontSearchFile: ['.js'] }),
+      revAll.revision({ dontSearchFile: ['.js'], includeFilesInManifest: extensions }),
       gulp.dest(config.static),
-      $.revAll.manifestFile(),
+      revAll.manifestFile(),
       gulp.dest(config.static),
     ],
     (err) => {
@@ -219,7 +237,7 @@ const rev = (done) => {
 
 // clean output directory
 export const clean = (done) => {
-  del.sync([config.dev, config.static, config.dist]);
+  deleteSync([config.dev, config.static, config.dist]);
   done();
 };
 

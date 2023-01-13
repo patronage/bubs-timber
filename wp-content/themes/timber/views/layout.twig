@@ -97,11 +97,13 @@
             <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         {% endif %}
 
+        <!-- parse-ignore-start -->
         {#
-                            - Load JS libs then custom scripts. Paths should be relative to assets folder
-                            - Build block uses gulp-useref to copy/rev assets
-                            - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
-                        #}
+            - Load JS libs then custom scripts. Paths should be relative to assets folder
+            - Build block uses gulp-useref to copy/rev assets
+            - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
+        #}
+        <!-- parse-ignore-end -->
 
         {% set rev_js %}
         <!-- build:js js/all.js -->

@@ -1,7 +1,10 @@
 <?php
 
 // Make composer installed php libraries available
-require_once get_theme_root() . '/../plugins/composer-libs/autoload.php';
+$autoload_path = get_theme_root() . '/../plugins/composer-libs/autoload.php';
+if (file_exists($autoload_path)) {
+    require_once $autoload_path;
+}
 
 //
 // Load WP Config files
