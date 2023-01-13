@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{{ function("rev", "css/screen.css") }}">
         <!-- parse-ignore-end -->
 
+        <!-- parse-ignore-start -->
         {% if gv.ga_id %}
             {# https://github.com/googleanalytics/autotrack #}
             <script>
@@ -34,14 +35,17 @@
                 } );
 
                 ga( 'require', 'eventTracker' );
-                ga( 'require', 'outboundLinkTracker' );{% if environment == "development" or user %}
-
-// No GA data sent while in dev or logged in
-                    ga( 'set', 'sendHitTask', null );{% endif %}ga( 'send', 'pageview' );
+                ga( 'require', 'outboundLinkTracker' );
+                {% if environment == "development" or user %}
+                // No GA data sent while in dev or logged in
+                ga( 'set', 'sendHitTask', null );
+                {% endif %}
+                ga( 'send', 'pageview' );
             </script>
 
             <script src='https://www.google-analytics.com/analytics.js'></script>
         {% endif %}
+        <!-- parse-ignore-end -->
 
         <!-- GTM array to catch events -->
         <script>
