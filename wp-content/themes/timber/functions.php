@@ -10,6 +10,21 @@ if (file_exists($autoload_path)) {
 // Load WP Config files
 //
 
+// Customize these variables per site
+$staging_wp_host = 'bubstimber.wpengine.com';
+$docs_link = ''; // set to a path if you have a site/document for editor instructions
+
+// Determine the hosting environment we're in
+if (defined('WP_ENV') && WP_ENV == 'development') {
+    define('WP_HOST', 'localhost');
+} else {
+    if (strpos($_SERVER['HTTP_HOST'], $staging_wp_host) !== false) {
+        define('WP_HOST', 'staging');
+    } else {
+        define('WP_HOST', 'production');
+    }
+}
+
 // Theme Options
 function bubs_theme_options($wp_customize) {
     include_once 'setup/theme-options/footer.php';
@@ -44,6 +59,7 @@ add_filter('get_twig', 'add_to_twig');
 include_once 'setup/helpers/acf-options.php';
 include_once 'setup/helpers/acf-wysiwyg.php';
 include_once 'setup/helpers/admin.php';
+include_once 'setup/helpers/admin-env.php';
 include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/global-variables.php';
 include_once 'setup/helpers/google-login-cookies.php';
