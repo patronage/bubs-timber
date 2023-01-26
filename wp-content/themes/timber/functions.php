@@ -64,11 +64,14 @@ include_once 'setup/helpers/admin-env.php';
 include_once 'setup/helpers/dashboard-customize.php';
 include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/global-variables.php';
-include_once 'setup/helpers/google-login-cookies.php';
-// include_once 'setup/helpers/google-login-force.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
 include_once 'setup/helpers/role-super-editor.php';
+
+// Security Settings
+// include_once 'setup/helpers/google-login-force.php';
+include_once 'setup/helpers/google-login-cookies.php';
+include_once 'setup/helpers/xmlrpc-disable.php';
 
 // Wordpress Theme Support Config
 // REMOVAL OF THESE = POTIENTAL LOSS OF DATA
