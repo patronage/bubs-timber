@@ -22,6 +22,8 @@ node_modules
 /vendor/
 npm-debug.log
 yarn-error.log
+wp-content/debug.log
+
 
 # bower vendor symlink to node_modules is customized per developer
 wp-content/themes/timber/assets/vendor
