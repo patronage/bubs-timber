@@ -12,6 +12,7 @@ if (file_exists($autoload_path)) {
 
 // Customize these variables per site
 $staging_wp_host = 'bubstimber.wpengine.com';
+$dashboard_cleanup = false; // Optionally will hide all but our custom widget
 $docs_link = ''; // set to a path if you have a site/document for editor instructions
 
 // Determine the hosting environment we're in
@@ -60,6 +61,7 @@ include_once 'setup/helpers/acf-options.php';
 include_once 'setup/helpers/acf-wysiwyg.php';
 include_once 'setup/helpers/admin.php';
 include_once 'setup/helpers/admin-env.php';
+include_once 'setup/helpers/dashboard-customize.php';
 include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/global-variables.php';
 include_once 'setup/helpers/google-login-cookies.php';
