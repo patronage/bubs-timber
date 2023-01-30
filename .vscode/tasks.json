@@ -19,6 +19,11 @@
       "command": "cd ./ && bash _build/db.sh export staging"
     },
     {
+      "label": "Wordpress Media Export Production",
+      "type": "shell",
+      "command": "cd wordpress && bash _build/db.sh media production"
+    },
+    {
       "label": "Wordpress DB Import",
       "type": "shell",
       "command": "cd ./ && bash _build/db.sh import"
