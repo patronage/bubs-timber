@@ -24,13 +24,17 @@ npm-debug.log
 yarn-error.log
 wp-content/debug.log
 
-
 # bower vendor symlink to node_modules is customized per developer
 wp-content/themes/timber/assets/vendor
 
-# production
+# production build assets that don't need to live in source control
 wp-content/themes/timber/static
 wp-content/themes/timber/dist
+
+#### WordPress Core Plugins we don't typically use
+wp-content/plugins/akismet/
+wp-content/plugins/hello.php
+
 
 #### WordPress Core
 # comment out if you want to track wordpress in source
