@@ -26,6 +26,10 @@ if (defined('WP_ENV') && WP_ENV == 'development') {
     }
 }
 
+// Disable Gutenberg Block Editor
+add_filter('use_block_editor_for_post', '__return_false');
+
+
 // Theme Options
 function bubs_theme_options($wp_customize) {
     include_once 'setup/theme-options/footer.php';
