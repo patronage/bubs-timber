@@ -35,7 +35,6 @@ wp-content/themes/timber/dist
 wp-content/plugins/akismet/
 wp-content/plugins/hello.php
 
-
 #### WordPress Core
 # comment out if you want to track wordpress in source
 /index.php
