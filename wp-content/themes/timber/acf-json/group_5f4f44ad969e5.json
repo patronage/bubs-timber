@@ -32,21 +32,18 @@
                 "class": "",
                 "id": ""
             },
-            "aria-label": "",
             "choices": {
                 "default": "Default",
                 "blue": "Blue",
                 "dark": "Dark",
                 "gray": "Gray",
-                "green-light": "Light Green",
-                "turquoise-light": "Turquoise Light",
                 "white": "White"
             },
             "default_value": "default",
-            "return_format": "value",
-            "multiple": 0,
             "allow_null": 0,
+            "multiple": 0,
             "ui": 0,
+            "return_format": "value",
             "ajax": 0,
             "placeholder": ""
         },
@@ -164,5 +161,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "modified": 1682533719
+    "modified": 1682534196
 }

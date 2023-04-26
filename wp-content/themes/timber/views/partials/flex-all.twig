@@ -67,10 +67,10 @@
         1) based on the section background  color  or
         2)  using text classes ('text-dark')
     #}
-    {% if bg_color in ["gray", "white", "turquoise-light"] %}
+    {% if bg_color in ["bg-gray", "bg-white", ] %}
         {% set text_color = "text-dark" %}
-    {% elseif bg_color in ["blue", "dark"] %}
-        {% set text_color = "text-shadow" %}
+    {% elseif bg_color in ["bg-blue", "bg-dark"] %}
+        {% set text_color = "text-shadow text-white" %}
     {% endif %}
     {% set section_classes = bg_color ~ " " ~ section_classes %}
     {% if loop.last and bg_color == "bg-white" %}
@@ -81,6 +81,7 @@
     {# minimum markup:
             <section class="flex-module-name-here {{ bg_color }} {{ section_classes }} {{ flex_id }}" id="{{ item_slug }}">...</section>
     #}
+
 
 
     {% if content.acf_fc_layout == "wysiwyg_content" %}
