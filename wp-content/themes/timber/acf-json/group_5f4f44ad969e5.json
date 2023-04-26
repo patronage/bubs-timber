@@ -6,7 +6,6 @@
             "key": "field_615cf9a3c4ad5",
             "label": "Basic Section Options",
             "name": "",
-            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -16,6 +15,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "placement": "top",
             "endpoint": 0
         },
@@ -23,7 +23,6 @@
             "key": "field_5f4f44c3488c5",
             "label": "Background Color",
             "name": "background_color",
-            "aria-label": "",
             "type": "select",
             "instructions": "",
             "required": 0,
@@ -33,6 +32,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "choices": {
                 "default": "Default",
                 "blue": "Blue",
@@ -54,7 +54,6 @@
             "key": "field_60481c0f5467b",
             "label": "Hide Section",
             "name": "hide_section",
-            "aria-label": "",
             "type": "true_false",
             "instructions": "",
             "required": 0,
@@ -64,6 +63,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "show_in_graphql": 1,
             "message": "Visually Hide",
             "default_value": 0,
@@ -75,7 +75,6 @@
             "key": "field_615cf9cac4ad6",
             "label": "Advanced Options",
             "name": "",
-            "aria-label": "",
             "type": "tab",
             "instructions": "",
             "required": 0,
@@ -85,6 +84,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "placement": "top",
             "endpoint": 0
         },
@@ -92,7 +92,6 @@
             "key": "field_5f4f44ec488c6",
             "label": "Section Classes",
             "name": "section_classes",
-            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -110,6 +109,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "show_in_graphql": 1,
             "default_value": "",
             "placeholder": "",
@@ -121,7 +121,6 @@
             "key": "field_5f4f44f5488c7",
             "label": "Section Slug",
             "name": "section_slug",
-            "aria-label": "",
             "type": "text",
             "instructions": "",
             "required": 0,
@@ -139,6 +138,7 @@
                 "class": "",
                 "id": ""
             },
+            "aria-label": "",
             "show_in_graphql": 1,
             "default_value": "",
             "placeholder": "",
@@ -164,6 +164,5 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_rest": 0,
-    "modified": 1678736961
+    "modified": 1682533719
 }
