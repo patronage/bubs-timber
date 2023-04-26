@@ -2,6 +2,7 @@
 
 /*
 Template Name: Flex
+Template Post Type: page, post
 */
 
 $data = Timber::get_context();
