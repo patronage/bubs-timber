@@ -4,6 +4,5 @@ public
 .cache
 *.twig
 wp-content/themes/timber/dev/css/**
-*.twig
 composer
 wp-content/plugins
