@@ -6,3 +6,4 @@ wp-content/themes/timber/dev/css/**
 composer
 wp-content/plugins
 **/assets/vendor
+**/acf-json

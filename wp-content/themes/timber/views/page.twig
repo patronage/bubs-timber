@@ -1,4 +1,4 @@
-{% extends "layout.twig" %}
+{% extends 'layout.twig' %}
 
 {% block content %}
     <div class="container">
@@ -8,7 +8,7 @@
                     <h1>{{ post.post_title }}</h1>
                     {{ post.content }}
 
-                    {% if post.name == "something-special" %}
+                    {% if post.name == 'something-special' %}
                         show the special code.
                     {% else %}
                         <!-- nothing special -->
@@ -16,9 +16,7 @@
                 </article>
             </div>
             <div class="col-sm-3 sidebar">
-                <div class="container">
-                    {{ sidebar }}
-                </div>
+                <div class="container">{{ sidebar }}</div>
             </div>
         </div>
     </div>
