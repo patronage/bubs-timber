@@ -2,7 +2,7 @@ node_modules
 public
 .next
 .cache
-*.twig
 wp-content/themes/timber/dev/css/**
 composer
 wp-content/plugins
+**/assets/vendor
