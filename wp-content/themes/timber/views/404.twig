@@ -1,4 +1,4 @@
-{% extends "layout.twig" %}
+{% extends 'layout.twig' %}
 
 {% block content %}
     <div class="container">
@@ -17,8 +17,8 @@
     </div>
 
     <script>
-        if ( typeof ga === "function" ) {
-            ga('send', 'event', 'Errors', '404 Not Found', document.location.pathname + document.location.search + '&ref=' + document.referrer, {'nonInteraction': 1});
-        }
+        if ( typeof ga === "function" ) { ga('send', 'event', 'Errors', '404 Not
+        Found', document.location.pathname + document.location.search + '&ref='
+        + document.referrer, {'nonInteraction': 1}); }
     </script>
 {% endblock %}
