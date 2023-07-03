@@ -24,9 +24,6 @@
     "popper.js": "1.16.1"
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
-    "@babel/preset-env": "7.20.2",
-    "@babel/register": "7.18.9",
     "@prettier/plugin-php": "0.19.2",
     "@supersoniks/prettier-plugin-twig-melody": "1.0.2",
     "beeper": "3.0.0",
@@ -38,6 +35,7 @@
     "gulp-cli": "2.3.0",
     "gulp-csso": "4.0.1",
     "gulp-debug": "4.0.0",
+    "gulp-esbuild": "0.11.1",
     "gulp-filter": "7.0.0",
     "gulp-if": "3.0.0",
     "gulp-jshint": "2.1.0",

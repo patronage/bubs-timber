@@ -4,6 +4,7 @@ import plugins from 'gulp-load-plugins';
 import dartSass from 'sass';
 import path from 'path';
 import gulpSass from 'gulp-sass';
+import gulpEsbuild from 'gulp-esbuild';
 import revAll from 'gulp-rev-all';
 const sass = gulpSass(dartSass);
 
@@ -34,7 +35,7 @@ try {
 } catch (err) {
   var localConfig = {
     bs: {
-      proxy: 'localhost:8000',
+      proxy: 'http://localhost:8000',
       logLevel: 'info',
       tunnel: '',
       open: true,
@@ -118,6 +119,36 @@ const styles = (done) => {
       $.if(isProduction, $.csso()),
       gulp.dest(config.output + '/css', { sourcemaps: !isProduction }),
       server.stream(),
+    ],
+    (err) => {
+      if (err) {
+        handleErrors(err);
+        return done();
+      } else {
+        return done();
+      }
+    }
+  );
+};
+
+const esbuild = (done) => {
+  pump(
+    [
+      gulp.src(config.assets + '/js/*.js', {}),
+      $.debug({ title: 'esbuild debug: ', showFiles: true }),
+      gulpEsbuild({
+        // outfile: 'bundle.js',
+        // outdir: config.output + '/js',
+        outdir: '',
+        sourcemap: isProduction ? false : 'inline',
+        bundle: true,
+        loader: {
+          '.tsx': 'tsx',
+        },
+        target: 'es2015',
+        plugins: [globalExternals({ jquery: { type: 'cjs', varName: '$' } })],
+      }),
+      gulp.dest(config.output + '/scripts', {}),
     ],
     (err) => {
       if (err) {
@@ -252,7 +283,7 @@ const serve = (done) => {
 
   gulp.watch(config.theme + '/**/*.{twig,php}', reload);
   gulp.watch(config.assets + '/scss/**/*.scss', styles);
-  gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, copy, reload));
+  gulp.watch(config.assets + '/js/**/*.js', gulp.series(esbuild, copy, reload));
   gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
 
   done();
@@ -271,8 +302,8 @@ export const release = (done) => {
   done();
 };
 
-const compile = gulp.series(clean, styles, scripts, copy, cleanScripts, rev);
+const compile = gulp.series(clean, styles, esbuild, scripts, copy, cleanScripts, rev);
 
-export const defaultTasks = gulp.series(clean, styles, copy, serve);
+export const defaultTasks = gulp.series(clean, styles, esbuild, copy, serve);
 
 export default defaultTasks;
