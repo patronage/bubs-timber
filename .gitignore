@@ -68,7 +68,7 @@ wp-content/plugins/akismet/
 # except the themes you specify
 wp-content/themes/*
 !wp-content/themes/timber/
-wp-content/themes/timber/assets/vendor/*
+wp-content/themes/timber/assets/vendor
 
 #### WPENGINE BELOW HERE
 
