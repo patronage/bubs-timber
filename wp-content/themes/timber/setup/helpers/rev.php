@@ -38,7 +38,7 @@ function rev($file, $domain = null) {
 
     if ($jsondata == false) {
         // If manifest file can't be found, forget about it, and load from normal link (which varies slightly for js vs. css)
-        if ($ext == 'js') {
+        if ($ext == 'js' && !str_starts_with($file, $js_folder)) {
             $url = $theme . '/' . $folder . '/' . $js_folder . '/' . basename($file);
         } else {
             $url = $theme . '/' . $folder . '/' . $file;
@@ -57,7 +57,7 @@ function rev($file, $domain = null) {
             $url = $theme . '/' . $static . '/' . $json[$file];
         } else {
             // js gets flattened, check there as well
-            $jsfile = 'js/' . basename($file);
+            $jsfile = !str_starts_with($file, $js_folder) ? 'js/' . basename($file) : $file;
             if (array_key_exists($jsfile, (array) $json)) {
                 $file_check = @file_exists(get_stylesheet_directory() . '/static/' . $json[$jsfile]);
                 if ($file_check) {

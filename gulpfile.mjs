@@ -71,7 +71,7 @@ const config = {
 // Esbuild project customizations
 const esbuildConfig = {
   path: 'js',
-  exclude: ['!**/assets/vendor/**', '!**/assets/js/lib/**', '!**/assets/js/charts/**'],
+  exclude: ['!**/assets/vendor/**', '!**/assets/js/lib/**'],
   include: [config.assets + '/{js}/calc/*'],
   globals: {
     jquery: '$',
@@ -251,10 +251,7 @@ const rev = (done) => {
   pump(
     [
       gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
-      revAll.revision({
-        dontSearchFile: [/\/js\/(?!charts).+/g],
-        includeFilesInManifest: extensions,
-      }),
+      revAll.revision({ dontSearchFile: ['.js'], includeFilesInManifest: extensions }),
       gulp.dest(config.static),
       revAll.manifestFile(),
       gulp.dest(config.static),

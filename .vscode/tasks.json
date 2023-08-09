@@ -39,6 +39,11 @@
       "command": "cd ./ && npm run dev"
     },
     {
+      "label": "Gulp Release",
+      "type": "shell",
+      "command": "cd ./ && npm run build"
+    },
+    {
       "label": "Wordpress Docker Recreate",
       "type": "shell",
       "command": "docker-compose up --build --force-recreate --no-deps"
