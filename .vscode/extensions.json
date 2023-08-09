@@ -2,7 +2,6 @@
   "recommendations": [
     "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode",
-    "rifi2k.format-html-in-php",
-    "mblode.twig-language-2"
+    "rifi2k.format-html-in-php"
   ]
 }
