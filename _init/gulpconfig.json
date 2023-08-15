@@ -1,10 +1,13 @@
 {
-    "_comment": "activeTheme and proxy should be updated for the site you want to build, the rest are custom prefs",
-    "activeTheme": "timber",
-    "bs": {
-        "proxy": "localhost:8000",
-        "logLevel": "info",
-        "tunnel": "",
-        "open": false
-    }
+  "_comment": "activeTheme and proxy should be updated for the site you want to build, the rest are custom prefs",
+  "activeTheme": "timber",
+  "gulp": {
+    "debug": false
+  },
+  "bs": {
+    "proxy": "localhost:8000",
+    "logLevel": "info",
+    "tunnel": "",
+    "open": false
+  }
 }

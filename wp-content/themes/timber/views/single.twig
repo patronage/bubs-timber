@@ -1,4 +1,4 @@
-{% extends "layout.twig" %}
+{% extends 'layout.twig' %}
 
 {% block content %}
     <div class="container">
@@ -7,20 +7,24 @@
                 <article class="post" id="post-{{ post.ID }}">
                     <h1>{{ post.post_title }}</h1>
 
-                    {% include "components/share-buttons.twig" %}
+                    {% include 'components/share-buttons.twig' %}
 
                     <p class="post-meta">
-                        <span>By</span> <a href="{{ post.author.path }}">{{ post.author.name }}</a><br>
+                        <span>By</span>
+                        <a href="{{ post.author.path }}">
+                            {{ post.author.name }}
+                        </a><br />
                         <span class="date">{{ post.post_date|date }}</span>
                     </p>
-                    <div class="post-content">
-                        {{ post.content }}
-                    </div>
+                    <div class="post-content">{{ post.content }}</div>
                     {% if post.get_terms('categories') %}
                         <div class="post-footer">
-                            Categories:
-                            {% for tag in post.get_terms('categories') %}
-                                <a href="{{ tag.get_path }}">{{ tag.name }}{{ loop.last ? '' : ', ' }}</a>
+                            Categories:{% for tag in post.get_terms(
+                                'categories'
+                            ) %}
+                                <a href="{{ tag.get_path }}">
+                                    {{ tag.name }}{{ loop.last ? '' : ', ' }}
+                                </a>
                             {% endfor %}
                         </div>
                     {% endif %}
@@ -28,9 +32,7 @@
             </div>
         </div>
         <div class="col-sm-3 sidebar">
-            <div class="container">
-                {{ sidebar }}
-            </div>
+            <div class="container">{{ sidebar }}</div>
         </div>
     </div>
 {% endblock %}

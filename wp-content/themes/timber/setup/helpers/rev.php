@@ -7,12 +7,14 @@
 
 function rev($file, $domain = null) {
     $theme = get_stylesheet_directory_uri();
+    $dir = get_stylesheet_directory();
     $static = 'static';
     $dist = 'dist';
     $dev = 'dev';
     $assets = 'assets';
+    $js_folder = 'js';
     $manifest = 'rev-manifest.json';
-    $file_path = get_stylesheet_directory() . '/' . $static . '/' . $manifest;
+    $file_path = $dir . '/' . $static . '/' . $manifest;
     if (file_exists($file_path)) {
         $jsondata = @file_get_contents($file_path);
     } else {
@@ -36,10 +38,8 @@ function rev($file, $domain = null) {
 
     if ($jsondata == false) {
         // If manifest file can't be found, forget about it, and load from normal link (which varies slightly for js vs. css)
-        if ($ext == 'js' && $env == 'production') {
-            $url = $theme . '/' . $folder . '/js/' . basename($file);
-        } elseif ($ext == 'js') {
-            $url = $theme . '/' . $assets . '/' . $file;
+        if ($ext == 'js' && !str_starts_with($file, $js_folder)) {
+            $url = $theme . '/' . $folder . '/' . $js_folder . '/' . basename($file);
         } else {
             $url = $theme . '/' . $folder . '/' . $file;
         }
@@ -50,14 +50,14 @@ function rev($file, $domain = null) {
         // first check exact folder
         $rev_check = isset($json[$file]);
         if ($rev_check) {
-            $file_check = @file_exists(get_stylesheet_directory() . '/static/' . $json[$file]);
+            $file_check = @file_exists($dir . '/static/' . $json[$file]);
         }
 
         if ($rev_check && $file_check) {
             $url = $theme . '/' . $static . '/' . $json[$file];
         } else {
             // js gets flattened, check there as well
-            $jsfile = 'js/' . basename($file);
+            $jsfile = !str_starts_with($file, $js_folder) ? 'js/' . basename($file) : $file;
             if (array_key_exists($jsfile, (array) $json)) {
                 $file_check = @file_exists(get_stylesheet_directory() . '/static/' . $json[$jsfile]);
                 if ($file_check) {

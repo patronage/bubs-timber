@@ -16,8 +16,6 @@ rm -rf wp-content/plugins/hello.php
 # init files if they don't exist
 mkdir -p wp-content/mu-plugins
 cp -n _init/local-plugins.php wp-content/mu-plugins/local-plugins.php 2>/dev/null || :
-# cp -n _init/wp-config-sample.php wp-config.php 2>/dev/null || :
-# cp -n _init/wp-config-local-sample.php wp-config-local.php 2>/dev/null || :
 cp -n _init/gulpconfig.json gulpconfig.json 2>/dev/null || :
 cp -n _init/local.sql _data/local.sql 2>/dev/null || :
 cp -n _init/local-plugins.php wp-content/mu-plugins/local-plugins.php 2>/dev/null || :

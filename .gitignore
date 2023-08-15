@@ -35,7 +35,6 @@ wp-content/themes/timber/dist
 wp-content/plugins/akismet/
 wp-content/plugins/hello.php
 
-
 #### WordPress Core
 # comment out if you want to track wordpress in source
 /index.php
@@ -69,7 +68,7 @@ wp-content/plugins/akismet/
 # except the themes you specify
 wp-content/themes/*
 !wp-content/themes/timber/
-wp-content/themes/timber/assets/vendor/*
+wp-content/themes/timber/assets/vendor
 
 #### WPENGINE BELOW HERE
 

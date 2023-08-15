@@ -12,10 +12,11 @@ _init/
 .prettierrc
 .stylelintignore
 .stylelintrc.json
+.vscode/
 composer.json
 composer.lock
 docker-compose.yml
-gulpfile.babel.js
+gulpfile.mjs
 package.json
 README.md
 yarn.lock

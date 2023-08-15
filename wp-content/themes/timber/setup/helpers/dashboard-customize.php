@@ -46,9 +46,11 @@ function bubs_custom_dashboard_widget() {
     <ul>
         <?
             if ($headless_domain){
-                echo '<li><a href="' . $headless_domain . ' target="_blank">View Website</a></li>';
+                echo '<li><a href="' . $headless_domain . '" target="_blank">View Website</a></li>';
             }
-            echo $docs_link ? '<li><a href="' . $docs_link . '">View Docs</a></li>' : '';
+            if ($docs_link){
+              echo $docs_link ? '<li><a href="' . $docs_link . '">View Docs</a></li>' : '';
+            }
             if (function_exists('build_preview_link')) {
                 echo '<li><a href="' . build_preview_link() . '&path=/" target="_blank">Enable preview mode</a></li>';
                 echo '<li><a href="' . $headless_domain . '/api/exit-preview" target="_blank">Disable preview mode</a></li>';

@@ -1,4 +1,4 @@
-{% extends "layout.twig" %}
+{% extends 'layout.twig' %}
 
 {% block content %}
     <div class="container">
@@ -12,10 +12,13 @@
                 {% endif %}
 
                 {% for post in posts %}
-                    {% include ['tease-'~post.post_type~'.twig', 'tease.twig'] %}
+                    {% include [
+                        'tease-' ~ post.post_type ~ '.twig',
+                        'tease.twig'
+                    ] %}
                 {% endfor %}
 
-                {% include "partials/archive-pagination.twig" %}
+                {% include 'partials/archive-pagination.twig' %}
             </div>
         </div>
     </div>
