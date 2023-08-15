@@ -27,7 +27,7 @@
     }
   ],
   "require": {
-    "php": ">=7.4.0",
+    "php": ">=8.0",
     "composer/installers": "^2.2.0",
     "advanced-custom-fields/advanced-custom-fields-pro": "6.2.0",
     "upstatement/routes": "0.9.1",
@@ -58,8 +58,7 @@
     "vendor-dir": "wp-content/plugins/composer-libs",
     "allow-plugins": {
       "ffraenz/private-composer-installer": true,
-      "composer/installers": true,
-      "roots/wordpress-core-installer": true
+      "composer/installers": true
     }
   },
   "minimum-stability": "dev",
