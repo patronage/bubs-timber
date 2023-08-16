@@ -26,9 +26,6 @@ if (defined('WP_ENV') && WP_ENV == 'development') {
     }
 }
 
-// Disable Gutenberg Block Editor
-add_filter('use_block_editor_for_post', '__return_false');
-
 // Theme Options
 function bubs_theme_options($wp_customize) {
     include_once 'setup/theme-options/footer.php';
@@ -67,6 +64,7 @@ include_once 'setup/helpers/admin-env.php';
 include_once 'setup/helpers/dashboard-customize.php';
 include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/global-variables.php';
+include_once 'setup/helpers/gutenberg-disable.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
 include_once 'setup/helpers/role-super-editor.php';
