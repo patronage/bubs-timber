@@ -29,7 +29,6 @@ if (defined('WP_ENV') && WP_ENV == 'development') {
 // Disable Gutenberg Block Editor
 add_filter('use_block_editor_for_post', '__return_false');
 
-
 // Theme Options
 function bubs_theme_options($wp_customize) {
     include_once 'setup/theme-options/footer.php';
@@ -81,12 +80,5 @@ include_once 'setup/helpers/xmlrpc-disable.php';
 // REMOVAL OF THESE = POTIENTAL LOSS OF DATA
 add_theme_support('post-thumbnails');
 add_theme_support('menus');
-
-// Enable Roots Soil
-
-add_theme_support('soil-clean-up');
-add_theme_support('soil-relative-urls');
-add_theme_support('soil-disable-trackbacks');
-add_theme_support('soil-nice-search');
 
 ?>
