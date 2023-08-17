@@ -1,0 +1,129 @@
+{
+    "key": "group_5f4f3703d9b01",
+    "title": "Template: Flex",
+    "fields": [
+        {
+            "key": "field_5f4f371ac68a6",
+            "label": "Flex Content",
+            "name": "flex_content",
+            "type": "flexible_content",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layouts": {
+                "layout_5f4f45c376b6d": {
+                    "key": "layout_5f4f45c376b6d",
+                    "name": "wysiwyg_content",
+                    "label": "Rich Content (WYSIWYG)",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_615c9f4af1f6d",
+                            "label": "Section Header",
+                            "name": "section_header",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "aria-label": "",
+                            "show_in_graphql": 1,
+                            "clone": [
+                                "group_615c9d4e51d6a"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_5f4f45c376b6e",
+                            "label": "WYSIWYG Content",
+                            "name": "wysiwyg_content",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "aria-label": "",
+                            "clone": [
+                                "group_5f4f3a11aaed0"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_5f4f45c376b6f",
+                            "label": "Section Options",
+                            "name": "section_options",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "aria-label": "",
+                            "clone": [
+                                "group_5f4f44ad969e5"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                }
+            },
+            "button_label": "Add Section",
+            "min": "",
+            "max": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "template-flex.php"
+            }
+        ],
+        [
+            {
+                "param": "post_template",
+                "operator": "==",
+                "value": "template-flex.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+        "the_content"
+    ],
+    "active": true,
+    "description": "",
+    "modified": 1682533701
+}

@@ -1,0 +1,165 @@
+{
+    "key": "group_5f4f44ad969e5",
+    "title": "Shared: Flex Section Options",
+    "fields": [
+        {
+            "key": "field_615cf9a3c4ad5",
+            "label": "Basic Section Options",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "aria-label": "",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f4f44c3488c5",
+            "label": "Background Color",
+            "name": "background_color",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "33",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "default": "Default",
+                "blue": "Blue",
+                "dark": "Dark",
+                "gray": "Gray",
+                "white": "White"
+            },
+            "default_value": "default",
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        },
+        {
+            "key": "field_60481c0f5467b",
+            "label": "Hide Section",
+            "name": "hide_section",
+            "type": "true_false",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "34",
+                "class": "",
+                "id": ""
+            },
+            "aria-label": "",
+            "show_in_graphql": 1,
+            "message": "Visually Hide",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_615cf9cac4ad6",
+            "label": "Advanced Options",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "aria-label": "",
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5f4f44ec488c6",
+            "label": "Section Classes",
+            "name": "section_classes",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_615cd52d94cf6",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "aria-label": "",
+            "show_in_graphql": 1,
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5f4f44f5488c7",
+            "label": "Section Slug",
+            "name": "section_slug",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_615cd52d94cf6",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "50",
+                "class": "",
+                "id": ""
+            },
+            "aria-label": "",
+            "show_in_graphql": 1,
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "widget",
+                "operator": "==",
+                "value": "media_audio"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1682534196
+}

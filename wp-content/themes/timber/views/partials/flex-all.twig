@@ -1,0 +1,101 @@
+{% if not flex_field_name %}
+    {% set flex_field_name = "flex_content" %}
+{% endif %}
+{% set section_array = [] %}
+
+{% for content in post.get_field(flex_field_name) %}
+    {% set section_array = section_array|merge([{color: content.background_color}]) %}
+{% endfor %}
+
+{# flex_field_name set above #}
+{% for content in post.get_field(flex_field_name) %}
+    {# SET section variables #}
+    {% set flex_id = "flex-" ~ loop.index %}
+    {% if content.section_slug %}
+        {% set item_slug = function('sanitize_title', content.section_slug) %}
+    {% else %}
+        {% set item_slug = "section-" ~ loop.index %}
+    {% endif %}
+    {# Determine padding by comparing to the next section, if a match, collapse #}
+    {% set next_color = section_array[loop.index0 + 1].color %}
+    {% if next_color == "default" %}
+        {% set next_color = "bg-white" %}
+    {% else %}
+        {% set next_color = "bg-" ~ next_color %}
+    {% endif %}
+    {% if content.background_color == "default" %}
+        {% set bg_color = "bg-white" %}
+    {% else %}
+        {% set bg_color = "bg-" ~ content.background_color %}
+    {% endif %}
+    {% if content.acf_fc_layout in ['content_blocks', 'logos', 'pathway'] %}
+        {% set padding = "section-padded-extended" %}
+    {% elseif content.acf_fc_layout in ['temp'] %}
+        {% set padding = "section-padded-extended" %}
+    {% else %}
+        {% set padding = "section-padded" %}
+    {% endif %}
+    {% if bg_color == next_color %}
+        {% set padding = padding ~ " pb-0" %}
+    {% endif %}
+    {% set section_classes = padding ~ " " ~ content.section_classes ~ section_classes %}
+    {% if content.set_background_image %}
+        {% set section_classes = "w-bg-img " ~ section_classes %}
+        {% set mobile_bg = Image(content.background_image.mobile_background_image) %}
+        {% set desktop_bg = Image(content.background_image.desktop_background_image) %}
+        {% set bg_img %}
+            <picture>
+                <source media="(max-width: 575px)" srcset="{{ mobile_bg.src|resize(600) }}"/>
+                <source media="(max-width: 767px)"
+                        srcset="{{ mobile_bg.src|resize(800) }},
+                                {{ mobile_bg.src|resize(800) }} 2x"/>
+                <source media="(max-width: 991px)"
+                        srcset="{{ desktop_bg.src|resize(1000) }},
+                                {{ desktop_bg.src|resize(1600) }} 2x"/>
+                <source media="(max-width: 1239px)"
+                        srcset="{{ desktop_bg.src|resize(1300) }},
+                                {{ desktop_bg.src|resize(1600) }} 2x"/>
+                <img src="{{ desktop_bg.src|resize(1600) }}"
+                    srcset="{{ desktop_bg.src|resize(1600) }} 2x"
+                    alt="{{ desktop_bg.alt }}"
+                    class="bg-img"/>
+            </picture>
+        {% endset %}
+    {% endif %}
+
+    {# you can  control the text color a few ways:
+        1) based on the section background  color  or
+        2)  using text classes ('text-dark')
+    #}
+    {% if bg_color in ["bg-gray", "bg-white", ] %}
+        {% set text_color = "text-dark" %}
+    {% elseif bg_color in ["bg-blue", "bg-dark"] %}
+        {% set text_color = "text-shadow text-white" %}
+    {% endif %}
+    {% set section_classes = bg_color ~ " " ~ section_classes %}
+    {% if loop.last and bg_color == "bg-white" %}
+        {% set section_classes = section_classes ~ " pb-0" %}
+    {% endif %}
+    {# END section variables #}
+    {# flex modules #}
+    {# minimum markup:
+            <section class="flex-module-name-here {{ bg_color }} {{ section_classes }} {{ flex_id }}" id="{{ item_slug }}">...</section>
+    #}
+
+
+
+    {% if content.acf_fc_layout == "wysiwyg_content" %}
+        {% include "flex/flex-wysiwyg.twig" with {"post": content} %}
+    {% endif %}
+    {# END flex modules #}
+
+    {# UNSET section variables #}
+    {% set flex_id = null %}
+    {% set item_slug = null %}
+    {% set section_classes = null %}
+    {% set mobile_bg = null %}
+    {% set desktop_bg = null %}
+    {% set bg_img = null %}
+    {% set bg_color = null %}
+    {# END unset section variables #}
+{% endfor %}
