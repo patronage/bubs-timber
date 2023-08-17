@@ -1,10 +1,15 @@
+'use strict';
+
 // load gulp and gulp plugins
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
 import dartSass from 'sass';
-import path from 'path';
 import gulpSass from 'gulp-sass';
+import gulpEsbuild from 'gulp-esbuild';
+import path from 'path';
 import revAll from 'gulp-rev-all';
+import { globalExternals } from '@fal-works/esbuild-plugin-global-externals';
+import { readFile } from 'fs/promises';
 const sass = gulpSass(dartSass);
 
 const $ = plugins({
@@ -16,25 +21,27 @@ import { deleteSync } from 'del';
 import pump from 'pump';
 import beeper from 'beeper';
 
-import yargs from 'yargs';
-const argv = yargs.argv;
-
 // others
 import browserSync from 'browser-sync';
 const server = browserSync.create();
-
 //
 // Gulp config
 //
 
 // Override defaults with custom local config
 
+let localConfig;
+
 try {
-  var localConfig = require('./gulpconfig.json');
+  const data = await readFile('./gulpconfig.json');
+  localConfig = JSON.parse(data);
 } catch (err) {
-  var localConfig = {
+  localConfig = {
+    gulp: {
+      debug: false,
+    },
     bs: {
-      proxy: 'localhost:8000',
+      proxy: 'http://localhost:8000',
       logLevel: 'info',
       tunnel: '',
       open: true,
@@ -59,6 +66,16 @@ const config = {
   output: themeDir + '/dev', // default to dev
   static: themeDir + '/static',
   init: './_init',
+};
+
+// Esbuild project customizations
+const esbuildConfig = {
+  path: 'js',
+  exclude: ['!**/assets/vendor/**', '!**/assets/js/lib/**'],
+  include: [config.assets + '/{js}/calc/*'],
+  globals: {
+    jquery: '$',
+  },
 };
 
 // in production tasks, we set this to true
@@ -134,18 +151,20 @@ const scripts = (done) => {
   const assets = $.useref({
     searchPath: config.assets,
     noconcat: true,
+    import: function (content, target, options, alternateSearchPath) {
+      console.log(content);
+      console.log(target);
+      console.log(options);
+      console.log(alternateSearchPath);
+      return content;
+    },
   });
-
-  const uglifyOptions = {
-    mangle: false,
-    compress: false,
-  };
 
   const renameOptions = (path) => {
     path.dirname = 'js';
   };
 
-  const f = $.filter(['**', '!**/assets/vendor/**', '!**/assets/js/lib/**'], {
+  const filterExclusions = $.filter(['**', ...esbuildConfig.exclude], {
     restore: true,
   });
 
@@ -153,19 +172,33 @@ const scripts = (done) => {
     [
       gulp.src(config.theme + '/views/layout.twig'),
       assets,
-      $.debug({ title: 'debug: ', showFiles: argv?.debug }), // to debug files getting proccessed
       $.filter(['**', '!**/layout.twig'], { restore: true }),
-      f,
-      $.jshint(),
-      $.jshint.reporter('jshint-stylish'),
-      $.jshint.reporter('fail'),
-      $.babel({
-        presets: ['@babel/preset-env'],
-      }), //only run babel on our files then restore vendor/lib js
-      f.restore,
+      $.if(esbuildConfig.include.length > 0, gulp.src(esbuildConfig.include)),
+      $.debug({
+        title: 'scripts debug pre filter exclusions: ',
+        showFiles: localConfig.gulp.debug,
+      }),
+      filterExclusions,
+      $.debug({ title: 'scripts debug: ', showFiles: localConfig.gulp.debug }), // to debug files getting proccessed
+      gulpEsbuild({
+        outdir: '',
+        sourcemap: isProduction ? false : 'inline',
+        bundle: true,
+        loader: {
+          '.tsx': 'tsx',
+          '.jsx': 'jsx',
+          '.js': 'jsx',
+        },
+        target: 'es2015',
+        plugins: [globalExternals(esbuildConfig.globals)],
+      }),
+      filterExclusions.restore,
       $.rename(renameOptions),
-      // $.uglify(uglifyOptions),
-      gulp.dest(config.output),
+      $.debug({
+        title: 'scripts debug after restore and rename: ',
+        showFiles: localConfig.gulp.debug,
+      }),
+      gulp.dest(config.output, {}),
     ],
     (err) => {
       if (err) {
@@ -215,7 +248,6 @@ const rev = (done) => {
     '.eot',
     '.otf',
   ];
-
   pump(
     [
       gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
@@ -250,7 +282,7 @@ const serve = (done) => {
     logLevel: localConfig.bs.logLevel || 'info',
   });
 
-  gulp.watch(config.theme + '/**/*.{twig,php}', reload);
+  gulp.watch(config.theme + '/**/*.{twig,php}', scripts, copy, reload);
   gulp.watch(config.assets + '/scss/**/*.scss', styles);
   gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, copy, reload));
   gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
@@ -272,7 +304,6 @@ export const release = (done) => {
 };
 
 const compile = gulp.series(clean, styles, scripts, copy, cleanScripts, rev);
-
-export const defaultTasks = gulp.series(clean, styles, copy, serve);
+export const defaultTasks = gulp.series(clean, styles, scripts, copy, serve);
 
 export default defaultTasks;
