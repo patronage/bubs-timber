@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "autotrack": "2.4.1",
-    "bootstrap": "3.4.1",
+    "bootstrap": "5.3.1",
     "eslint-plugin-react": "7.32.2",
     "fitvids.js": "davatron5000/fitvids.js#^1.2.0",
     "jquery": "3.6.3",
