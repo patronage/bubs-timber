@@ -282,7 +282,7 @@ const serve = (done) => {
     logLevel: localConfig.bs.logLevel || 'info',
   });
 
-  gulp.watch(config.theme + '/**/*.{twig,php}', scripts, copy, reload);
+  gulp.watch(config.theme + '/**/*.{twig,php}', gulp.series(reload));
   gulp.watch(config.assets + '/scss/**/*.scss', styles);
   gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, copy, reload));
   gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
