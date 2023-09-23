@@ -1,6 +1,6 @@
 ## Developer Setup
 
-This repo is configured for VS Code, notably including extensions and settings that run Prettier on `.scss` and `.php` files. We also have a number of [tasks](https://code.visualstudio.com/docs/editor/tasks) that we refer to by name. If you are using a different editor, then you can always look at the .vscoded/tasks.json to map those to the underlying shell commands.
+This repo is configured for VS Code/Cursor, notably including extensions and settings that run Prettier on `.scss` and `.php` files. We also have a number of [tasks](https://code.visualstudio.com/docs/editor/tasks) that we refer to by name. If you are using a different editor, then you can always look at the .vscoded/tasks.json to map those to the underlying shell commands.
 
 ## Getting up and running
 
