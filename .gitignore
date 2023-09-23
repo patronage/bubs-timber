@@ -8,6 +8,7 @@ composer.lock
 
 # development-environment
 tmp/
+docker-compose.local.yml
 wp-content/themes/timber/dev/
 wp-config-local.php
 /wp-content/mu-plugins/local-plugins.php
