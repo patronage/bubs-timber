@@ -114,6 +114,12 @@ else
   fi
 fi
 
+if pgrep gulp >/dev/null 2>&1
+then
+  echo "Rebuilding gulp dev assets"
+  npx gulp restart
+fi
+
 if [ -f ".env" ]; then
   unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 fi
