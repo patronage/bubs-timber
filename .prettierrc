@@ -5,6 +5,11 @@
   "printWidth": 90,
   "phpVersion": "7.4",
   "braceStyle": "1tbs",
+  "twigPrintWidth": 150,
+  "plugins": [
+    "prettier-plugin-tailwindcss",
+    "./node_modules/@supersoniks/prettier-plugin-twig-melody"
+  ],
   "overrides": [
     {
       "files": "*.php",

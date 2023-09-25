@@ -1,15 +1,22 @@
 'use strict';
 
 // load gulp and gulp plugins
+import tailwindcss from 'tailwindcss';
+import autoprefixer from 'autoprefixer';
 import gulp from 'gulp';
 import plugins from 'gulp-load-plugins';
+import gulpFilter from 'gulp-filter';
 import dartSass from 'sass';
 import gulpSass from 'gulp-sass';
 import gulpEsbuild from 'gulp-esbuild';
+import postcss from 'gulp-postcss';
 import path from 'path';
 import revAll from 'gulp-rev-all';
 import { globalExternals } from '@fal-works/esbuild-plugin-global-externals';
 import { readFile } from 'fs/promises';
+import { config as options } from './config.mjs';
+import cssnano from 'cssnano';
+
 const sass = gulpSass(dartSass);
 
 const $ = plugins({
@@ -38,7 +45,7 @@ try {
 } catch (err) {
   localConfig = {
     gulp: {
-      debug: false,
+      debug: true,
     },
     bs: {
       proxy: 'http://localhost:8000',
@@ -72,7 +79,8 @@ const config = {
 const esbuildConfig = {
   path: 'js',
   exclude: ['!**/assets/vendor/**', '!**/assets/js/lib/**'],
-  include: [config.assets + '/{js}/calc/*'],
+  include: [],
+  metafile: true, // generate file
   globals: {
     jquery: '$',
   },
@@ -120,6 +128,22 @@ const handleErrors = (err) => {
 // Gulp Tasks
 //
 
+function tailwindStyles() {
+  return gulp
+    .src(`${options.paths.assets.css}/**/*.scss`, {
+      sourcemaps: !isProduction,
+    })
+    .pipe(sass().on('error', sass.logError))
+    .pipe(
+      postcss([
+        tailwindcss(options.tailwindjs),
+        autoprefixer(),
+        ...(isProduction ? [cssnano()] : []),
+      ])
+    )
+    .pipe(gulp.dest(isProduction ? options.paths.dist.css : options.paths.dev.css));
+}
+
 const styles = (done) => {
   const sassOptions = {
     outputStyle: 'expanded',
@@ -164,7 +188,7 @@ const scripts = (done) => {
     path.dirname = 'js';
   };
 
-  const filterExclusions = $.filter(['**', ...esbuildConfig.exclude], {
+  const filterExclusions = gulpFilter(['**', ...esbuildConfig.exclude], {
     restore: true,
   });
 
@@ -172,8 +196,8 @@ const scripts = (done) => {
     [
       gulp.src(config.theme + '/views/layout.twig'),
       assets,
-      $.filter(['**', '!**/layout.twig'], { restore: true }),
-      $.if(esbuildConfig.include.length > 0, gulp.src(esbuildConfig.include)),
+      gulpFilter(['**', '!**/layout.twig'], { restore: true, allowEmpty: true }),
+      // $.if(esbuildConfig.include.length > 0, gulp.src(esbuildConfig.include)),
       $.debug({
         title: 'scripts debug pre filter exclusions: ',
         showFiles: localConfig.gulp.debug,
@@ -184,6 +208,8 @@ const scripts = (done) => {
         outdir: '',
         sourcemap: isProduction ? false : 'inline',
         bundle: true,
+        metafile: esbuildConfig?.metafile || true, // generate file
+        metafileName: 'esbuild-metafile.json', // set metafile name
         loader: {
           '.tsx': 'tsx',
           '.jsx': 'jsx',
@@ -282,8 +308,9 @@ const serve = (done) => {
     logLevel: localConfig.bs.logLevel || 'info',
   });
 
-  gulp.watch(config.theme + '/**/*.{twig,php}', gulp.series(reload));
-  gulp.watch(config.assets + '/scss/**/*.scss', styles);
+  gulp.watch(config.theme + '/**/*.twig', gulp.series(tailwindStyles, reload));
+  gulp.watch(config.theme + '/**/*.php', gulp.series(reload));
+  gulp.watch(config.assets + '/css/**/*.scss', gulp.series(tailwindStyles, reload));
   gulp.watch(config.assets + '/js/**/*.js', gulp.series(scripts, copy, reload));
   gulp.watch(config.assets + '/{img,fonts}/**', gulp.series(copy, reload));
 
@@ -303,7 +330,7 @@ export const release = (done) => {
   done();
 };
 
-const compile = gulp.series(clean, styles, scripts, copy, cleanScripts, rev);
-export const defaultTasks = gulp.series(clean, styles, scripts, copy, serve);
+const compile = gulp.series(clean, tailwindStyles, scripts, copy, cleanScripts, rev);
+export const defaultTasks = gulp.series(clean, tailwindStyles, scripts, copy, serve);
 
 export default defaultTasks;
