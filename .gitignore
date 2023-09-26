@@ -57,13 +57,15 @@ wp-content/plugins/hello.php
 wp-admin/
 wp-includes/
 
-# ignore everything in the "plugins" directory,
-# except the plugins you specify
+# ignore everything in the "plugins" directory, except the plugins you specify
+# this is for a site that uses composer to manage plugins and not track them in source
 # wp-content/plugins/*
-#!wp-content/plugins/stop-emails/# ignore everything in the "mu-plugins" directory,
+#!wp-content/plugins/stop-emails/
+
+# ignore everything in the "mu-plugins" directory,
 # except the mu-plugins you specify
-wp-content/mu-plugins/*
-!wp-content/mu-plugins/local-plugins.php
+!wp-content/mu-plugins/*
+wp-content/mu-plugins/local-plugins.php
 
 # ignore specific theme assets
 wp-content/themes/timber/assets/vendor
