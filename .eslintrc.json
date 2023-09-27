@@ -5,7 +5,12 @@
     "es6": true,
     "node": true
   },
-  "extends": ["next", "eslint:recommended", "prettier"],
+  "plugins": ["import"],
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": 2017
+  },
+  "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
   "settings": {
     "react": {
       "version": "detect"

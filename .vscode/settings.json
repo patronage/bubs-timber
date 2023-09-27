@@ -3,24 +3,15 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
   // As of version 14, stylelint needs to be told to validate SCSS
-  "stylelint.validate": ["css", "scss"],
+  // "stylelint.validate": ["css", "scss"],
   // Turn on auto-fixing for project defined linters.
   "editor.codeActionsOnSave": {
     // For ESLint
-    // "source.fixAll.eslint": true,
+    "source.fixAll.eslint": true
     // For Stylelint
-    "source.fixAll.stylelint": true
+    // "source.fixAll.stylelint": true
   },
   "files.associations": {
     "*.twig": "twig"
-  },
-  "[twig]": {
-    "editor.defaultFormatter": "mblode.twig-language-2"
-  },
-  "twig-language-2.bracePadding": true,
-  "twig-language-2.indentStyle": "space",
-  "twig-language-2.preserve": 1,
-  "twig-language-2.comments": true,
-  "twig-language-2.commentLine": true,
-  "twig-language-2.wrap": 120
+  }
 }
