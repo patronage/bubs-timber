@@ -41,7 +41,7 @@ try {
       debug: false,
     },
     bs: {
-      proxy: "http://localhost:8000",
+      proxy: "http://wordpress.bubstimber.orb.local",
       logLevel: "info",
       tunnel: "",
       open: true,
