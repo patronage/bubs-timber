@@ -1,0 +1,9 @@
+.env
+_*/
+composer/
+gulpconfig.json
+node_modules/
+wp-content/debug.log
+wp-content/plugins/timber-library/vendor/
+wp-content/themes/timber/assets/vendor
+wp-content/uploads/
