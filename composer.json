@@ -38,10 +38,10 @@
     "wpackagist-plugin/simple-history": "4.6.0",
     "wpackagist-plugin/so-clean-up-wp-seo": "4.0.1",
     "wpackagist-plugin/term-management-tools": "2.0.1",
-    "wpackagist-plugin/timber-library": "1.22.1",
     "wpackagist-plugin/transients-manager": "2.0.3",
     "wpackagist-plugin/user-switching": "1.7.0",
-    "wpackagist-plugin/wordpress-seo": "21.2"
+    "wpackagist-plugin/wordpress-seo": "21.2",
+    "timber/timber": "2.0.0-rc.1"
   },
   "repositories": [
     {
