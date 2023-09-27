@@ -9,9 +9,9 @@ composer.lock
 # development-environment
 tmp/
 docker-compose.local.yml
+!_init/docker-compose.local.yml
 wp-content/themes/timber/dev/
 wp-config-local.php
-/wp-content/mu-plugins/local-plugins.php
 _data/
 /gulpconfig.json
 info.php
@@ -56,10 +56,24 @@ wp-content/plugins/hello.php
 wp-admin/
 wp-includes/
 
-# ignore everything in the "plugins" directory,
-# except the plugins you specify
+# ignore everything in the "plugins" directory, except the plugins you specify
+# this is for a site that uses composer to manage plugins and not track them in source
 # wp-content/plugins/*
 #!wp-content/plugins/stop-emails/
+
+# ignore everything in the "mu-plugins" directory,
+# except the mu-plugins you specify
+# !wp-content/mu-plugins/*
+wp-content/mu-plugins/local-plugins.php
+
+# ignore specific theme assets
+wp-content/themes/timber/assets/vendor
+wp-content/themes/timber/static
+wp-content/themes/timber/dist
+
+# ignore specific files in the root directory
+.gitattributes
+.gitignore
 
 # ignore certain plugins
 wp-content/plugins/hello.php
