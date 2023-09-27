@@ -34,10 +34,10 @@
             },
             "choices": {
                 "default": "Default",
-                "blue": "Blue",
-                "dark": "Dark",
-                "gray": "Gray",
-                "white": "White"
+                "white": "White",
+                "light": "Light",
+                "medium": "Medium",
+                "dark": "Dark"
             },
             "default_value": "default",
             "allow_null": 0,

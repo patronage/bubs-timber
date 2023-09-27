@@ -1,37 +1,51 @@
-{# Optional parameter custom hero_img #}
-{% if not hero_img %}
-    {% if post.thumbnail %}
-        {% set hero_img = post.thumbnail %}
-    {% else %}
-        {# Starter default image for bubs only. Feel free to adjust or remove this else clause #}
-        {% set hero_img =
-            TimberImage('https://placeimg.com/1600/650/nature/grayscale')
-        %}
-    {% endif %}
+<div class="container-default">
+  <h1>Hero</h1>
+  {% if post.blockquote %}
+    <h2>{{ post.blockquote }}</h2>
+  {% endif %}
+  {% if post.quote_attribution %}
+    <p class="attribute">&mdash; {{ post.quote_attribution }}</p>
+  {% endif %}
+</div>
+
+{% if hero_variant == 'text-only' %}
+  {% set hero_classes = '' %}
+{% else %}
+  {% set hero_classes = 'grid lg:grid-cols-3 lg:gap-4' %}
 {% endif %}
-
-{% if not hero_title %}
-    {% if post.title %}
-        {% set hero_title = post.title %}
-    {% else %}
-        {# Starter default title for bubs only. Feel free to adjust or remove this else clause #}
-        {% set hero_title = 'Test Hero Title' %}
+<div class="container-default {{ hero_classes }}">
+  <div class="py-12 lg:col-span-2">
+    <h1 class="text-6xl lg:text-8xl font-semibold font-sans pb-5">{{ post.hero_heading }}</h1>
+    {% if post.hero_subheading %}
+      <div class="text-xl lg:text-3xl font-sans leading-relaxed">{{ post.hero_subheading }}</div>
     {% endif %}
-{% endif %}
-
-{% if hero_img %}
-    <div class="hero-container">
-        <div class="container">
-            <div class="row">
-                <div class="col">
-                    <div class="hero">
-                        <img src="{{ hero_img.src|resize(1500) }}"
-                            alt="{{ hero_img.caption }}" />
-
-                        <div class="hero-title"><h2>{{ hero_title }}</h2></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  </div>
+  {% if post.hero_buttons.hero_btns %}
+    <div class="col-span-1">
+      <a href="{{ btn.hero_btn.link }}"
+        target="{{ btn.hero_btn.target }}"
+        class="text-orange-500 text-center font-semibold text-base uppercase tracking-wide">
+        {{ btn.hero_btn.title }}
+      </a>
+      <ul class="hero-buttons list-none">
+        {% for btn in post.hero_buttons.hero_btns %}
+          <li>
+            <a href="{{ btn.hero_btn.link }}"
+              target="{{ btn.hero_btn.target }}"
+              class="text-orange-500 text-center font-semibold text-base uppercase tracking-wide">
+              {{ btn.hero_btn.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
-{% endif %}
+  {% endif %}
+  {% if post.hero_variant == 'text_image' %}
+    <div class="col-span-1 text-center center flex order-first lg:order-last">
+      <img src="{{ post.hero_image.url }}" class="mx-auto lg:w-2/3" alt="{{ post.hero_image.alt }}" />
+    </div>
+  {% endif %}
+</div>
+
+{# envokes text class of teal so it can be used in wp editor #}
+<div class="text-teal-green-600 hidden"></div>

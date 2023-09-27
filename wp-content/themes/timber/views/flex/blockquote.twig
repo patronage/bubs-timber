@@ -1,0 +1,15 @@
+<div class="container-default">
+  {% include 'components/section-heading.twig' with {
+    section_header: post.section_header,
+    section_heading: post.section_heading,
+    section_intro: post.section_intro,
+    section_btn: post.section_btn,
+    text_alignment: post.text_alignment
+  } %}
+  {% if post.blockquote %}
+    <h2>{{ post.blockquote }}</h2>
+  {% endif %}
+  {% if post.quote_attribution %}
+    <p class="attribute">&mdash; {{ post.quote_attribution }}</p>
+  {% endif %}
+</div>

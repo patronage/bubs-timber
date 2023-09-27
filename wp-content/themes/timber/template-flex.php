@@ -18,8 +18,8 @@ $config = [
   'default_background_color' => 'white',
   'templates' => [
     'blockquote' => 'flex/blockquote.twig',
+    'hero' => 'flex/hero.twig',
     'wysiwyg_content' => 'flex/wysiwyg-content.twig',
-    'full_width_image' => 'flex/full-width-image.twig',
   ],
   'script_loader' => [
     'blockquote' => ['swiper'],
