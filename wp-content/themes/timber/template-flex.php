@@ -2,7 +2,7 @@
 
 /*
 Template Name: Flex
-Template Post Type: page, post
+Template Post Type: page, post, component-library
 */
 
 $context = Timber::get_context();

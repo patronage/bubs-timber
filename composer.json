@@ -26,6 +26,7 @@
     "wpackagist-plugin/debug-bar": "1.1.4",
     "wpackagist-plugin/debug-bar-timber": "1.1.6",
     "wpackagist-plugin/disable-emojis": "1.7.6",
+    "wpackagist-plugin/disable-comments": "2.4.5",
     "wpackagist-plugin/duplicate-post": "4.5",
     "wpackagist-plugin/enable-media-replace": "4.1.4",
     "wpackagist-plugin/filter-page-by-template": "3.1",

@@ -48,7 +48,7 @@ function bubs_theme_options($wp_customize) {
 add_action('customize_register', 'bubs_theme_options');
 
 // Post Types
-// include_once 'setup/post-types/heroes.php';
+include_once 'setup/post-types/component-library.php';
 
 // Taxonomies
 // include_once 'setup/taxonomies/featured.php';
