@@ -1,133 +1,114 @@
 <section class="section-padded bg-gray footer-signup">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 text-center">
-                <h3>Call to action</h3>
-                <p>Lorem ipsum</p>
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label class="sr-only" for="footerEmail">
-                            Email address
-                        </label>
-                        <input type="email"
-                            class="form-control"
-                            id="footerEmail"
-                            placeholder="Enter email" />
-                    </div>
-                    <div class="form-group">
-                        <label class="sr-only" for="footerZip">Zip Code</label>
-                        <input type="text"
-                            class="form-control"
-                            id="footerZip"
-                            placeholder="Zip" />
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        Join Us
-                    </button>
-                </form>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 text-center">
+        <h3>Call to action</h3>
+        <p>Lorem ipsum</p>
+        <form class="form-inline">
+          <div class="form-group">
+            <label class="sr-only" for="footerEmail">Email address</label>
+            <input type="email" class="form-control" id="footerEmail" placeholder="Enter email" />
+          </div>
+          <div class="form-group">
+            <label class="sr-only" for="footerZip">Zip Code</label>
+            <input type="text" class="form-control" id="footerZip" placeholder="Zip" />
+          </div>
+          <button type="submit" class="btn btn-primary">Join Us</button>
+        </form>
+      </div>
     </div>
+  </div>
 </section>
 
 <footer class="component-main-footer section-padded bg-black">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <p>&copy; {{ 'now'|date('Y') }} {{ gv.footer_copyright }}</p>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <p>
+          {{
+            gv.footer_copyright|replace({
+              '<%= year %>': 'now'|date('Y')
+            })
+          }}
+        </p>
+        <nav class="nav secondary-footer-nav">
+          <ul>
+            {% for item in footer_menu.get_items %}
+              <li><a href="{{ item.get_link }}" class="{{ item.classes|join(' ') }}" role="button" aria-expanded="false">{{ item.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </nav>
+      </div>
 
-                <nav class="nav secondary-footer-nav">
-                    <ul>
-                        {% for item in footer_menu.get_items %}
-                            <li>
-                                <a href="{{ item.get_link }}"
-                                    class="{{ item.classes|join(' ') }}"
-                                    role="button"
-                                    aria-expanded="false">
-                                    {{ item.title }}
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </nav>
-            </div>
+      <div class="col text-right">
+        <ul class="list-inline social-links">
+          {% if gv.facebook_link %}
+            <li>
+              <a href="{{ gv.facebook_link }}"
+                target="_blank"
+                ga-on="click"
+                ga-event-category="Social Follow"
+                ga-event-action="Facebook Follow"
+                ga-event-label="Footer">
+                <i class="bi bi-facebook"></i>
+              </a>
+            </li>
+          {% endif %}
+          {% if gv.twitter_link %}
+            <li>
+              <a href="{{ gv.twitter_link }}"
+                target="_blank"
+                ga-on="click"
+                ga-event-category="Social Follow"
+                ga-event-action="Twitter Follow"
+                ga-event-label="Footer">
+                <i class="bi bi-twitter"></i>
+              </a>
+            </li>
+          {% endif %}
+          {% if gv.youtube_link %}
+            <li>
+              <a href="{{ gv.youtube_link }}"
+                target="_blank"
+                ga-on="click"
+                ga-event-category="Social Follow"
+                ga-event-action="Youtube Follow"
+                ga-event-label="Footer">
+                <i class="bi bi-youtube"></i>
+              </a>
+            </li>
+          {% endif %}
+          {% if gv.instagram_link %}
+            <li>
+              <a href="{{ gv.instagram_link }}"
+                target="_blank"
+                ga-on="click"
+                ga-event-category="Social Follow"
+                ga-event-action="Instagram Follow"
+                ga-event-label="Footer">
+                <i class="bi bi-instagram"></i>
+              </a>
+            </li>
+          {% endif %}
+          {% if gv.linkedin_link %}
+            <li>
+              <a href="{{ gv.linkedin_link }}"
+                target="_blank"
+                ga-on="click"
+                ga-event-category="Social Follow"
+                ga-event-action="LinkedIn Follow"
+                ga-event-label="Footer">
+                <i class="bi bi-linkedin"></i>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
 
-            <div class="col text-right">
-                <ul class="list-inline social-links">
-                    {% if gv.facebook_link %}
-                        <li>
-                            <a href="{{ gv.facebook_link }}"
-                                target="_blank"
-                                ga-on="click"
-                                ga-event-category="Social Follow"
-                                ga-event-action="Facebook Follow"
-                                ga-event-label="Footer">
-                                <i class="bi bi-facebook"></i>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if gv.twitter_link %}
-                        <li>
-                            <a href="{{ gv.twitter_link }}"
-                                target="_blank"
-                                ga-on="click"
-                                ga-event-category="Social Follow"
-                                ga-event-action="Twitter Follow"
-                                ga-event-label="Footer">
-                                <i class="bi bi-twitter"></i>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if gv.youtube_link %}
-                        <li>
-                            <a href="{{ gv.youtube_link }}"
-                                target="_blank"
-                                ga-on="click"
-                                ga-event-category="Social Follow"
-                                ga-event-action="Youtube Follow"
-                                ga-event-label="Footer">
-                                <i class="bi bi-youtube"></i>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if gv.instagram_link %}
-                        <li>
-                            <a href="{{ gv.instagram_link }}"
-                                target="_blank"
-                                ga-on="click"
-                                ga-event-category="Social Follow"
-                                ga-event-action="Instagram Follow"
-                                ga-event-label="Footer">
-                                <i class="bi bi-instagram"></i>
-                            </a>
-                        </li>
-                    {% endif %}
-                    {% if gv.linkedin_link %}
-                        <li>
-                            <a href="{{ gv.linkedin_link }}"
-                                target="_blank"
-                                ga-on="click"
-                                ga-event-category="Social Follow"
-                                ga-event-action="LinkedIn Follow"
-                                ga-event-label="Footer">
-                                <i class="bi bi-linkedin"></i>
-                            </a>
-                        </li>
-                    {% endif %}
-                </ul>
-
-                <form class="form-inline form-search" action="/" method="get">
-                    <div class="form-group">
-                        <input type="text"
-                            name="s"
-                            placeholder="Search"
-                            class="form-control" />
-                    </div>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
+        <form class="form-inline form-search" action="/" method="get">
+          <div class="form-group"><input type="text" name="s" placeholder="Search" class="form-control" /></div>
+          <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </form>
+      </div>
     </div>
+  </div>
 </footer>
