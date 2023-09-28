@@ -1,0 +1,57 @@
+{% set social_networks = {
+    facebook: {
+        display_name: 'Follow us on Facebook',
+        icon: 'icon/facebook'
+    },
+    instagram: {
+        display_name: 'Follow us on Instagram',
+        icon: 'icon/instagram'
+    },
+    linkedin: {
+        display_name: 'Follow us on LinkedIn',
+        icon: 'icon/linkedin'
+    },
+    twitter: {
+        display_name: 'Follow us on Twitter',
+        icon: 'icon/twitter'
+    },
+    x: {
+        display_name: 'Follow us on X',
+        icon: 'icon/twitter-x'
+    },
+    youtube: {
+        display_name: 'Follow us on YouTube',
+        icon: 'icon/youtube'
+    }
+} %}
+
+<ul class="{{ ul_classes }}">
+    {% for network in gv.social.networks %}
+        {% if network.network == 'other' %}
+            {# todo: handle uploaded images for custom networks #}
+            <!-- Have an other: {{ network.network }} -->
+        {% else %}
+            {% set network_data = social_networks[network.network] %}
+            <li class={{ li_classes }}>
+                {# aria: https://savvas.me/accessibility/problem-with-social-icons #}
+                <a href="{{ network.link }}"
+                    class="{{ a_classes }}"
+                    target="_blank"
+                    aria-label="{{ network_data.display_name }}">
+                    <span aria-hidden="true">
+                        {{
+                            load_svg(
+                                network_data.icon,
+                                {
+                                    class: svg_classes,
+                                    width: '24',
+                                    height: '24'
+                                }
+                            )
+                        }}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endfor %}
+</ul>

@@ -1,3 +1,11 @@
+# the deploy_gitignore is for stuff that is in your regular gitignore that
+# you dont want to remove in deploy_exclude but you also don't want deployed to WPEngine
+
+
+
+
+
+
 .env
 _*/
 composer/
