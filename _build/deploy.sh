@@ -64,7 +64,7 @@ else
   done
 
   echo "Updating .gitignore before removing files..."
-  mv _build/.deploy_gitignore .gitignore
+  mv _build/.deploy.gitignore .gitignore
   git add .gitignore -f
 
   echo "Removing files we don't want on the server"
