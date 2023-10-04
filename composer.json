@@ -35,13 +35,14 @@
     "wpackagist-plugin/post-type-switcher": "3.2.1",
     "wpackagist-plugin/query-monitor": "3.13.1",
     "wpackagist-plugin/redirection": "5.3.10",
+    "wpackagist-plugin/regenerate-thumbnails": "3.1.6",
     "wpackagist-plugin/safe-svg": "2.2.0",
     "wpackagist-plugin/simple-history": "4.6.0",
     "wpackagist-plugin/so-clean-up-wp-seo": "4.0.1",
     "wpackagist-plugin/term-management-tools": "2.0.1",
     "wpackagist-plugin/transients-manager": "2.0.3",
     "wpackagist-plugin/user-switching": "1.7.0",
-    "wpackagist-plugin/wordpress-seo": "21.2",
+    "wpackagist-plugin/wordpress-seo": "21.3",
     "timber/timber": "2.0.0-rc.1"
   },
   "repositories": [
