@@ -8,7 +8,7 @@ composer.lock
 
 # development-environment
 tmp/
-/prompts
+/prompts/
 docker-compose.local.yml
 !_init/docker-compose.local.yml
 wp-content/themes/timber/dev/
