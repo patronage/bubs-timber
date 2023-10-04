@@ -12,7 +12,7 @@ const config = {
 
 // tailwind plugins
 const plugins = {
-  typography: true,
+  typography: false,
   forms: true,
   containerQueries: true,
   twElements: true,

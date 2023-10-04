@@ -12,8 +12,10 @@
     "acf": "chmod -R 777 wp-content/themes/timber/acf-json",
     "postmerge": "bash _build/hook-post-merge.sh",
     "postinstall": "rm -rf wp-content/themes/timber/assets/vendor && node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules'), 'wp-content/themes/timber/assets/vendor', 'junction') } catch (e) { }\"",
-    "eslint": "npx eslint '**/*.{js,jsx,ts,tsx}'",
-    "eslint:fix": "npx eslint '**/*.{js,jsx,ts,tsx}' --fix"
+    "eslint": "npx eslint 'wp-content/themes/timber/assets/*.{js,jsx,ts,tsx}'",
+    "eslint:fix": "npx eslint 'wp-content/themes/timber/assets/*.{js,jsx,ts,tsx}' --fix",
+    "stylelint": "npx stylelint 'wp-content/themes/timber/assets/css/**/*.scss'",
+    "stylelint:fix": "npx stylelint 'wp-content/themes/timber/assets/css/**/*.scss' --fix"
   },
   "dependencies": {
     "instant.page": "5.2.0",
@@ -64,6 +66,12 @@
     "prettier-plugin-tailwindcss": "^0.4.1",
     "pump": "^3.0.0",
     "sass": "1.66.1",
+    "stylelint": "14.16.1",
+    "stylelint-config-idiomatic-order": "9.0.0",
+    "stylelint-config-prettier": "9.0.4",
+    "stylelint-config-standard-scss": "6.1.0",
+    "stylelint-prettier": "2.0.0",
+    "stylelint-scss": "4.3.0",
     "tailwindcss": "^3.3.3",
     "yargs": "17.7.2"
   }
