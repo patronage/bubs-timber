@@ -16,6 +16,7 @@ _init/
 composer.json
 composer.lock
 docker-compose.yml
+docker-compose.local.yml
 gulpfile.mjs
 package.json
 README.md
