@@ -1,5 +1,6 @@
 import { config as options } from './config.mjs';
 const colors = require('tailwindcss/colors');
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 const allPlugins = {
   typography: require('@tailwindcss/typography'),
@@ -21,61 +22,59 @@ module.exports = {
   // todo: should be variable
   content: [
     `${options.paths.root}/views/**/*.twig`,
+    `${options.paths.root}/*.php`,
     './node_modules/tw-elements/dist/js/**/*.js',
   ],
   darkMode: 'class',
   theme: {
+    // https://uicolors.app/create
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      orange: {
-        50: '#fff3ed',
-        100: '#ffe5d5',
-        200: '#ffc6a9',
-        300: '#ff9e72',
-        400: '#fd5d27', // figma
-        500: '#fc4513',
-        600: '#ed2a09',
-        700: '#c41b0a',
-        800: '#9c1710',
-        900: '#7d1711',
-        950: '#440806',
-      },
-      'wild-sand': {
-        50: '#f6f6f6',
-        100: '#efefef',
-        200: '#dcdcdc',
-        300: '#bdbdbd',
-        400: '#989898',
-        500: '#7c7c7c',
-        600: '#656565',
-        700: '#525252',
-        800: '#464646',
-        900: '#3d3d3d',
-        950: '#292929',
-      },
-      'teal-green': {
-        50: '#effefb',
-        100: '#c7fff4',
-        200: '#90ffe8',
-        300: '#51f7dc',
-        400: '#1de4c9',
-        500: '#04c8b0',
-        600: '#00b09f', // figma
-        700: '#058075',
-        800: '#0a655e',
-        900: '#0d544e',
-        950: '#003332',
+      'science-blue': {
+        50: '#ecf9ff',
+        100: '#d4f0ff',
+        200: '#b2e7ff',
+        300: '#7ed9ff',
+        400: '#41c2ff',
+        500: '#15a0ff',
+        600: '#007eff',
+        700: '#0066fe',
+        800: '#015adf', // from figma
+        900: '#0849a0',
+        950: '#0b2c60',
       },
       black: colors.black,
       white: colors.white,
+      neutral: colors.neutral,
       gray: colors.gray,
     },
     extend: {
+      aspectRatio: {
+        social: '1200 / 628',
+      },
+      colors: {
+        primary: 'rgba(var(--color-primary), <alpha-value>)',
+        secondary: 'rgba(var(--color-secondary), <alpha-value>)',
+        accent: 'rgba(var(--color-accent), <alpha-value>)',
+        light: 'rgba(var(--color-light), <alpha-value>)',
+        medium: 'rgba(var(--color-medium), <alpha-value>)',
+        dark: 'rgba(var(--color-dark), <alpha-value>)',
+      },
       fontFamily: {
-        sans: ['proxima-nova', 'sans-serif'],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans], // see if aileron is ok instead of neue haas unica
+        serif: [...defaultTheme.fontFamily.serif],
+        mono: [...defaultTheme.fontFamily.mono],
+        body: ['Inter', ...defaultTheme.fontFamily.sans],
+        heading: ['Archivo Black', ...defaultTheme.fontFamily.sans],
       },
     },
   },
+  variants: {
+    extend: {
+      filter: ['hover'],
+    },
+  },
+  safelist: ['animate-[fade-in_300ms_ease-in]'],
   plugins: plugins,
 };

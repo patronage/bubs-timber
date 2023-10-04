@@ -26,13 +26,14 @@ $config = [
   ],
   // todo: allow certain individual flex modules to override padding
   // ideally each would have a simple function that returns true or false
-  // 'custom_padding' => [
-  //     'blockquote' => blockquotePadding(),
-  //     'media' => mediaPadding(),
-  // ],
+  'custom_padding' => [
+    'hero' => false,
+    // 'blockquote' => blockquotePadding(),
+    // 'media' => mediaPadding(),
+  ],
   'css' => [
-    'padding_top' => 'pt-10',
-    'padding_bottom' => 'pb-10',
+    'padding_top' => 'section-padded-top',
+    'padding_bottom' => 'section-padded-bottom',
     'padding_top_none' => 'pt-0',
     'padding_bottom_none' => 'pb-0',
   ],

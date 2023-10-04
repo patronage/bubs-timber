@@ -14,7 +14,7 @@ register_nav_menus([
 function timber_menus($data) {
   $data['header_menu'] = Timber::get_menu('header');
   $data['footer_menu'] = Timber::get_menu('footer');
-  $data['footer_menu_secondary'] = Timber::get_menu('footer_menu_secondary');
+  $data['footer_menu_secondary'] = Timber::get_menu('footer_secondary');
   return $data;
 }
 

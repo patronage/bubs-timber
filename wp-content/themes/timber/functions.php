@@ -64,6 +64,7 @@ include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/flex.php';
 include_once 'setup/helpers/global-variables.php';
 include_once 'setup/helpers/gutenberg-disable.php';
+include_once 'setup/helpers/images.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
 include_once 'setup/helpers/role-super-editor.php';

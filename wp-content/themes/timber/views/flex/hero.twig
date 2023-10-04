@@ -1,51 +1,50 @@
-<div class="container-default">
-  <h1>Hero</h1>
-  {% if post.blockquote %}
-    <h2>{{ post.blockquote }}</h2>
-  {% endif %}
-  {% if post.quote_attribution %}
-    <p class="attribute">&mdash; {{ post.quote_attribution }}</p>
-  {% endif %}
-</div>
-
-{% if hero_variant == 'text-only' %}
-  {% set hero_classes = '' %}
-{% else %}
-  {% set hero_classes = 'grid lg:grid-cols-3 lg:gap-4' %}
-{% endif %}
-<div class="container-default {{ hero_classes }}">
-  <div class="py-12 lg:col-span-2">
-    <h1 class="text-6xl lg:text-8xl font-semibold font-sans pb-5">{{ post.hero_heading }}</h1>
-    {% if post.hero_subheading %}
-      <div class="text-xl lg:text-3xl font-sans leading-relaxed">{{ post.hero_subheading }}</div>
+{% macro hero_text(section, alignment) %}
+  <div class="">
+    {% if section.hero_heading %}
+      <h1 class="text-white span-style mb-0">{{ section.hero_heading }}</h2>
+    {% endif %}
+    {% if section.hero_subheading %}
+      <h2 class="text-accent mb-0">{{ section.hero_subheading }}</h2>
+    {% endif %}
+    {% if section.hero_button.url %}
+      <div class="buttonContainer">
+        <a href="{{ section.hero_button.url }}" class="btn btn-{{ buttonColor }} section.hero_button {{ buttonStyle }}">
+          {{ section.hero_Button.title ? section.hero_Button.title : 'go' }}
+        </a>
+      </div>
     {% endif %}
   </div>
-  {% if post.hero_buttons.hero_btns %}
-    <div class="col-span-1">
-      <a href="{{ btn.hero_btn.link }}"
-        target="{{ btn.hero_btn.target }}"
-        class="text-orange-500 text-center font-semibold text-base uppercase tracking-wide">
-        {{ btn.hero_btn.title }}
-      </a>
-      <ul class="hero-buttons list-none">
-        {% for btn in post.hero_buttons.hero_btns %}
-          <li>
-            <a href="{{ btn.hero_btn.link }}"
-              target="{{ btn.hero_btn.target }}"
-              class="text-orange-500 text-center font-semibold text-base uppercase tracking-wide">
-              {{ btn.hero_btn.title }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-    </div>
+{% endmacro %}
+
+<div class="relative">
+  {% if section.hero_image_wide %}
+    {% set hero_image_wide = get_image(section.hero_image_wide) %}
+    {# {{ dump(hero_image_wide) }} #}
+    <img class="w-full relative z-[-2]"
+      src="{{ hero_image_wide.src }}"
+      srcset="{{ hero_image_wide.srcset }}"
+      sizes="{{ hero_image_wide.img_sizes }}"
+      alt="{{ hero_image_wide.alt }}"
+      fetchpriority="{{ section.flex_index <= 1 ? 'high' : '' }}" />
   {% endif %}
-  {% if post.hero_variant == 'text_image' %}
-    <div class="col-span-1 text-center center flex order-first lg:order-last">
-      <img src="{{ post.hero_image.url }}" class="mx-auto lg:w-2/3" alt="{{ post.hero_image.alt }}" />
+
+  {% if section.hero_heading or section.hero_subheading %}
+    {# overlay is used either to make a container for text, and to potentially mask an image #}
+    {% set enable_overlay = false %}
+    {% set overlay_class = 'md:bg-gradient-bottom md:opacity-80' %}
+    <div class="bg-primary md:bg-transparent md:absolute md:inset-0 {{ enable_overlay ? overlay_class : '' }}">
+      <div class="container-default md:h-full md:relative">
+        {% set text_position = section.hero_text_position ? section.hero_text_position : 'left' %}
+        {% set text_classes = {
+          left: 'md:flex md:justify-start',
+          right: 'md:flex md:justify-end'
+        } %}
+        {% set text_class = text_classes[text_position] %}
+
+        <div class="w-full flex items-center py-4 md:bg-transparent md:w-full md:h-full md:items-center {{ text_class }}">
+          {{ _self.hero_text(section, 'left') }}
+        </div>
+      </div>
     </div>
   {% endif %}
 </div>
-
-{# envokes text class of teal so it can be used in wp editor #}
-<div class="text-teal-green-600 hidden"></div>

@@ -1,36 +1,53 @@
-<footer class="section-padded">
+<footer class="section-padded bg-neutral-100 border-t border-neutral-300">
   <div class="container-default">
-    <div class="flex flex-col gap-16 md:flex-row">
-      <div class="w-full md:w-[30%]">
-        <a class="mb-8 block" href="/"><img src="{{ img_dir }}/logo-orange.svg" alt="{{ site.title }}" /></a>
-        <div class="flex flex-row gap-4 items-center w-full">
-          <span class="whitespace-nowrap">Follow Us:</span>
-          {% include 'components/social-icons.twig' with {
-            ul_classes: 'list-inline social-links flex flex-grow flex-row gap-4 items-center mb-0',
-            li_classes: '',
-            a_classes: '',
-            svg_classes: 'fill-primary hover:scale-110 transition-scale duration-200'
-          } %}
-        </div>
+    <div class="flex flex-col gap-4 sm:flex-row sm:justify-between">
+      <div class="w-full sm:w-[30%]">
+        <a class="block" href="/">
+          <img src="{{ img_dir }}/logo.svg" width="160" height="80" alt="{{ site.name }}" />
+        </a>
       </div>
-      <div class="w-full md:w-1/2">
-        <h4 class="text-lg font-bold mb-4">Get Updates</h4>
-        <form class="w-full max-w-sm">
-          <div class="flex items-center border-b border-teal-500 py-2">
-            <input class="w-full text-gray-700 mr-3 py-1 px-2 leading-tight focus:outline-none"
-              type="email"
-              placeholder="Email Address"
-              aria-label="Email Address" />
-            <button class="btn-primary" type="button">Sign Up</button>
-          </div>
-        </form>
-      </div>
-      <div class="w-full md:w-1/5">
-        <!-- Content for the third column goes here -->
-        Footer Nav
+      <div class="flex flex-row gap-4 items-center">
+        {% include 'components/social-icons.twig' with {
+          ul_classes: 'list-inline social-links flex flex-grow flex-row gap-4 items-center mb-0',
+          li_classes: '',
+          a_classes: 'bg-white rounded-full p-1 flex items-center justify-center hover:scale-110 transition-scale duration-200',
+          svg_classes: 'fill-primary',
+          height: 16,
+          width: 16,
+          data: gv.social.networks
+        } only %}
       </div>
     </div>
-    <div class="mt-8 border-t text-center border-primary md:border-gray-200 md:text-left">
+    <div class="flex flex-row gap-4 sm:flex-row mt-8">
+      <div class="basis-1/2">
+        <ul class="list-none">
+          {% for item in footer_menu.get_items %}
+            <li class="mb-2">
+              <a class="text-white hover:text-white hover:text-underline transition-colors duration-200"
+                href="{{ item.get_link }}"
+                {{ item.target ? 'target=' ~ item.target : '' }}>
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="basis-1/2">
+        <ul class="list-none">
+          {% for item in footer_menu_secondary.get_items %}
+            <li class="mb-2">
+              <a class="text-white hover:text-white hover:text-underline transition-colors duration-200"
+                href="{{ item.get_link }}"
+                {{ item.target ? 'target=' ~ item.target : '' }}>
+                {{ item.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-8 text-left text-white">
       <p>
         {{
           gv.footer_copyright|replace({

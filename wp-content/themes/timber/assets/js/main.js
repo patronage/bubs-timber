@@ -1,8 +1,8 @@
-import { Collapse, Select, initTE } from 'tw-elements';
 import { logMessage } from './console';
+import { te } from './tailwind-elements';
 import 'instant.page';
 
-// Enable certain tw-elements
-initTE({ Collapse, Select }, true); // set second parameter to true if you want to use a debugger
+// Enable tw-elements
+te();
 
 logMessage('you are in main.js');

@@ -1,10 +1,10 @@
 <div class="container-default">
   {% include 'components/section-heading.twig' with {
-    section_header: post.section_header,
-    section_heading: post.section_heading,
-    section_intro: post.section_intro,
-    section_btn: post.section_btn,
-    text_alignment: post.text_alignment
+    section_header: section.section_header,
+    section_heading: section.section_heading,
+    section_intro: section.section_intro,
+    section_btn: section.section_btn,
+    text_alignment: section.text_alignment
   } %}
-  <article class="prose lg:prose-xl">{{ post.wysiwyg_content }}</article>
+  <article class="typography">{{ section.wysiwyg_content }}</article>
 </div>

@@ -24,21 +24,30 @@ function bubs_get_flex_content($timber_post, $config) {
         ? $config['default_background_color']
         : 'bg-' . $content['background_color'];
 
-    // flex id
+    // flex id & index
+    $flex_index = $index + 1;
     $flex_id = 'flex-' . ($index + 1);
+
+    // set
 
     // Calculate padding
     $padding_top = true;
     $padding_bottom = true;
 
-    // todo: allow certain individual flex modules to override padding
-
     // Determine padding based on the next section
-    $next_color = $flex[$index + 1]['background_color'] ?? null;
-    $next_color = $next_color === 'default' ? 'bg-white' : 'bg-' . $next_color;
+    $next_color =
+      $flex[$index + 1]['background_color'] === 'default'
+        ? $config['default_background_color']
+        : 'bg-' . $flex[$index + 1]['background_color'] ?? null;
 
     if ($bg_color === $next_color) {
       $padding_bottom = false;
+    }
+
+    // allow certain individual flex modules to override padding
+    if (array_key_exists($layout, $config['custom_padding'])) {
+      $padding_top = $config['custom_padding'][$layout];
+      $padding_bottom = $config['custom_padding'][$layout];
     }
 
     // todo: handle last element, which needs to check footer bg color
@@ -107,6 +116,7 @@ function bubs_get_flex_content($timber_post, $config) {
     $content['padding_top'] = $padding_top;
     $content['padding_bottom'] = $padding_bottom;
     $content['flex_id'] = $flex_id;
+    $content['flex_index'] = $flex_index;
   }
 
   return (object) [

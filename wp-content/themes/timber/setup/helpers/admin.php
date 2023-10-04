@@ -14,17 +14,6 @@ function set_post_order_in_admin($wp_query) {
 }
 add_filter('pre_get_posts', 'set_post_order_in_admin');
 
-// Don't wrap images attached to WYSIWYG's with links
-//
-function bubs_imagelink_setup() {
-  $image_set = get_option('image_default_link_type');
-
-  if ($image_set !== 'none') {
-    update_option('image_default_link_type', 'none');
-  }
-}
-add_action('admin_init', 'bubs_imagelink_setup', 10);
-
 //
 // Yoast
 //
