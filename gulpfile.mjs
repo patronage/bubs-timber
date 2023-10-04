@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // load gulp and gulp plugins
 import tailwindcss from 'tailwindcss';
@@ -20,16 +20,16 @@ import cssnano from 'cssnano';
 const sass = gulpSass(dartSass);
 
 const $ = plugins({
-  config: path.join(process.cwd(), "package.json"),
+  config: path.join(process.cwd(), 'package.json'),
 });
 
 // load node modules
-import { deleteSync } from "del";
-import pump from "pump";
-import beeper from "beeper";
+import { deleteSync } from 'del';
+import pump from 'pump';
+import beeper from 'beeper';
 
 // others
-import browserSync from "browser-sync";
+import browserSync from 'browser-sync';
 const server = browserSync.create();
 //
 // Gulp config
@@ -40,7 +40,7 @@ const server = browserSync.create();
 let localConfig;
 
 try {
-  const data = await readFile("./gulpconfig.json");
+  const data = await readFile('./gulpconfig.json');
   localConfig = JSON.parse(data);
 } catch (err) {
   localConfig = {
@@ -48,9 +48,9 @@ try {
       debug: true,
     },
     bs: {
-      proxy: "http://wordpress.bubstimber.orb.local",
-      logLevel: "info",
-      tunnel: "",
+      proxy: 'http://wordpress.bubstimber.orb.local',
+      logLevel: 'info',
+      tunnel: '',
       open: true,
       notify: false,
     },
@@ -59,20 +59,26 @@ try {
 
 // Build themeDir variable based on current theme from config file, fallback to default
 
-const themeRoot = "wp-content/themes/";
-const theme = localConfig.activeTheme || "timber";
+const themeRoot = 'wp-content/themes/';
+const theme = localConfig.activeTheme || 'timber';
 const themeDir = themeRoot + theme;
 
 // Defaults
 
 const config = {
   theme: themeDir,
-  assets: themeDir + "/assets",
-  dist: themeDir + "/dist",
-  dev: themeDir + "/dev",
-  output: themeDir + "/dev", // default to dev
-  static: themeDir + "/static",
-  init: "./_init",
+  assets: themeDir + '/assets',
+  dist: themeDir + '/dist',
+  dev: themeDir + '/dev',
+  output: themeDir + '/dev', // default to dev
+  static: themeDir + '/static',
+  init: './_init',
+  assets: themeDir + '/assets',
+  dist: themeDir + '/dist',
+  dev: themeDir + '/dev',
+  output: themeDir + '/dev', // default to dev
+  static: themeDir + '/static',
+  init: './_init',
 };
 
 // Esbuild project customizations
@@ -82,7 +88,7 @@ const esbuildConfig = {
   include: [],
   metafile: true, // generate file
   globals: {
-    jquery: "$",
+    jquery: '$',
   },
 };
 
@@ -106,13 +112,13 @@ const handleErrors = (err) => {
 
   // notifications
   if (err.line && err.column) {
-    var notifyMessage = "LINE " + err.line + ":" + err.column + " -- ";
+    var notifyMessage = 'LINE ' + err.line + ':' + err.column + ' -- ';
   } else {
-    var notifyMessage = "";
+    var notifyMessage = '';
   }
 
   $.notify({
-    title: "FAIL: " + err.plugin,
+    title: 'FAIL: ' + err.plugin,
     message: notifyMessage + err.message,
   });
 
@@ -146,18 +152,18 @@ function tailwindStyles() {
 
 const styles = (done) => {
   const sassOptions = {
-    outputStyle: "expanded",
+    outputStyle: 'expanded',
   };
 
   pump(
     [
-      gulp.src(config.assets + "/scss/*.scss", {
+      gulp.src(config.assets + '/scss/*.scss', {
         sourcemaps: !isProduction,
       }),
       sass(sassOptions),
-      $.if(isProduction, $.autoprefixer("last 2 versions")),
+      $.if(isProduction, $.autoprefixer('last 2 versions')),
       $.if(isProduction, $.csso()),
-      gulp.dest(config.output + "/css", { sourcemaps: !isProduction }),
+      gulp.dest(config.output + '/css', { sourcemaps: !isProduction }),
       server.stream(),
     ],
     (err) => {
@@ -185,7 +191,8 @@ const scripts = (done) => {
   });
 
   const renameOptions = (path) => {
-    path.dirname = "js";
+    path.dirname = 'js';
+    path.dirname = 'js';
   };
 
   const filterExclusions = gulpFilter(['**', ...esbuildConfig.exclude], {
@@ -194,34 +201,34 @@ const scripts = (done) => {
 
   pump(
     [
-      gulp.src(config.theme + "/views/layout.twig"),
+      gulp.src(config.theme + '/views/layout.twig'),
       assets,
       gulpFilter(['**', '!**/layout.twig'], { restore: true, allowEmpty: true }),
       // $.if(esbuildConfig.include.length > 0, gulp.src(esbuildConfig.include)),
       $.debug({
-        title: "scripts debug pre filter exclusions: ",
+        title: 'scripts debug pre filter exclusions: ',
         showFiles: localConfig.gulp.debug,
       }),
       filterExclusions,
-      $.debug({ title: "scripts debug: ", showFiles: localConfig.gulp.debug }), // to debug files getting proccessed
+      $.debug({ title: 'scripts debug: ', showFiles: localConfig.gulp.debug }), // to debug files getting proccessed
       gulpEsbuild({
-        outdir: "",
-        sourcemap: isProduction ? false : "inline",
+        outdir: '',
+        sourcemap: isProduction ? false : 'inline',
         bundle: true,
         metafile: esbuildConfig?.metafile || true, // generate file
         metafileName: 'esbuild-metafile.json', // set metafile name
         loader: {
-          ".tsx": "tsx",
-          ".jsx": "jsx",
-          ".js": "jsx",
+          '.tsx': 'tsx',
+          '.jsx': 'jsx',
+          '.js': 'jsx',
         },
-        target: "es2015",
+        target: 'es2015',
         plugins: [globalExternals(esbuildConfig.globals)],
       }),
       filterExclusions.restore,
       $.rename(renameOptions),
       $.debug({
-        title: "scripts debug after restore and rename: ",
+        title: 'scripts debug after restore and rename: ',
         showFiles: localConfig.gulp.debug,
       }),
       gulp.dest(config.output, {}),
@@ -239,7 +246,7 @@ const scripts = (done) => {
 
 // When scripts runs, it creates extra files in copying from vendor we can delete
 const cleanScripts = (done) => {
-  deleteSync([config.output + "/wp-content"]);
+  deleteSync([config.output + '/wp-content']);
   done();
 };
 
@@ -247,7 +254,7 @@ const cleanScripts = (done) => {
 const copy = (done) => {
   pump(
     [
-      gulp.src(config.assets + "/{img,fonts,js}/**/*", {
+      gulp.src(config.assets + '/{img,fonts,js}/**/*', {
         base: config.assets,
       }),
       $.newer(config.output),
@@ -260,25 +267,25 @@ const copy = (done) => {
 // loops through the generated html and replaces all references to static versions
 const rev = (done) => {
   let extensions = [
-    ".html",
-    ".css",
-    ".js",
-    ".png",
-    ".jpg",
-    ".jpeg",
-    ".gif",
-    ".svg",
-    ".woff",
-    ".woff2",
-    ".ttf",
-    ".eot",
-    ".otf",
+    '.html',
+    '.css',
+    '.js',
+    '.png',
+    '.jpg',
+    '.jpeg',
+    '.gif',
+    '.svg',
+    '.woff',
+    '.woff2',
+    '.ttf',
+    '.eot',
+    '.otf',
   ];
   pump(
     [
-      gulp.src(config.dist + "/{css,js,fonts,img}/**/*"),
+      gulp.src(config.dist + '/{css,js,fonts,img}/**/*'),
       revAll.revision({
-        dontSearchFile: [".js"],
+        dontSearchFile: ['.js'],
         includeFilesInManifest: extensions,
       }),
       gulp.dest(config.static),
@@ -308,7 +315,7 @@ const serve = (done) => {
     notify: localConfig.bs.notify || false,
     open: localConfig.bs.open || true,
     tunnel: localConfig.bs.tunnel || false,
-    logLevel: localConfig.bs.logLevel || "info",
+    logLevel: localConfig.bs.logLevel || 'info',
   });
 
   gulp.watch(config.theme + '/**/*.twig', gulp.series(tailwindStyles, reload));

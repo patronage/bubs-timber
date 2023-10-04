@@ -125,7 +125,6 @@ then
   npx gulp restart
 fi
 
-
 if [ -f ".env" ]; then
   unset $(grep -v '^#' .env | sed -E 's/(.*)=.*/\1/' | xargs)
 fi
