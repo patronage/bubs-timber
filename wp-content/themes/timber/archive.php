@@ -16,31 +16,31 @@
 
 $templates = ['archive.twig', 'index.twig'];
 
-$data = Timber::get_context();
+$context = Timber::context();
 
-$data['title'] = 'Archive';
+$context['title'] = 'Archive';
 if (is_day()) {
-    $data['title'] = 'Archive: ' . get_the_date('D M Y');
+  $context['title'] = 'Archive: ' . get_the_date('D M Y');
 } elseif (is_month()) {
-    $data['title'] = 'Archive: ' . get_the_date('M Y');
+  $context['title'] = 'Archive: ' . get_the_date('M Y');
 } elseif (is_year()) {
-    $data['title'] = 'Archive: ' . get_the_date('Y');
+  $context['title'] = 'Archive: ' . get_the_date('Y');
 } elseif (is_tag()) {
-    $data['title'] = single_tag_title('', false);
+  $context['title'] = single_tag_title('', false);
 } elseif (is_category()) {
-    $data['title'] = single_cat_title('', false);
-    $data['term'] = new TimberTerm();
-    array_unshift($templates, 'archive-' . get_query_var('cat') . '.twig');
+  $context['title'] = single_cat_title('', false);
+  $context['term'] = new TimberTerm();
+  array_unshift($templates, 'archive-' . get_query_var('cat') . '.twig');
 } elseif (is_tax()) {
-    $data['title'] = single_cat_title('', false);
-    $data['term'] = new TimberTerm();
-    array_unshift($templates, 'archive-' . get_query_var('cat') . '.twig');
+  $context['title'] = single_cat_title('', false);
+  $context['term'] = new TimberTerm();
+  array_unshift($templates, 'archive-' . get_query_var('cat') . '.twig');
 } elseif (is_post_type_archive()) {
-    $data['title'] = post_type_archive_title('', false);
-    array_unshift($templates, 'archive-' . get_post_type() . '.twig');
+  $context['title'] = post_type_archive_title('', false);
+  array_unshift($templates, 'archive-' . get_post_type() . '.twig');
 }
 
-$data['posts'] = Timber::get_posts();
-$data['pagination'] = Timber::get_pagination();
+$context['posts'] = Timber::get_posts();
+$context['pagination'] = Timber::get_pagination();
 
-Timber::render($templates, $data);
+Timber::render($templates, $context);

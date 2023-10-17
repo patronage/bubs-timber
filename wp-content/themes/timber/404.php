@@ -9,7 +9,6 @@
  * @since    Timber 0.1
  */
 
-$data = Timber::get_context();
-$data['post'] = Timber::get_post('pagename=not-found');
-
-Timber::render(['404.twig', 'page.twig'], $data);
+$context = Timber::context();
+$context['post'] = Timber::get_post('pagename=not-found');
+Timber::render(['404.twig', 'page.twig'], $context);
