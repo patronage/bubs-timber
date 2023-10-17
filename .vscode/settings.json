@@ -11,6 +11,11 @@
     // For Stylelint
     "source.fixAll.stylelint": true
   },
+  // Disable built-in linters
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  // Associate Twig files with HTML
   "files.associations": {
     "*.twig": "twig"
   }

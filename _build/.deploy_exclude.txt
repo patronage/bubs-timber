@@ -5,13 +5,13 @@ _init/
 .babelrc
 .editorconfig
 .env
+.eslintrc.js
 .gitignore
 .npmrc
 .nvmrc
 .prettierignore
 .prettierrc
 .stylelintignore
-.stylelintrc.json
 .vscode/
 composer.json
 composer.lock
@@ -21,6 +21,7 @@ docker-compose.local.yml
 gulpfile.mjs
 package.json
 README.md
+stylelint.config.js
 tailwind.config.js
 yarn.lock
 
