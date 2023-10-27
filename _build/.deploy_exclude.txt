@@ -19,6 +19,7 @@ docker-compose.local.yml
 eslint.config.js
 gulpfile.mjs
 package.json
+prettier.config.js
 README.md
 stylelint.config.js
 tailwind.config.js
