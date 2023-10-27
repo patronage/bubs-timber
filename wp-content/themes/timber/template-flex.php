@@ -5,7 +5,7 @@ Template Name: Flex
 Template Post Type: page, post, component-library
 */
 
-$context = Timber::get_context();
+$context = Timber::context();
 $timber_post = Timber::get_post();
 $context['post'] = $timber_post;
 

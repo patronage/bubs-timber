@@ -2,30 +2,30 @@
 //
 // Enviroment Helper
 //
-function env_helper($data) {
-    if (defined('WP_ENV')) {
-        $data['environment'] = WP_ENV;
-    } else {
-        $data['environment'] = 'production';
-    }
+function env_helper($context) {
+  if (defined('WP_ENV')) {
+    $context['environment'] = WP_ENV;
+  } else {
+    $context['environment'] = 'production';
+  }
 
-    $theme = get_stylesheet_directory_uri();
-    $data['theme_dir'] = $theme;
+  $theme = get_stylesheet_directory_uri();
+  $context['theme_dir'] = $theme;
 
-    if ($data['environment'] == 'production') {
-        $data['assets_dir'] = $theme . '/dist';
-        $data['img_dir'] = $theme . '/dist/img';
-        $data['css_dir'] = $theme . '/dist/css';
-        $data['js_dir'] = $theme . '/dist/js';
-    } else {
-        $data['assets_dir'] = $theme . '/dev';
-        $data['img_dir'] = $theme . '/dev/img';
-        $data['css_dir'] = $theme . '/dev/css';
-        $data['js_dir'] = $theme . '/dev/js';
-    }
+  if ($context['environment'] == 'production') {
+    $context['assets_dir'] = $theme . '/dist';
+    $context['img_dir'] = $theme . '/dist/img';
+    $context['css_dir'] = $theme . '/dist/css';
+    $context['js_dir'] = $theme . '/dist/js';
+  } else {
+    $context['assets_dir'] = $theme . '/dev';
+    $context['img_dir'] = $theme . '/dev/img';
+    $context['css_dir'] = $theme . '/dev/css';
+    $context['js_dir'] = $theme . '/dev/js';
+  }
 
-    return $data;
+  return $context;
 }
-add_filter('timber_context', 'env_helper');
+add_filter('timber/context', 'env_helper');
 
 ?>
