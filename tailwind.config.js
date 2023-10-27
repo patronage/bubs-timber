@@ -27,23 +27,9 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    // https://uicolors.app/create
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
-      'science-blue': {
-        50: '#ecf9ff',
-        100: '#d4f0ff',
-        200: '#b2e7ff',
-        300: '#7ed9ff',
-        400: '#41c2ff',
-        500: '#15a0ff',
-        600: '#007eff',
-        700: '#0066fe',
-        800: '#015adf', // from figma
-        900: '#0849a0',
-        950: '#0b2c60',
-      },
       black: colors.black,
       white: colors.white,
       neutral: colors.neutral,
@@ -51,23 +37,28 @@ module.exports = {
     },
     extend: {
       aspectRatio: {
-        social: '1200 / 628',
+        social: '1200 / 630',
       },
       colors: {
         primary: 'rgba(var(--color-primary), <alpha-value>)',
         secondary: 'rgba(var(--color-secondary), <alpha-value>)',
         accent: 'rgba(var(--color-accent), <alpha-value>)',
+        sand: 'rgba(var(--color-light), <alpha-value>)',
         light: 'rgba(var(--color-light), <alpha-value>)',
         medium: 'rgba(var(--color-medium), <alpha-value>)',
         dark: 'rgba(var(--color-dark), <alpha-value>)',
+        orange: 'rgba(var(--color-orange), <alpha-value>)',
+        green: 'rgba(var(--color-green), <alpha-value>)',
       },
       fontFamily: {
-        sans: ['Inter', ...defaultTheme.fontFamily.sans], // see if aileron is ok instead of neue haas unica
+        sans: ['Inter', 'sans-serif'],
         serif: [...defaultTheme.fontFamily.serif],
         mono: [...defaultTheme.fontFamily.mono],
         body: ['Inter', ...defaultTheme.fontFamily.sans],
-        heading: ['Archivo Black', ...defaultTheme.fontFamily.sans],
+        heading: ['Inter', ...defaultTheme.fontFamily.sans],
       },
+      // If updating screens, make sure to update _variables.scss, and components/tailwind-indicators.twig
+      screens: {},
     },
   },
   variants: {
@@ -75,6 +66,21 @@ module.exports = {
       filter: ['hover'],
     },
   },
+  // Add classes that we want to allow before purging
   safelist: ['animate-[fade-in_300ms_ease-in]'],
-  plugins: plugins,
+  plugins: [
+    ...plugins,
+    function ({ addUtilities }) {
+      const newUtilities = {
+        '.animate-fill-forwards': {
+          'animation-fill-mode': 'forwards',
+        },
+        // coming in future: https://github.com/tailwindlabs/tailwindcss/discussions/11486
+        '.text-balance': {
+          'text-wrap': 'balance',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 };
