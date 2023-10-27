@@ -7,8 +7,8 @@ module.exports = {
   braceStyle: '1tbs',
   twigPrintWidth: 100,
   plugins: [
-    // './node_modules/@supersoniks/prettier-plugin-twig-melody',
     'prettier-plugin-tailwindcss',
+    './node_modules/@supersoniks/prettier-plugin-twig-melody',
   ],
   overrides: [
     {
