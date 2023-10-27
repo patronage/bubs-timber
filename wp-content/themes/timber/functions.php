@@ -61,6 +61,7 @@ include_once 'setup/helpers/admin.php';
 include_once 'setup/helpers/admin-env.php';
 include_once 'setup/helpers/dashboard-customize.php';
 include_once 'setup/helpers/env.php';
+// include_once 'setup/helpers/featured-content.php';
 include_once 'setup/helpers/flex.php';
 include_once 'setup/helpers/global-variables.php';
 include_once 'setup/helpers/gutenberg-disable.php';

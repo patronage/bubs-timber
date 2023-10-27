@@ -35,19 +35,30 @@ function bubs_get_flex_content($timber_post, $config) {
     $padding_bottom = true;
 
     // Determine padding based on the next section
-    $next_color =
-      $flex[$index + 1]['background_color'] === 'default'
-        ? $config['default_background_color']
-        : 'bg-' . $flex[$index + 1]['background_color'] ?? null;
+    $next_color = null;
+    if (isset($flex[$index + 1])) {
+      $next_color =
+        $flex[$index + 1]['background_color'] === 'default'
+          ? $config['default_background_color']
+          : 'bg-' . $flex[$index + 1]['background_color'];
+    }
 
     if ($bg_color === $next_color) {
       $padding_bottom = false;
     }
 
     // allow certain individual flex modules to override padding
+    // it will either be a callable function, or the value to use
     if (array_key_exists($layout, $config['custom_padding'])) {
-      $padding_top = $config['custom_padding'][$layout];
-      $padding_bottom = $config['custom_padding'][$layout];
+      if (is_callable($config['custom_padding'][$layout])) {
+        // If the value is a function, call it
+        $padding_top = call_user_func($config['custom_padding'][$layout], $content);
+        $padding_bottom = call_user_func($config['custom_padding'][$layout], $content);
+      } else {
+        // If the value is not a function, use it as is
+        $padding_top = $config['custom_padding'][$layout];
+        $padding_bottom = $config['custom_padding'][$layout];
+      }
     }
 
     // todo: handle last element, which needs to check footer bg color
@@ -92,20 +103,13 @@ function bubs_get_flex_content($timber_post, $config) {
 
     // Get dynamic featured content posts
     if ($layout === 'featured_content') {
-      if ($content['relationship_method'] == 'dynamic') {
-        $args = new WP_Query([
-          'posts_per_page' => -1,
-          'post_status' => 'publish',
-        ]);
-        if ($content['post_filter'] == 'category') {
-          $args['category__in'] = $content['post_categories'];
-        } elseif ($content['post_filter'] == 'tag') {
-          $args['tag__in'] = $content['post_tags'];
-        }
-        $posts = new Timber\PostQuery($args);
-        if ($posts) {
-          $content['fc_posts'] = $posts;
-        }
+      if (function_exists('processFeaturedContent')) {
+        [$fc_posts, $fc_args] = processFeaturedContent($content);
+        $content['fc_posts'] = $fc_posts;
+        $content['fc_args'] = $fc_args;
+      } else {
+        $content['fc_posts'] = [];
+        // error_log('processFeaturedContent function not found');
       }
     }
 

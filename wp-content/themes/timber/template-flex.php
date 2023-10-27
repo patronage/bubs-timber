@@ -24,11 +24,14 @@ $config = [
   'script_loader' => [
     'blockquote' => ['swiper'],
   ],
-  // todo: allow certain individual flex modules to override padding
-  // ideally each would have a simple function that returns true or false
+  // By default, all flex sections have padding and look to next module to prevent doubling up
+  // But some modules need to override this
   'custom_padding' => [
-    'hero' => false,
-    // 'blockquote' => blockquotePadding(),
+    'hero' => function ($content) {
+      // if text-overlay, no padding
+      return $content['variant'] !== 'text-overlay';
+    },
+    'blockquote' => false,
     // 'media' => mediaPadding(),
   ],
   'css' => [
@@ -41,6 +44,19 @@ $config = [
 
 // call our global flex helper function
 $flex = bubs_get_flex_content($timber_post, $config);
+
+// optional, apply custom rules
+// foreach ($flex->content as &$section) {
+//   if (isset($section['section_apply_triangle'])) {
+//     if (isset($section['css_classlist'])) {
+//       $section['css_classlist'] .= ' ' . $section['section_triangle'];
+//     }
+//   }
+
+//   if (isset($section['acf_fc_layout']) && $section['acf_fc_layout'] == 'hero') {
+//     $section['css_classlist'] .= ' triangle-frame';
+//   }
+// }
 
 // add to context
 $context['post']->flex_content = $flex->content;
