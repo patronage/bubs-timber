@@ -1,14 +1,14 @@
 {% macro hero_text(section, alignment) %}
-  <div class="">
+  <div class="flex flex-col gap-4 md:gap-6">
     {% if section.hero_heading %}
-      <h1 class="text-white span-style mb-0">{{ section.hero_heading }}</h2>
+      <h1 class="text-secondary mb-0">{{ section.hero_heading }}</h1>
     {% endif %}
     {% if section.hero_subheading %}
-      <h2 class="text-accent mb-0">{{ section.hero_subheading }}</h2>
+      <div class="text-sans">{{ section.hero_subheading|wpautop }}</div>
     {% endif %}
     {% if section.hero_button.url %}
-      <div class="buttonContainer">
-        <a href="{{ section.hero_button.url }}" class="btn btn-{{ buttonColor }} section.hero_button {{ buttonStyle }}">
+      <div>
+        <a href="{{ section.hero_button.url }}" class="btn-primary">
           {{ section.hero_Button.title ? section.hero_Button.title : 'go' }}
         </a>
       </div>
@@ -16,35 +16,36 @@
   </div>
 {% endmacro %}
 
-<div class="relative">
-  {% if section.hero_image_wide %}
-    {% set hero_image_wide = get_image(section.hero_image_wide) %}
-    {# {{ dump(hero_image_wide) }} #}
-    <img class="w-full relative z-[-2]"
-      src="{{ hero_image_wide.src }}"
-      srcset="{{ hero_image_wide.srcset }}"
-      sizes="{{ hero_image_wide.img_sizes }}"
-      alt="{{ hero_image_wide.alt }}"
-      fetchpriority="{{ section.flex_index <= 1 ? 'high' : '' }}" />
-  {% endif %}
+{% set image_position = image_position|default('right') %}
 
-  {% if section.hero_heading or section.hero_subheading %}
-    {# overlay is used either to make a container for text, and to potentially mask an image #}
-    {% set enable_overlay = false %}
-    {% set overlay_class = 'md:bg-gradient-bottom md:opacity-80' %}
-    <div class="bg-primary md:bg-transparent md:absolute md:inset-0 {{ enable_overlay ? overlay_class : '' }}">
-      <div class="container-default md:h-full md:relative">
-        {% set text_position = section.hero_text_position ? section.hero_text_position : 'left' %}
-        {% set text_classes = {
-          left: 'md:flex md:justify-start',
-          right: 'md:flex md:justify-end'
-        } %}
-        {% set text_class = text_classes[text_position] %}
+<div class="flex flex-col md:flex-row {{ image_position == 'right' ? 'md:flex-row-reverse' : '' }}">
+  <div class="w-full md:w-3/5 relative z-[2]">
+    {% if section.hero_image or post.thumbnail %}
+      {% if section.hero_image %}
+        {% set hero_image = get_image(section.hero_image) %}
+      {% else %}
+        {% set hero_image = get_image(post.thumbnail) %}
+      {% endif %}
+      {% set size = 'Social' %}
+      {% set focal = get_image_dimensions(hero_image.id, size).focal %}
 
-        <div class="w-full flex items-center py-4 md:bg-transparent md:w-full md:h-full md:items-center {{ text_class }}">
-          {{ _self.hero_text(section, 'left') }}
-        </div>
-      </div>
-    </div>
-  {% endif %}
+      <img class="object-cover h-full w-full relative z-[-2] {{
+        focal.tailwind_class
+          ? 'object-' ~ focal.tailwind_class
+          : ''
+        }}"
+        src="{{ hero_image.src(size) }}"
+        srcset="{{ hero_image.srcset(size) }}"
+        sizes="{{ hero_image.img_sizes(size) }}"
+        alt="{{ hero_image.alt }}"
+        height="{{ get_image_dimensions(hero_image.id, size).height }}"
+        width="{{ get_image_dimensions(hero_image.id, size).width }}"
+        fetchpriority="{{ section.flex_index <= 1 ? 'high' : '' }}" />
+    {% else %}
+      <div class="bg-primary h-full w-full relative z-[-2]"></div>
+    {% endif %}
+  </div>
+  <div class="w-full md:w-2/5 flex items-center justify-start md:justify-center p-4 md:p-8">
+    {{ _self.hero_text(section, 'left') }}
+  </div>
 </div>

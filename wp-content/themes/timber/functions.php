@@ -11,9 +11,14 @@ Timber\Timber::init();
 
 // Custom Timber Filters
 include_once 'setup/twig-filters/load-svg.php';
+include_once 'setup/twig-filters/get-image-dimensions.php';
+
 add_filter('timber/twig/functions', function ($functions) {
   $functions['load_svg'] = [
     'callable' => 'load_svg',
+  ];
+  $functions['get_image_dimensions'] = [
+    'callable' => 'get_image_dimensions',
   ];
 
   return $functions;
@@ -65,7 +70,8 @@ include_once 'setup/helpers/env.php';
 include_once 'setup/helpers/flex.php';
 include_once 'setup/helpers/global-variables.php';
 include_once 'setup/helpers/gutenberg-disable.php';
-include_once 'setup/helpers/images.php';
+include_once 'setup/helpers/image-functions.php';
+include_once 'setup/helpers/image-sizes.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
 include_once 'setup/helpers/role-super-editor.php';

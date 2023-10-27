@@ -27,10 +27,11 @@ $config = [
   // By default, all flex sections have padding and look to next module to prevent doubling up
   // But some modules need to override this
   'custom_padding' => [
-    'hero' => function ($content) {
-      // if text-overlay, no padding
-      return $content['variant'] !== 'text-overlay';
-    },
+    'hero' => false,
+    // 'hero' => function ($content) {
+    //   // if text-overlay, no padding
+    //   return $content['variant'] !== 'text-overlay';
+    // },
     'blockquote' => false,
     // 'media' => mediaPadding(),
   ],
