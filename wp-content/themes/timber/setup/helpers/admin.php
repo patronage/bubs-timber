@@ -31,11 +31,6 @@ add_filter('wpseo_metabox_prio', 'lower_wpseo_priority');
 // ACF
 //
 
-// custom image sizes (used to provide thumnail sizes for ACF)
-add_image_size('Three By One', 375, 125, true);
-add_image_size('Three By Two', 180, 120, true);
-add_image_size('Hero Image', 400, 179, true);
-
 // Allows upload to Media Library with these file types
 function custom_mime_types($mimes) {
   $mimes['svg'] = 'image/svg+xml';
@@ -45,14 +40,22 @@ add_filter('upload_mimes', 'custom_mime_types');
 
 // Hide ACF in production to ensure version controlled JSON is truth
 // http://awesomeacf.com/snippets/hide-the-acf-admin-menu-item-on-selected-sites/
-function awesome_acf_hide_acf_admin() {
+function awesome_acf_hide_acf_admin($show) {
+  global $submenu;
   // check if the current env is dev
   if (defined('WP_ENV') && WP_ENV == 'development') {
     // show the acf menu item
     return true;
   } else {
-    // hide the acf menu item
-    return false;
+    // hide all the suboptions except 'acf-settings-updates'
+    if (isset($submenu['edit.php?post_type=acf-field-group'])) {
+      foreach ($submenu['edit.php?post_type=acf-field-group'] as $key => $sub) {
+        if ($sub[2] != 'acf-settings-updates') {
+          unset($submenu['edit.php?post_type=acf-field-group'][$key]);
+        }
+      }
+    }
+    return $show;
   }
 }
 add_filter('acf/settings/show_admin', 'awesome_acf_hide_acf_admin');
