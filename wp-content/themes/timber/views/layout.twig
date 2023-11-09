@@ -7,12 +7,19 @@
     <title>{{ 'wp_title'|function('-') }}</title>
 
     {# preloads -- see https://web.dev/preload-critical-assets/ #}
-    <link rel="preload" href="https://fonts.googleapis.com/css?family=Archivo+Black&display=optional" as="style" />
-    <link rel="preload" href="{{ function('rev', 'fonts/inter-v13-latin-regular.woff2') }}" as="font" type="font/woff2" crossorigin />
+    <link rel="preload"
+      href="https://fonts.googleapis.com/css?family=Archivo+Black&display=optional"
+      as="style" />
+    <link rel="preload"
+      href="{{ function('rev', 'fonts/inter-v13-latin-regular.woff2') }}"
+      as="font"
+      type="font/woff2"
+      crossorigin />
     <link rel="preload" href="{{ function('rev', 'css/screen.css') }}" as="style" />
 
     {# webfonts -- we preferr to self host via _fonts.css if possible #}
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Archivo+Black&display=optional" />
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Archivo+Black&display=optional" />
 
     {# primary css #}
     <link rel="stylesheet" href="{{ function('rev', 'css/screen.css') }}" />
@@ -35,7 +42,7 @@
       } %}
     {% endif %}
 
-    {{ wp_head }}
+    {{ function('wp_head') }}
 
     {% block head %}{% endblock %}
   </head>
@@ -59,7 +66,7 @@
       {% include 'components/tailwind-indicator.twig' %}
     {% endif %}
 
-    {{ wp_footer }}
+    {{ function('wp_footer') }}
 
     {#
       - Load JS libs then custom scripts. Paths should be relative to assets folder
