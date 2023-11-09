@@ -73,12 +73,6 @@ const config = {
   output: themeDir + '/dev', // default to dev
   static: themeDir + '/static',
   init: './_init',
-  assets: themeDir + '/assets',
-  dist: themeDir + '/dist',
-  dev: themeDir + '/dev',
-  output: themeDir + '/dev', // default to dev
-  static: themeDir + '/static',
-  init: './_init',
 };
 
 // Esbuild project customizations
@@ -217,6 +211,7 @@ const scripts = (done) => {
         bundle: true,
         metafile: esbuildConfig?.metafile || true, // generate file
         metafileName: 'esbuild-metafile.json', // set metafile name
+        minify: isProduction ? true : false,
         loader: {
           '.tsx': 'tsx',
           '.jsx': 'jsx',
