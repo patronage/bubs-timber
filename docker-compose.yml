@@ -15,7 +15,7 @@ services:
   wordpress:
     depends_on:
       - db
-    image: wordpress:6.3
+    image: wordpress:6.4
     volumes:
       - ./.htaccess:/var/www/html/.htaccess
       - ./wp-content:/var/www/html/wp-content
