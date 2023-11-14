@@ -1,19 +1,10 @@
 {% if location == 'head' %}
-  {% if environment != 'development' and gtm_id %}
-    {# prettier-ignore-start #}
-      <script>
-        window.ga = window.ga || function () { ( ga.q = ga.q || [] ).push( arguments ) }; ga.l
-        = + new Date; ga( 'create', '{{ gv.ga_id }}', 'auto' );
-        ga( 'require', 'cleanUrlTracker', { stripQuery: true, indexFilename: 'index.html',
-        trailingSlash: 'remove' } );
-        ga( 'require', 'eventTracker' ); ga( 'require', 'outboundLinkTracker' );
-        {% if environment == 'development' or user %}
-          // No GA data sent while in dev or logged in
-          ga( 'set', 'sendHitTask', null );
-        {% endif %}
-        ga( 'send', 'pageview' );
-      </script>
-      <script src="https://www.google-analytics.com/analytics.js"></script>
-    {# prettier-ignore-end #}
+  {% if environment != 'development' and ga_id %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ ga_id }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date()); gtag('config', 'G-3RNYMFLZV3');
+    </script>
   {% endif %}
 {% endif %}
