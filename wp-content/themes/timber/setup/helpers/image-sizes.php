@@ -37,3 +37,20 @@ add_image_size('Social Medium', 768, 403, true);
 // add_image_size('Square', 1200, 1200, true);
 // add_image_size('Square Medium', 768, 768, true);
 // add_image_size('Square Thumb', 320, 320, true);
+
+//
+// Remove the WP additional sizes in favor of ours
+//
+
+// https://bloggerpilot.com/en/disable-wordpress-image-sizes/
+
+add_filter('intermediate_image_sizes', function ($sizes) {
+  return array_diff($sizes, ['medium_large']); // Medium Large (768 x 0)
+});
+
+add_action('init', 'bubs_remove_large_image_sizes');
+
+function bubs_remove_large_image_sizes() {
+  remove_image_size('1536x1536'); // 2 x Medium Large (1536 x 1536)
+  remove_image_size('2048x2048'); // 2 x Large (2048 x 2048)
+}

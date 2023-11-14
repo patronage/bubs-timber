@@ -10,5 +10,20 @@
  */
 
 $context = Timber::context();
-$context['post'] = Timber::get_post('pagename=not-found');
+$args = [
+  'name' => 'not-found',
+  'post_type' => 'page',
+  'post_status' => 'publish',
+  'numberposts' => 1,
+];
+$timber_post = Timber::get_post($args);
+
+if ($timber_post) {
+  $context['post'] = $timber_post;
+} else {
+  $context['post']['title'] = '404 - Page Not Found';
+  $context['post']['post_title'] = '404 - Page Not Found';
+  $context['post']['content'] = 'The page you are looking for does not exist.';
+}
+
 Timber::render(['404.twig', 'page.twig'], $context);

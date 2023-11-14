@@ -28,7 +28,16 @@ function get_image_dimensions($attachment_id, $size_name) {
     }
 
     return $image_meta['sizes'][$size_name];
+  } else {
+    // Check if image meta width and height exist. If so, return, else null
+    if (isset($image_meta['width']) && isset($image_meta['height'])) {
+      return [
+        'width' => $image_meta['width'],
+        'height' => $image_meta['height'],
+      ];
+    } else {
+      return null;
+    }
   }
-  return null;
 }
 ?>
