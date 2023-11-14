@@ -24,7 +24,7 @@
           {% for item in footer_menu.get_items %}
             <li class="mb-2">
               <a class="text-white hover:text-white hover:text-underline transition-colors duration-200"
-                href="{{ item.get_link }}"
+                href="{{ item.link }}"
                 {{ item.target ? 'target=' ~ item.target : '' }}>
                 {{ item.title }}
               </a>
@@ -37,7 +37,7 @@
           {% for item in footer_menu_secondary.get_items %}
             <li class="mb-2">
               <a class="text-white hover:text-white hover:text-underline transition-colors duration-200"
-                href="{{ item.get_link }}"
+                href="{{ item.link }}"
                 {{ item.target ? 'target=' ~ item.target : '' }}>
                 {{ item.title }}
               </a>

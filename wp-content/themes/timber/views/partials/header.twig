@@ -70,7 +70,7 @@
             {% for child in item.children %}
               <li class="{{ child_li_classes }}">
                 <a class="{{ child_a_classes }}"
-                  href="{{ child.get_link }}"
+                  href="{{ child.link }}"
                   {{ child.target ? 'target=' ~ child.target : '' }}>
                   {{ child.title }}
                 </a>
@@ -109,9 +109,10 @@
       <button class="py-2"
         data-te-target="#offcanvasTop"
         aria-controls="offcanvasTop"
+        aria-label="Menu"
         data-te-offcanvas-toggle
         role="button"
-        aria-expaned="false"
+        aria-expanded="false"
         aria-controls="mobile-menu"
         data-te-ripple-init
         data-te-ripple-color="light">
@@ -126,23 +127,6 @@
           )
         }}
       </button>
-      <a href="#mobile-menu"
-        class="hidden"
-        data-te-collapse-init
-        role="button"
-        aria-expaned="false"
-        aria-controls="mobile-menu">
-        {{
-          load_svg(
-            'icon/menu',
-            {
-              class: 'fill-neutral-700 hover:fill-neutral-900 transition transition-fill duration-200',
-              width: '24',
-              height: '24'
-            }
-          )
-        }}
-      </a>
     </div>
   </nav>
 </header>
