@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  :root {
+    --color-primary: 13, 33, 161; // #0d21a1
+    --color-secondary: 35, 201, 255; // #23C9FF
+    --color-accent: 14, 255, 133; // #0eff85
+    --color-light: 249, 249, 249; // #F9F9F9
+    --color-medium: var(--color-accent);
+    --color-dark: var(--color-secondary);
+  }
+
+  // Body, Links, Paras
+
+  body {
+    @apply text-primary;
+  }
+
+  p {
+    @apply mb-4;
+  }
+
+  p:last-of-type {
+    @apply mb-0;
+  }
+
+  a {
+    @apply text-secondary;
+
+    &:hover {
+      @apply underline;
+    }
+  }
+
+  // Headings
+
+  h1 {
+    font-size: clamped(52px, 96px);
+
+    @apply mb-4 font-heading leading-none text-primary;
+
+    &.span-style {
+      span {
+        @apply text-secondary;
+        @apply block;
+      }
+    }
+  }
+
+  h2 {
+    font-size: clamped(42px, 84px);
+
+    @apply mb-3 font-heading font-bold leading-none text-primary;
+
+    .bg-primary & {
+      @apply text-white;
+    }
+  }
+
+  h3 {
+    font-size: clamped(24px, 36px);
+
+    @apply mb-2 font-heading;
+  }
+
+  h4 {
+    font-size: clamped(24px, 36px);
+
+    @apply mb-2 font-bold;
+  }
+
+  h5 {
+    font-size: clamped(24px, 36px);
+
+    @apply mb-2;
+  }
+
+  h6 {
+    font-size: clamped(18px, 24px);
+
+    @apply mb-2 font-bold;
+  }
+
+  // Lists and Other inside typography
+
+  .typography {
+    @apply text-xl;
+
+    ul,
+    ol {
+      @apply mb-4 list-inside;
+    }
+
+    ul li,
+    ol li {
+      @apply mb-2;
+    }
+
+    ul li:last-child,
+    ol li:last-child {
+      @apply mb-0;
+    }
+
+    ul {
+      @apply list-disc;
+    }
+
+    ol {
+      @apply list-decimal;
+    }
+
+    blockquote {
+      @apply my-4 border-l-4 pl-4 italic;
+    }
+
+    code {
+      @apply rounded bg-gray-100 p-2 text-sm;
+    }
+
+    pre code {
+      @apply block rounded-md bg-gray-200 p-4;
+    }
+
+    dl {
+      @apply mb-4;
+    }
+
+    dt {
+      @apply mb-2 font-bold;
+    }
+
+    dd {
+      @apply mb-2 ml-4;
+    }
+  }
+}
+
+@layer components {
+  // we apply basic gutter, and varying widths for consistency without repeating
+  .container-fluid {
+    @apply w-full px-4;
+  }
+
+  .container-default {
+    @apply mx-auto w-full px-4 md:container lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl;
+  }
+
+  .container-narrow {
+    @apply mx-auto w-full px-4 md:container lg:max-w-4xl xl:max-w-5xl;
+  }
+
+  .section-padded {
+    @apply py-20 lg:py-28;
+  }
+
+  .section-padded-top {
+    @apply pt-20 lg:pt-28;
+  }
+
+  .section-padded-bottom {
+    @apply pb-20 lg:pb-28;
+  }
+
+  // buttons
+
+  .btn-secondary,
+  .btn-primary {
+    @apply inline-block whitespace-nowrap px-6 py-3 font-mono text-lg uppercase leading-none tracking-widest transition-colors duration-200 hover:no-underline;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white hover:bg-primary;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-primary hover:bg-secondary;
+  }
+}

@@ -1,4 +1,20 @@
 {% extends 'layout.twig' %}
 {% block content %}
-    <div class="template-flex">{% include 'partials/flex-all.twig' %}</div>
+  {% for section in post.flex_content %}
+    {% set layout = section.acf_fc_layout %}
+    {% if layout in (post.flex_templates|keys) %}
+      {% set template = post.flex_templates[layout] %}
+    {% endif %}
+    <section class="{{ section.css_classlist }}"
+      id="{{ section.item_slug }}"
+      data-flex-layout="{{ layout }}"
+      data-flex-id="{{ section.flex_id }}">
+      <div class="hidden pattern"></div>
+      {% if template %}
+        {% include template with {
+          section: section
+        } %}
+      {% endif %}
+    </section>
+  {% endfor %}
 {% endblock %}

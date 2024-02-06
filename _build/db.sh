@@ -44,18 +44,18 @@ function db_import() {
   ext=${sql##*.}
 
   if [ $ext = "zip" ]; then
-    unzip -p $sql | docker exec -i $DB_CONTAINER mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME
+    unzip -p $sql | docker exec -i $DB_CONTAINER mariadb -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME
   elif [ $ext = "gz" ]; then
-    gunzip < $sql | docker exec -i $DB_CONTAINER mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME
+    gunzip < $sql | docker exec -i $DB_CONTAINER mariadb -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME
   else
-    docker exec -i $DB_CONTAINER mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME < $sql
+    docker exec -i $DB_CONTAINER mariadb -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME < $sql
   fi
 
   # run local mods if present
   file="_data/local.sql"
   if [ -f "$file" ]
   then
-    docker exec -i $DB_CONTAINER mysql -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME < $file
+    docker exec -i $DB_CONTAINER mariadb -u $WORDPRESS_DB_USER -p$WORDPRESS_DB_PASSWORD -D $WORDPRESS_DB_NAME < $file
     echo "$file imported."
   else
     echo "$file not found."

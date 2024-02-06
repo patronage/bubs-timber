@@ -21,12 +21,12 @@
  * @since    Timber 0.1
  */
 
-$data = Timber::get_context();
-$post = new TimberPost();
-$data['post'] = $post;
+$context = Timber::context();
+$timber_post = Timber::get_post();
+$context['post'] = $timber_post;
 
 if (post_password_required($post->ID)) {
-    Timber::render('single-password.twig', $data);
+  Timber::render('single-password.twig', $data);
 } else {
-    Timber::render(['page-' . $post->post_name . '.twig', 'page.twig'], $data);
+  Timber::render(['page-' . $post->post_name . '.twig', 'page.twig'], $context);
 }

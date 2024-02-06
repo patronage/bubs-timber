@@ -6,6 +6,7 @@
             "key": "field_5f4f371ac68a6",
             "label": "Flex Content",
             "name": "flex_content",
+            "aria-label": "",
             "type": "flexible_content",
             "instructions": "",
             "required": 0,
@@ -16,6 +17,136 @@
                 "id": ""
             },
             "layouts": {
+                "layout_65145c3a41f47": {
+                    "key": "layout_65145c3a41f47",
+                    "name": "blockquote",
+                    "label": "Blockquote",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_65145c3a41f4b",
+                            "label": "Section Header",
+                            "name": "section_header",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_615c9d4e51d6a"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_65145c3a41f4c",
+                            "label": "Blockquote",
+                            "name": "blockquote",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f4f3a7bdc981"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_65145c3a41f4d",
+                            "label": "Section Options",
+                            "name": "section_options",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f4f44ad969e5"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
+                "layout_65145c7cc5986": {
+                    "key": "layout_65145c7cc5986",
+                    "name": "hero",
+                    "label": "Hero",
+                    "display": "block",
+                    "sub_fields": [
+                        {
+                            "key": "field_65145c7cc598b",
+                            "label": "Hero",
+                            "name": "hero",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f4f38e0bff98"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        },
+                        {
+                            "key": "field_65145c7cc598c",
+                            "label": "Section Options",
+                            "name": "section_options",
+                            "aria-label": "",
+                            "type": "clone",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "clone": [
+                                "group_5f4f44ad969e5"
+                            ],
+                            "display": "seamless",
+                            "layout": "block",
+                            "prefix_label": 0,
+                            "prefix_name": 0
+                        }
+                    ],
+                    "min": "",
+                    "max": ""
+                },
                 "layout_5f4f45c376b6d": {
                     "key": "layout_5f4f45c376b6d",
                     "name": "wysiwyg_content",
@@ -26,6 +157,7 @@
                             "key": "field_615c9f4af1f6d",
                             "label": "Section Header",
                             "name": "section_header",
+                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -35,7 +167,6 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "aria-label": "",
                             "show_in_graphql": 1,
                             "clone": [
                                 "group_615c9d4e51d6a"
@@ -49,6 +180,7 @@
                             "key": "field_5f4f45c376b6e",
                             "label": "WYSIWYG Content",
                             "name": "wysiwyg_content",
+                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -58,7 +190,6 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "aria-label": "",
                             "clone": [
                                 "group_5f4f3a11aaed0"
                             ],
@@ -71,6 +202,7 @@
                             "key": "field_5f4f45c376b6f",
                             "label": "Section Options",
                             "name": "section_options",
+                            "aria-label": "",
                             "type": "clone",
                             "instructions": "",
                             "required": 0,
@@ -80,7 +212,6 @@
                                 "class": "",
                                 "id": ""
                             },
-                            "aria-label": "",
                             "clone": [
                                 "group_5f4f44ad969e5"
                             ],
@@ -94,9 +225,12 @@
                     "max": ""
                 }
             },
-            "button_label": "Add Section",
+            "hide_collapse": 0,
+            "collapse_all_flexible": 0,
+            "btn-icon-only": 0,
             "min": "",
-            "max": ""
+            "max": "",
+            "button_label": "Add Section"
         }
     ],
     "location": [
@@ -125,5 +259,6 @@
     ],
     "active": true,
     "description": "",
-    "modified": 1682533701
+    "show_in_rest": 0,
+    "modified": 1695833381
 }

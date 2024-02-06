@@ -1,0 +1,38 @@
+{# section heading #}
+{# heading, intro, btn #}
+{% if not section_header %}
+  {% set section_header = post.section_header %}
+{% endif %}
+{% if not section_heading %}
+  {% set section_heading = post.section_heading %}
+{% endif %}
+{% if not section_intro %}
+  {% set section_intro = post.section_intro %}
+{% endif %}
+{% if not section_btn %}
+  {% set section_btn = post.section_btn %}
+{% endif %}
+{% if not text_alignment %}
+  {% set text_alignment = post.text_alignment %}
+{% endif %}
+{% if text_alignment == 'center' %}
+  {% set intro_classes = 'lg:w-1/2 mx-auto' %}
+{% else %}
+  {% set intro_classes = '' %}
+{% endif %}
+<div class="py-3 pb-6">
+  {% if section_heading %}
+    <h2 class="font-sans text-orange-400 text-6xl font-semibold pb-5">{{ section_heading }}</h2>
+  {% endif %}
+  {% if section_intro %}
+    <div class="text-black pb-6b text-2xl {{ intro_classes }}"><p>{{ section_intro }}</p></div>
+  {% endif %}
+  {% if section_btn %}
+    <div class="">
+      <a href="{{ btn_link.url }}"
+        class="inline-block uppercase tracking-tighter leading-none py-3 px-6 text-orange-400 border-4 mt-3 border-orange-400 rounded-full text-lg hover:bg-orange-400 hover:text-white">
+        {{ btn_link.title }}
+      </a>
+    </div>
+  {% endif %}
+</div>

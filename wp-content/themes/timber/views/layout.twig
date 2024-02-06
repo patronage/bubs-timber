@@ -1,132 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>{{ "wp_title"|function("-") }}</title>
+    <title>{{ 'wp_title'|function('-') }}</title>
 
-        <!-- parse-ignore-start -->
-        {# preloads #}
-        <link rel="preload" href="{{ function("rev", "fonts/Mona-Sans-Regular.woff2") }}" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="{{ function("rev", "fonts/Mona-Sans-RegularItalic.woff2") }}" as="font" type="font/woff2" crossorigin />
-        <link rel="preload" href="{{ function("rev", "fonts/Mona-Sans-Bold.woff2") }}" as="font" type="font/woff2" crossorigin />
-        <linl rel="preload" href="{{ function("rev", "fonts/Mona-Sans-BoldItalic.woff2") }}" as="font" type="font/woff2" crossorigin />
+    {# preloads -- see https://web.dev/preload-critical-assets/ #}
+    <link rel="preload"
+      href="https://fonts.googleapis.com/css?family=Archivo+Black&display=optional"
+      as="style" />
+    <link rel="preload"
+      href="{{ function('rev', 'fonts/inter-v13-latin-regular.woff2') }}"
+      as="font"
+      type="font/woff2"
+      crossorigin />
+    <link rel="preload" href="{{ function('rev', 'css/screen.css') }}" as="style" />
 
-        {# webfonts #}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="{{ function("rev", "css/screen.css") }}">
-        <!-- parse-ignore-end -->
+    {# webfonts -- we preferr to self host via _fonts.css if possible #}
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Archivo+Black&display=optional" />
 
-        <!-- parse-ignore-start -->
-        {% if gv.ga_id %}
-            {# https://github.com/googleanalytics/autotrack #}
-            <script>
-                window.ga = window.ga || function () {
-                    ( ga.q = ga.q || [] ).push( arguments )
-                };
-                ga.l = + new Date;
-                ga( 'create', '{{ gv.ga_id }}', 'auto' );
+    {# primary css #}
+    <link rel="stylesheet" href="{{ function('rev', 'css/screen.css') }}" />
 
-                ga( 'require', 'cleanUrlTracker', {
-                    stripQuery: true,
-                    indexFilename: 'index.html',
-                    trailingSlash: 'remove'
-                } );
+    {# other css -- try and keep to a minimum #}
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <script src="https://cdn.plyr.io/3.7.8/plyr.js"></script>
 
-                ga( 'require', 'eventTracker' );
-                ga( 'require', 'outboundLinkTracker' );
-                {% if environment == "development" or user %}
-                // No GA data sent while in dev or logged in
-                ga( 'set', 'sendHitTask', null );
-                {% endif %}
-                ga( 'send', 'pageview' );
-            </script>
+    {% if gv.ga_id %}
+      {% include 'components/ga.twig' with {
+        ga_id: gv.ga_id,
+        location: 'head'
+      } %}
+    {% endif %}
 
-            <script src='https://www.google-analytics.com/analytics.js'></script>
-        {% endif %}
-        <!-- parse-ignore-end -->
+    {% if gv.gtm_id %}
+      {% include 'components/gtm.twig' with {
+        gtm_id: gv.gtm_id,
+        location: 'head'
+      } %}
+    {% endif %}
 
-        <!-- GTM array to catch events -->
-        <script>
-            var dataLayer = [];
-        </script>
+    {{ function('wp_head') }}
 
-        {% if environment != "development" and gv.gtm_id %}
-            <!-- Google Tag Manager -->
-            <script>
-                ( function ( w, d, s, l, i ) {
-                    w[ l ] = w[ l ] || [];
-                    w[ l ].push( { 'gtm.start': new Date().getTime(), event: 'gtm.js' } );
-                    var f = d.getElementsByTagName( s )[0],
-                        j = d.createElement( s ),
-                        dl = l != 'dataLayer' ? '&l=' + l : '';
-                    j.async = true;
-                    j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-                    f.parentNode.insertBefore( j, f );
-                } )( window, document, 'script', 'dataLayer','{{ gv.gtm_id }}' );
-            </script>
-            <!-- End Google Tag Manager -->
-        {% endif %}
+    {% block head %}{% endblock %}
+  </head>
+  <body {{ function('body_class', body_classes) }} id="{{ body_id }}">
+    {% if gv.gtm_id %}
+      {% include 'partials/gtm.twig' with {
+        gtm_id: gv.gtm_id,
+        location: 'body'
+      } %}
+    {% endif %}
 
-        {{ wp_head }}
+    {% include 'partials/header.twig' %}
 
-        {% block head %}{% endblock %}
-    </head>
-    <body {{ function('body_class', body_classes ) }} id="{{ body_id }}">
+    {% block content %}
+      Not Found
+    {% endblock %}
 
-        {% if environment != "development" and gv.gtm_id %}
-            <!-- Google Tag Manager (noscript) -->
-            <noscript>
-                <iframe
-                    src="https://www.googletagmanager.com/ns.html?id={{ gv.gtm_id }}"
-                    height="0"
-                    width="0"
-                    style="display:none;visibility:hidden"></iframe>
-            </noscript>
-            <!-- End Google Tag Manager (noscript) -->
-        {% endif %}
+    {% include 'partials/footer.twig' %}
 
-        {% include "partials/header.twig" %}
+    {% if environment == 'development' %}
+      {% include 'components/tailwind-indicator.twig' %}
+    {% endif %}
 
-        {% block content %}
-            Not Found
-        {% endblock %}
+    {{ function('wp_footer') }}
 
-        {% include "partials/footer.twig" %}
+    {#
+      - Load JS libs then custom scripts. Paths should be relative to assets folder
+      - Build block uses gulp-useref to copy/rev assets
+      - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
+    #}
 
-        {{ wp_footer }}
+    <script src="{{ function('rev', 'js/main.js') }}"></script>
+    {% set scripts = ['swiper'] %}
+    {% for script in scripts %}
+      {% if script in script_loader %}
+        <script src="{{ function('rev', 'js/' ~ script ~ '.js') }}"></script>
+      {% endif %}
+    {% endfor %}
 
-        {% if environment == "development" %}
-            <script src="{{ theme_dir }}/assets/vendor/jquery/dist/jquery.js"></script>
-        {% else %}
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        {% endif %}
+    {% set rev_js %}
+      {# This tells gulp which files to run through esbuild #}
+      <!-- build:js js/all.js -->
+      <script src="js/main.js"></script>
+      <script src="js/swiper.js"></script>
+      <!-- endbuild -->
+    {% endset %}
 
-        <!-- parse-ignore-start -->
-        {#
-            - Load JS libs then custom scripts. Paths should be relative to assets folder
-            - Build block uses gulp-useref to copy/rev assets
-            - Rev function uses a custom php helper that adjusts filesname depending on env, and adds md5 hash in production
-        #}
-        <!-- parse-ignore-end -->
-
-        {% set rev_js %}
-        <!-- build:js js/all.js -->
-        <script src="vendor/autotrack/autotrack.js"></script>
-        <script src="vendor/fitvids.js/jquery.fitvids.js"></script>
-        <script src="vendor/popper.js/dist/umd/popper.js"></script>
-        <script src="vendor/bootstrap/dist/js/bootstrap.bundle.js"></script>
-        <script src="vendor/jquery-match-height/jquery.matchHeight.js"></script>
-        <script src="js/console-safe.js"></script>
-        <script src="js/main.js"></script>
-        <!-- endbuild -->
-        {% endset %}
-
-        {# Output assets #}
-        {{ function("revBlock", rev_js) }}
-
-        {# Individual templates can load scripts here #}
-        {% block footer_scripts %}{% endblock %}
-    </body>
+    {# Individual templates can load scripts here #}
+    {% block footer_scripts %}{% endblock %}
+  </body>
 </html>

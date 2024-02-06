@@ -50,7 +50,8 @@ else
   # save current branch to a variable
   branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 
-  git checkout -b deploy
+  git checkout --orphan deploy
+  git commit --no-verify -m "new deploy branch"
   npx gulp release || error_exit "Gulp release failed."
 
   echo "Adding built files that are normally .gitignored..."
@@ -61,6 +62,10 @@ else
     printf "$e\n"
     git add "$e" -f
   done
+
+  echo "Updating .gitignore before removing files..."
+  mv _build/.deploy.gitignore .gitignore
+  git add .gitignore -f
 
   echo "Removing files we don't want on the server"
   array=()

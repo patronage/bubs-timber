@@ -1,38 +1,67 @@
 {% extends 'layout.twig' %}
 
+{% set share = false %}
+{% set date = false %}
+{% set author = false %}
+{% set categories = false %}
+{% set tags = false %}
+
+{% set date = true %}
+{% set tags = true %}
+
 {% block content %}
-    <div class="container">
-        <div class="row page-container">
-            <div class="col-sm-9 content page">
-                <article class="post" id="post-{{ post.ID }}">
-                    <h1>{{ post.post_title }}</h1>
+  <section class="section-padded">
+    <article class="container-narrow flex flex-col gap-y-4">
+      <h1>{{ post.post_title }}</h1>
 
-                    {% include 'components/share-buttons.twig' %}
+      {% if author or date %}
+        <p class="post-meta">
+          {% if author %}
+            <span>By</span>
+            <a href="{{ post.author.path }}">{{ post.author.name }}</a><br />
+          {% endif %}
+          {% if date %}
+            <span class="date">{{ post.post_date|date }}</span>
+          {% endif %}
+        </p>
+      {% endif %}
 
-                    <p class="post-meta">
-                        <span>By</span>
-                        <a href="{{ post.author.path }}">
-                            {{ post.author.name }}
-                        </a><br />
-                        <span class="date">{{ post.post_date|date }}</span>
-                    </p>
-                    <div class="post-content">{{ post.content }}</div>
-                    {% if post.get_terms('categories') %}
-                        <div class="post-footer">
-                            Categories:{% for tag in post.get_terms(
-                                'categories'
-                            ) %}
-                                <a href="{{ tag.get_path }}">
-                                    {{ tag.name }}{{ loop.last ? '' : ', ' }}
-                                </a>
-                            {% endfor %}
-                        </div>
-                    {% endif %}
-                </article>
-            </div>
-        </div>
-        <div class="col-sm-3 sidebar">
-            <div class="container">{{ sidebar }}</div>
-        </div>
-    </div>
+      <div class="typography">{{ post.content }}</div>
+
+      {% if categories %}
+        {% set categories =
+          post.terms({
+            taxonomy: 'category',
+            exclude: [1]
+          })
+        %}
+        {% if categories %}
+          <div class="post-footer">
+            Categories:&nbsp;{% for term in categories -%}
+              <a href="{{ term.link }}">{{ term.title }}</a>{{ loop.last ? '' : ', ' }}
+            {%- endfor %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if tags %}
+        {% set tags =
+          post.terms({
+            taxonomy: 'tags'
+          })
+        %}
+        {% if tags %}
+          <div class="post-footer">
+            Tags:&nbsp;{% for term in tags -%}
+              <a href="{{ term.link }}">{{ term.title }}</a>{{ loop.last ? '' : ', ' }}
+            {%- endfor %}
+          </div>
+        {% endif %}
+      {% endif %}
+
+      {% if share %}
+        <div>{% include 'components/share-buttons.twig' %}</div>
+      {% endif %}
+    </article>
+  </section>
 {% endblock %}

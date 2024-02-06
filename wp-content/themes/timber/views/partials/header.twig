@@ -1,58 +1,162 @@
-{# render menu macro  #}
+{% macro nav(menu, variant) %}
+  {# define our css classes #}
+  {% if variant == 'desktop' %}
+    {% set top_ul_classes = 'list-none flex gap-x-8' %}
+    {% set top_li_classes = ['justify-center'] %}
+    {% set top_a_classes =
+      'py-2 px-1 flex items-center space-x-2 text-neutral-700 hover:text-neutral-900 border-b border-transparent group-hover:border-solid group-hover:border-neutral-900 hover:border-solid hover:border-neutral-900 hover:no-underline'
+    %}
+    {% set top_dropdown_classes = ['group', 'relative'] %}
+    {% set top_dropdown_el %}
+      <span>
+        {{
+          load_svg(
+            'icon/chevron-down',
+            {
+              class: 'fill-current',
+              width: '12',
+              height: '12'
+            }
+          )
+        }}
+      </span>
+    {% endset %}
+    {% set child_ul_classes =
+      'invisible absolute z-50 flex list-none w-full flex-col group-hover:visible bg-white border-1 border-neutral-200 shadow-md'
+    %}
+    {% set child_li_classes = 'child-li ' %}
+    {% set child_a_classes =
+      'block p-2 text-neutral-700 hover:bg-white no-underline hover:no-underline hover:text-neutral-900 '
+    %}
+  {% else %}
+    {% set top_ul_classes = 'list-none flex flex-col gap-y-4' %}
+    {% set top_li_classes = ['justify-center'] %}
+    {% set top_a_classes = 'py-2 px-1 flex items-center justify-center text-lg text-white' %}
+    {% set top_dropdown_classes = [] %}
+    {% set top_dropdown_el = '' %}
 
-{% macro navbar_nav( menu, name_class, top_classes ) %}
-    <ul class="navbar-nav {{ top_classes }}">
-        {% for item in menu.get_items %}
-            <li class="nav-item {{ item.get_children ? 'dropdown ' : '' }}{{ item.classes | join(' ') }}">
-                <a class="nav-link {{ item.get_children ? ' dropdown-toggle ' : '' }}"
-                    href="{{ item.get_link }}"
-                    {% if item.get_children %}
-                        id="{{ name_class }}-{{loop.index}}"
-                        role="button"
-                        aria-haspopup="true" aria-expanded="false"
-                    {% endif %}
-                    {% if item.target %}target="{{ item.target }}"{% endif %}
-                >
-                    <span class="text-offset">{{ item.title }}</span>
+    {% set child_ul_classes = 'flex list-none w-full flex-col' %}
+    {% set child_li_classes = ['justify-center'] %}
+    {% set child_a_classes = 'py-1 px-1 flex items-center justify-center text-base text-white' %}
+  {% endif %}
+
+  <ul class="{{ top_ul_classes }}">
+    {# apply our variables depending on if children #}
+
+    {# {% set classes = classes|merge([dropdown_class]) %} #}
+    {% for item in menu.get_items %}
+      {% set li_classes = top_li_classes %}
+      {% set wp_classes = '' %}
+      {% if item.classes %}
+        {% set wp_classes = item.classes|join(' ') %}
+      {% endif %}
+      {% if item.children %}
+        {% set li_classes = li_classes|merge(top_dropdown_classes) %}
+      {% endif %}
+
+      <li class="{{ li_classes|join(' ') }}">
+        <a class="{{ top_a_classes }} {{ wp_classes }}"
+          href="{{ item.link }}"
+          {{ item.target ? 'target=' ~ item.target : '' }}
+          {{ item.children ? 'data-toggle="dropdown"' : '' }}
+          {{ item.children ? 'aria-haspopup="true"' : '' }}>
+          <span>{{ item.title }}</span>
+          {% if item.children %}
+            {{ top_dropdown_el }}
+          {% endif %}
+        </a>
+        {% if item.children %}
+          <ul class="{{ child_ul_classes }}" aria-labelledby="{{ name_class }}-{{ loop.index }}">
+            {% for child in item.children %}
+              <li class="{{ child_li_classes }}">
+                <a class="{{ child_a_classes }}"
+                  href="{{ child.link }}"
+                  {{ child.target ? 'target=' ~ child.target : '' }}>
+                  {{ child.title }}
                 </a>
-                {% if item.get_children %}
-                    <div class="dropdown-menu" aria-labelledby="{{ name_class }}-{{loop.index}}">
-                        {% for child in item.get_children %}
-                            <a class="dropdown-item nav-link" href="{{ child.get_link }}"
-                                {% if child.target %}target="{{ child.target }}"{% endif %}
-                            >
-                                {{ child.title }}
-                            </a>
-                        {% endfor %}
-                    </div>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 {% endmacro %}
-{% import _self as lm %}
 
-
-
-<header class="component-main-header">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <nav class="navbar navbar-expand-md navbar-light">
-                    <a class="navbar-brand logo" href="/">
-                        {# <img src="/path/to/logo.svg" alt=""> #}
-                        {{ wp_title }}
-                    </a>
-
-                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#headerNavbar" aria-controls="headerNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="bi bi-list"></i>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="headerNavbar">
-                        {{ lm.navbar_nav(header_menu, 'main-header-nav',  '') }}
-                    </div>
-                </nav>
-            </div>
-        </div>
+<header class="bg-neutral-100 border-b-2 border-neutral-300">
+  <nav class="container-default flex items-center justify-between py-4 md:py-8">
+    <div class="flex items-center">
+      <a href="/" class="mr-6 transform translate-y-[2px]">
+        <img src="{{ img_dir }}/logo.svg"
+          width="{{ 133 * 1.5 }}"
+          height="{{ 26 * 1.5 }}"
+          alt="{{ site.name }}" />
+      </a>
     </div>
+    <div class="hidden md:flex items-center gap-8">
+      <div class="d-none d-lg-block">{{ _self.nav(header_menu, 'desktop') }}</div>
+      {% include 'components/social-icons.twig' with {
+        ul_classes: 'list-inline social-links flex flex-grow flex-row gap-2 items-center mb-0',
+        li_classes: '',
+        a_classes: 'bg-accent rounded-full p-1 flex items-center justify-center hover:scale-110 transition-scale duration-200',
+        svg_classes: 'fill-primary',
+        height: 16,
+        width: 16,
+        data: gv.social.networks
+      } only %}
+    </div>
+    <div class="md:hidden flex">
+      <button class="py-2"
+        data-te-target="#offcanvasTop"
+        aria-controls="offcanvasTop"
+        aria-label="Menu"
+        data-te-offcanvas-toggle
+        role="button"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        data-te-ripple-init
+        data-te-ripple-color="light">
+        {{
+          load_svg(
+            'icon/menu',
+            {
+              class: 'fill-neutral-700 hover:fill-neutral-900 transition transition-fill duration-200',
+              width: '32',
+              height: '32'
+            }
+          )
+        }}
+      </button>
+    </div>
+  </nav>
 </header>
+
+<div class="bg-primary text-white invisible fixed bottom-0 left-0 right-0 top-0 z-[1045] flex h-full max-h-full max-w-full -translate-y-full flex-col border-none bg-clip-padding shadow-sm outline-none transition duration-300 ease-in-out dark:bg-neutral-800 dark:text-neutral-200 [&[data-te-offcanvas-show]]:transform-none"
+  tabindex="-1"
+  id="offcanvasTop"
+  aria-labelledby="offcanvasTopLabel"
+  data-te-offcanvas-init>
+  <button type="button"
+    class="box-content pt-2 pr-2 rounded-none border-none hover:no-underline focus:shadow-none focus:outline-none ml-auto"
+    data-te-offcanvas-dismiss
+    aria-label="Close menu"
+    aria-controls="offcanvasTop">
+    <span class="w-[24px] focus:opacity-100 disabled:pointer-events-none disabled:select-none disabled:opacity-25 [&.disabled]:pointer-events-none [&.disabled]:select-none [&.disabled]:opacity-25">
+      {{
+        load_svg(
+          'icon/x',
+          {
+            class: 'fill-white hover:scale-110 transition-scale duration-200',
+            width: '36',
+            height: '36'
+          }
+        )
+      }}
+    </span>
+  </button>
+  <div class="flex flex-col flex-grow overflow-y-auto items-center justify-between p-4">
+    {{ _self.nav(header_menu, 'mobile') }}
+  </div>
+</div>
+
+<div class="hover:text-decoration-none"></div>

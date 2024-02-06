@@ -1,0 +1,10 @@
+<div class="container-default">
+  {% include 'components/section-heading.twig' with {
+    section_header: section.section_header,
+    section_heading: section.section_heading,
+    section_intro: section.section_intro,
+    section_btn: section.section_btn,
+    text_alignment: section.text_alignment
+  } %}
+  <article class="typography">{{ section.wysiwyg_content }}</article>
+</div>

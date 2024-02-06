@@ -3,9 +3,29 @@
     "title": "Options: Global Options",
     "fields": [
         {
+            "key": "field_6154e6ccdf595",
+            "label": "Footer",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
             "key": "field_610adfe5960e6",
             "label": "Footer",
             "name": "footer",
+            "aria-label": "",
             "type": "group",
             "instructions": "",
             "required": 0,
@@ -22,8 +42,9 @@
                     "key": "field_610adff5960e7",
                     "label": "Footer Copyright",
                     "name": "footer_copyright",
+                    "aria-label": "",
                     "type": "text",
-                    "instructions": "Usually formatted like <code>&copy; 2021 Patronage<\/code>",
+                    "instructions": "Usually formatted like <code>&copy; &lt;%= year %&gt; Your Organization<\/code>. the <code>&lt;%= year %&gt;<\/code> will be dynamically converted to the current year.",
                     "required": 0,
                     "conditional_logic": 0,
                     "wrapper": {
@@ -32,11 +53,293 @@
                         "id": ""
                     },
                     "show_in_graphql": 1,
-                    "default_value": "",
+                    "default_value": "&copy; <%= year %>",
                     "placeholder": "",
                     "prepend": "",
                     "append": "",
                     "maxlength": ""
+                }
+            ]
+        },
+        {
+            "key": "field_619e9e3af8ab7",
+            "label": "Global Action",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_619ea02bfc48f",
+            "label": "Enable Global Action",
+            "name": "enable_global_action",
+            "aria-label": "",
+            "type": "true_false",
+            "instructions": "When enabled, you can set an Action viewable on each page above the footer. It can be disabled on a per page basis in the Page Options sidebar.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "message": "",
+            "default_value": 0,
+            "ui": 0,
+            "ui_on_text": "",
+            "ui_off_text": ""
+        },
+        {
+            "key": "field_619e9e56f8ab8",
+            "label": "Global Action",
+            "name": "global_action",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": [
+                [
+                    {
+                        "field": "field_619ea02bfc48f",
+                        "operator": "==",
+                        "value": "1"
+                    }
+                ]
+            ],
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "show_in_graphql": 1,
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_619e9e6cf8ab9",
+                    "label": "Section Header",
+                    "name": "section_header",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "clone": [
+                        "group_615c9d4e51d6a"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                },
+                {
+                    "key": "field_619e9eaef8aba",
+                    "label": "Action",
+                    "name": "action",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "clone": [
+                        "group_607f81bc8c98e"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                },
+                {
+                    "key": "field_619e9ebdf8abb",
+                    "label": "Section Options",
+                    "name": "section_options",
+                    "aria-label": "",
+                    "type": "clone",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "show_in_graphql": 1,
+                    "clone": [
+                        "group_5f4f44ad969e5"
+                    ],
+                    "display": "seamless",
+                    "layout": "block",
+                    "prefix_label": 0,
+                    "prefix_name": 0
+                }
+            ]
+        },
+        {
+            "key": "field_6512338d10f67",
+            "label": "Social",
+            "name": "",
+            "aria-label": "",
+            "type": "accordion",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "open": 0,
+            "multi_expand": 0,
+            "endpoint": 0
+        },
+        {
+            "key": "field_651233a210f68",
+            "label": "Social",
+            "name": "social",
+            "aria-label": "",
+            "type": "group",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "layout": "block",
+            "sub_fields": [
+                {
+                    "key": "field_651233b210f69",
+                    "label": "Networks",
+                    "name": "networks",
+                    "aria-label": "",
+                    "type": "repeater",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "layout": "table",
+                    "pagination": 0,
+                    "hide_collapse": 0,
+                    "collapse_all_repeater": 0,
+                    "btn-icon-only": 0,
+                    "min": 0,
+                    "max": 0,
+                    "collapsed": "",
+                    "button_label": "Add Row",
+                    "rows_per_page": 20,
+                    "sub_fields": [
+                        {
+                            "key": "field_651233e610f6a",
+                            "label": "Link",
+                            "name": "link",
+                            "aria-label": "",
+                            "type": "url",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "placeholder": "",
+                            "parent_repeater": "field_651233b210f69"
+                        },
+                        {
+                            "key": "field_651233fe10f6b",
+                            "label": "Network",
+                            "name": "network",
+                            "aria-label": "",
+                            "type": "select",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "choices": {
+                                "facebook": "facebook",
+                                "instagram": "instagram",
+                                "linkedin": "linkedin",
+                                "twitter": "twitter",
+                                "x": "x",
+                                "youtube": "youtube",
+                                "other": "other"
+                            },
+                            "default_value": false,
+                            "return_format": "value",
+                            "multiple": 0,
+                            "allow_null": 0,
+                            "ui": 0,
+                            "ajax": 0,
+                            "placeholder": "",
+                            "parent_repeater": "field_651233b210f69"
+                        },
+                        {
+                            "key": "field_6512344610f6c",
+                            "label": "Icon",
+                            "name": "icon",
+                            "aria-label": "",
+                            "type": "image",
+                            "instructions": "Must be an SVG. You can find many to download here: https:\/\/icons.getbootstrap.com\/",
+                            "required": 0,
+                            "conditional_logic": [
+                                [
+                                    {
+                                        "field": "field_651233fe10f6b",
+                                        "operator": "==",
+                                        "value": "other"
+                                    }
+                                ]
+                            ],
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "return_format": "array",
+                            "library": "all",
+                            "min_width": "",
+                            "min_height": "",
+                            "min_size": "",
+                            "max_width": "",
+                            "max_height": "",
+                            "max_size": "",
+                            "mime_types": "svg",
+                            "preview_size": "medium",
+                            "parent_repeater": "field_651233b210f69"
+                        }
+                    ]
                 }
             ]
         }
@@ -58,9 +361,6 @@
     "hide_on_screen": "",
     "active": true,
     "description": "",
-    "show_in_graphql": 1,
-    "graphql_field_name": "acfGlobalOptions",
-    "map_graphql_types_from_location_rules": 0,
-    "graphql_types": "",
-    "modified": 1640795236
+    "show_in_rest": 0,
+    "modified": 1695831929
 }

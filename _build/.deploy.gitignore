@@ -1,0 +1,18 @@
+# the deploy_gitignore is for stuff that is in your regular gitignore that
+# you dont want to remove in deploy_exclude but you also don't want deployed to WPEngine
+
+
+
+
+
+
+.env
+_*/
+composer/
+gulpconfig.json
+node_modules/
+wp-content/debug.log
+wp-content/plugins/
+wp-content/plugins/timber-library/vendor/
+wp-content/themes/timber/assets/vendor
+wp-content/uploads/

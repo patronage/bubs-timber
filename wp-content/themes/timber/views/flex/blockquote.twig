@@ -1,0 +1,8 @@
+<div class="container-default">
+  {% if post.blockquote %}
+    <h2>{{ post.blockquote }}</h2>
+  {% endif %}
+  {% if post.quote_attribution %}
+    <p class="attribute">&mdash; {{ post.quote_attribution }}</p>
+  {% endif %}
+</div>

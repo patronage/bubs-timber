@@ -3,57 +3,60 @@
 // Make composer installed php libraries available
 $autoload_path = get_theme_root() . '/../plugins/composer-libs/autoload.php';
 if (file_exists($autoload_path)) {
-    require_once $autoload_path;
+  require_once $autoload_path;
 }
+
+// Initialize Timber.
+Timber\Timber::init();
+
+// Custom Timber Filters
+include_once 'setup/twig-filters/load-svg.php';
+include_once 'setup/twig-filters/get-image-dimensions.php';
+
+add_filter('timber/twig/functions', function ($functions) {
+  $functions['load_svg'] = [
+    'callable' => 'load_svg',
+  ];
+  $functions['get_image_dimensions'] = [
+    'callable' => 'get_image_dimensions',
+  ];
+
+  return $functions;
+});
 
 //
 // Load WP Config files
 //
 
 // Customize these variables per site
-$staging_wp_host = 'bubstimber.wpengine.com';
-$dashboard_cleanup = false; // Optionally will hide all but our custom widget
+$staging_wp_host = 'bubstimberstg.wpengine.com';
+$dashboard_cleanup = true; // Optionally will hide all but our custom widget
 $docs_link = ''; // set to a path if you have a site/document for editor instructions
 
 // Determine the hosting environment we're in
 if (defined('WP_ENV') && WP_ENV == 'development') {
-    define('WP_HOST', 'localhost');
+  define('WP_HOST', 'localhost');
 } else {
-    if (strpos($_SERVER['HTTP_HOST'], $staging_wp_host) !== false) {
-        define('WP_HOST', 'staging');
-    } else {
-        define('WP_HOST', 'production');
-    }
+  if (strpos($_SERVER['HTTP_HOST'], $staging_wp_host) !== false) {
+    define('WP_HOST', 'staging');
+  } else {
+    define('WP_HOST', 'production');
+  }
 }
 
 // Theme Options
 function bubs_theme_options($wp_customize) {
-    include_once 'setup/theme-options/footer.php';
-    include_once 'setup/theme-options/integrations.php';
-    include_once 'setup/theme-options/social.php';
-    $wp_customize->remove_section('custom_css');
+  include_once 'setup/theme-options/integrations.php';
+  $wp_customize->remove_section('custom_css');
 }
 
 add_action('customize_register', 'bubs_theme_options');
 
 // Post Types
-// include_once 'setup/post-types/heroes.php';
+include_once 'setup/post-types/component-library.php';
 
 // Taxonomies
 // include_once 'setup/taxonomies/featured.php';
-
-// Custom Twig filters
-include_once 'setup/twig-filters/dummy.php';
-include_once 'setup/twig-filters/twitterify.php';
-
-function add_to_twig($twig) {
-    /* this is where you can add your own fuctions to twig */
-    $twig->addFilter('dummy', new Twig_Filter_Function('apply_dummy_filter'));
-    $twig->addFilter('twitterify', new Twig_Filter_Function('twitterify'));
-    return $twig;
-}
-
-add_filter('get_twig', 'add_to_twig');
 
 // WP Helper Functions
 
@@ -63,8 +66,12 @@ include_once 'setup/helpers/admin.php';
 include_once 'setup/helpers/admin-env.php';
 include_once 'setup/helpers/dashboard-customize.php';
 include_once 'setup/helpers/env.php';
+// include_once 'setup/helpers/featured-content.php';
+include_once 'setup/helpers/flex.php';
 include_once 'setup/helpers/global-variables.php';
 include_once 'setup/helpers/gutenberg-disable.php';
+include_once 'setup/helpers/image-functions.php';
+include_once 'setup/helpers/image-sizes.php';
 include_once 'setup/helpers/menus.php';
 include_once 'setup/helpers/rev.php';
 include_once 'setup/helpers/role-super-editor.php';

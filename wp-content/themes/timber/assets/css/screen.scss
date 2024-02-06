@@ -1,0 +1,11 @@
+// mixins/functions
+@import './lib/clamped';
+
+// partials
+@import './fonts';
+
+// now core tailwind
+@import './tailwind';
+
+// anything else that makes more sense as scss
+@import './main';
